@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Philosophie - Cours & Ressources</title>
+    <style>
+        /* ===== RESET & VARIABLES ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: #f8fafc;
+            color: #1e293b;
+            line-height: 1.6;
+        }
+
+        /* ===== HEADER ===== */
+        .header {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        /* ===== CONTAINER ===== */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem 3rem;
+        }
+
+        /* ===== SECTIONS ===== */
+        .section {
+            background: white;
+            border-radius: 24px;
+            padding: 1.8rem 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px -2px rgba(0, 0, 0, 0.05), 0 1px 2px 0 rgba(0, 0, 0, 0.03);
+            transition: box-shadow 0.2s ease;
+        }
+
+        .section:hover {
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #0f172a;
+            border-left: 5px solid #3b82f6;
+            padding-left: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        /* ===== GRID FOR COURS ===== */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1rem;
+        }
+
+        .card-link {
+            display: block;
+            background: #f1f5f9;
+            padding: 1rem 1.2rem;
+            border-radius: 16px;
+            text-decoration: none;
+            color: #1e293b;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            border: 1px solid #e2e8f0;
+        }
+
+        .card-link:hover {
+            background: #3b82f6;
+            color: white;
+            transform: translateY(-2px);
+            border-color: #3b82f6;
+        }
+
+        /* ===== ŒUVRE CARD ===== */
+        .oeuvre-card {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-radius: 20px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .oeuvre-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #92400e;
+        }
+
+        .btn-link {
+            display: inline-block;
+            background: #0f172a;
+            color: white;
+            padding: 0.5rem 1.2rem;
+            border-radius: 40px;
+            text-decoration: none;
+            margin-top: 0.8rem;
+            font-size: 0.9rem;
+            transition: background 0.2s;
+        }
+
+        .btn-link:hover {
+            background: #3b82f6;
+        }
+
+        /* ===== REPÈRES ===== */
+        .reperes {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            background: #f1f5f9;
+            padding: 1.5rem;
+            border-radius: 20px;
+            text-align: center;
+            justify-content: center;
+        }
+
+        /* ===== METHODOLOGIE & BAC ===== */
+        .methodo-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .methodo-item {
+            background: #f1f5f9;
+            padding: 0.8rem 1.2rem;
+            border-radius: 40px;
+            text-decoration: none;
+            color: #1e293b;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        .methodo-item:hover {
+            background: #3b82f6;
+            color: white;
+        }
+
+        /* ===== MANUEL ===== */
+        .manuel-box {
+            background: #dbeafe;
+            border-radius: 20px;
+            padding: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .manuel-link {
+            background: #1e293b;
+            color: white;
+            padding: 0.7rem 1.5rem;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            text-align: center;
+            padding: 2rem;
+            color: #64748b;
+            font-size: 0.85rem;
+            border-top: 1px solid #e2e8f0;
+            margin-top: 2rem;
+        }
+
+        @media (max-width: 640px) {
+            .container {
+                padding: 0 1rem 2rem;
+            }
+            .section {
+                padding: 1.2rem;
+            }
+            .header h1 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header class="header">
+    <h1>📚 Philosophie</h1>
+    <p>Cours, méthodes et ressources des cours de philosphie</p>
+</header>
+
+<div class="container">
+
+    <!-- SECTION COURS -->
+    <div class="section">
+        <h2 class="section-title">📝 COURS</h2>
+        <div class="grid">
+            <a href="philosophie-definition.html" class="card-link">🤔 Qu'est-ce que la philosophie ?</a>
+            <a href="verite.html" class="card-link">🔍 Comment peut-on établir la vérité ?</a>
+            <a href="science-croyance.html" class="card-link">🔬 Quelle est la différence entre la science et la croyance ?</a>
+            <a href="religion.html" class="card-link">⛪ En quoi la religion tisse-t-elle le lien social ?</a>
+            <a href="liberte.html" class="card-link">🕊️ Comment peut-on établir la liberté ?</a>
+            <a href="sujet.html" class="card-link">🧠 Qu'est-ce qui définit un sujet ?</a>
+            <a href="art.html" class="card-link">🎨 Que dit l'art du réel ?</a>
+            <a href="technique.html" class="card-link">⚙️ La technique est-elle une maîtrise de l'Homme sur la nature ?</a>
+            <a href="travail.html" class="card-link">💼 Le travail est-il source d'aliénation ou de liberté ?</a>
+            <a href="bonheur.html" class="card-link">😊 Comment le bonheur peut-il être atteint ?</a>
+            <a href="temps.html" class="card-link">⏳ Le temps</a>
+            <a href="nature.html" class="card-link">🌿 La nature</a>
+            <a href="langage.html" class="card-link">🗣️ Le langage</a>
+        </div>
+    </div>
+
+    <!-- SECTION ŒUVRE À ÉTUDIER -->
+    <div class="section">
+        <h2 class="section-title">📚 Œuvre à étudier</h2>
+        <div class="oeuvre-card">
+            <div class="oeuvre-title">Emmanuel KANT</div>
+            <p style="margin: 0.5rem 0;"><em>Idée d'une histoire universelle au point de vue cosmopolitique</em> (1784)</p>
+            <a href="kant.html" class="btn-link">📖 Découvrir Kant →</a>
+        </div>
+    </div>
+
+    <!-- SECTION REPÈRES -->
+    <div class="section">
+        <h2 class="section-title">❤️ Les repères</h2>
+        <div class="reperes">
+            <span>🧭 Absolu / Relatif</span>
+            <span>⚖️ En droit / En fait</span>
+            <span>📏 Essence / Phénomène</span>
+            <span>🔁 Cause / Fin</span>
+        </div>
+        <div style="text-align: center; margin-top: 1rem;">
+            <a href="reperes.html" style="color: #3b82f6;">📖 Voir tous les repères →</a>
+        </div>
+    </div>
+
+    <!-- SECTION MÉTHODOLOGIE -->
+    <div class="section">
+        <h2 class="section-title">🗃️ Méthodologie</h2>
+        <div class="methodo-grid">
+            <a href="dissertation-methode.html" class="methodo-item">📝 Dissertation (méthode)</a>
+            <a href="dissertation-verite.html" class="methodo-item">⚖️ Dissertation : La vérité</a>
+            <a href="explication-texte.html" class="methodo-item">📖 Explication de texte</a>
+        </div>
+    </div>
+
+    <!-- SECTION VERS LE BAC -->
+    <div class="section">
+        <h2 class="section-title">✏️ Vers le BAC</h2>
+        <div class="methodo-grid">
+            <a href="bac-dissertation.html" class="methodo-item">📝 Annales dissertation</a>
+            <a href="bac-explication.html" class="methodo-item">📖 Annales explication de texte</a>
+        </div>
+    </div>
+
+    <!-- SECTION MANUEL -->
+    <div class="section">
+        <h2 class="section-title">📖 Manuel de philosophie</h2>
+        <div class="manuel-box">
+            <span>📘 Tu peux consulter le manuel en ligne</span>
+            <a href="manuel.pdf" class="manuel-link">📥 Accéder au manuel →</a>
+        </div>
+    </div>
+
+</div>
+
+<footer class="footer">
+    <p>📚 Ressources philosophiques - Libre accès</p>
+</footer>
+
+</body>
+</html>
