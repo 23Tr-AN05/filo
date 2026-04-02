@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La vérité - Philosophie</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+            background: #f8fafc;
+            color: #1e293b;
+            line-height: 1.6;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero p {
+            opacity: 0.9;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .btn-retour {
+            display: inline-block;
+            background: #3b82f6;
+            color: white;
+            padding: 0.7rem 1.5rem;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            transition: background 0.2s;
+        }
+
+        .btn-retour:hover {
+            background: #2563eb;
+        }
+
+        .content-card {
+            background: white;
+            border-radius: 24px;
+            padding: 2rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            overflow-x: auto;
+        }
+
+        .content-card img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 12px;
+            margin: 1rem 0;
+            display: block;
+        }
+
+        .collapsible {
+            background-color: #f1f5f9;
+            color: #1e293b;
+            cursor: pointer;
+            padding: 1rem;
+            width: 100%;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 16px;
+            margin: 1rem 0 0.5rem 0;
+            transition: background 0.2s;
+        }
+
+        .active, .collapsible:hover {
+            background-color: #3b82f6;
+            color: white;
+        }
+
+        .content {
+            padding: 0 1rem;
+            display: none;
+            overflow: hidden;
+            background-color: #fefce8;
+            border-radius: 0 0 16px 16px;
+            margin-bottom: 1rem;
+        }
+
+        .content-card h1, .content-card h2, .content-card h3 {
+            margin: 1.5rem 0 0.8rem 0;
+        }
+
+        .content-card p {
+            margin-bottom: 1rem;
+        }
+
+        .content-card ul, .content-card ol {
+            margin: 1rem 0 1rem 2rem;
+        }
+
+        .content-card li {
+            margin-bottom: 0.5rem;
+        }
+
+        mark {
+            background-color: #fef08a;
+            padding: 0.1rem 0.2rem;
+            border-radius: 4px;
+        }
+
+        @media (max-width: 640px) {
+            .container {
+                padding: 1rem;
+            }
+            .content-card {
+                padding: 1.2rem;
+            }
+            .hero h1 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="hero">
+    <h1>🔍 COMMENT PEUT-ON ÉTABLIR LA VÉRITÉ ?</h1>
+    <p>Quel est le lien entre la vérité et la réalité ? Entre la vérité et l'opinion ?</p>
+</div>
+
+<div class="container">
+    <a href="../index.html" class="btn-retour">← Retour à l'accueil</a>
+
+    <div class="content-card">
+        
+        <h2>📖 L'étymologie grecque du mot "Vérité"</h2>
+        <img src="verite/2.jpg" alt="Schéma étymologique vérité">
+        <p>La vérité serait donc le fait de ne pas oublier les Idées que nos âmes ont contemplées avant de s'incarner.</p>
+
+        <h2>🔬 2 Positions scientifiques :</h2>
+        <ol>
+            <li>Les lois (divines) sont présentées dans le monde et il s'agit pour le scientifique de <strong>les découvrir</strong> et <strong>de les dévoiler</strong>.</li>
+            <li>Le scientifique invente les lois, les théories dans le but de tenter d'expliquer et de prévoir les phénomènes.</li>
+        </ol>
+
+        <!-- KANT -->
+        <h3>📚 Emmanuel KANT, <em>Critique de la raison pure</em>, XVIIIe siècle</h3>
+        <button type="button" class="collapsible">📖 Suffit-il qu'une pensée soit conforme à la logique pour qu'elle soit vraie ?</button>
+        <div class="content">
+            <p><em>Pour qu’une pensée soit vraie, c’est-à-dire conforme à l’objet dont elle ou nie ceci ou cela (c’est une pomme, ce n’est pas une poire), il faut d’abord qu’elle soit en accord avec elle-même. La logique définit en effet les règles qui s’imposent à toute pensée vraie. Une pensée qui se contredit ne peut à l’évidence prétendre à quelque vérité que ce soit. Mais cette forme logique de la pensée suffit-elle à garantir son accord avec un contenu donné ?</em></p>
+            <p>L'ancienne et célèbre question par laquelle on prétendait pousser à bout les logiciens [...] est celle-ci : <em>Qu'est-ce que la vérité?</em> [...] Mais pour ce qui regarde la connaissance, quant à sa forme simplement (abstraction faite de tout contenu), il est […] clair qu'une logique, en tant qu'elle traite des règles générales et nécessaires de l'entendement, doit exposer, dans ces règles mêmes, les critères de la vérité. Car ce qui les contredit est faux, puisque l'entendement s'y met en contradiction avec les règles générales de sa pensée et, par suite, avec lui-même. Mais ces critères ne concernent que la forme de la vérité, c'est-à-dire de la pensée en général et, s'ils sont, à ce titre, très justes, ils sont pourtant insuffisants. Car une connaissance peut fort bien être complètement conforme à la forme logique, c'est-à-dire ne pas se contredire elle-même, et cependant être en contradiction avec l'objet. Donc le critère simplement logique de la vérité, c'est-à-dire l'accord d'une connaissance avec les lois générales et formelles de l'entendement et de la raison est, il est vrai, la condition <em>sine qua non</em> et, par suite, la condition négative de toute vérité; mais la logique ne peut pas aller plus loin ; aucune pierre de touche ne lui permet de découvrir l'erreur qui atteint non la forme, mais le contenu.</p>
+        </div>
+
+        <p><strong>Comment établir une connaissance vraie sur le monde ?</strong><br>
+        Pour établir la vérité d’une connaissance, les règles générales de la logique sont nécessaires : le principe de non contradiction, le principe de causalité.</p>
+        
+        <p><mark>De la ligne 1 à 7 :</mark> → Notre entendement suit les règles de la logique, déjà la forme de ses raisonnements.<br>
+        <strong>L’entendement (de Kant) :</strong> C’est la faculté de créer des concepts, de faire la synthèse des différentes données de l’intuition sensible en les ordonnant à l’aide des catégories (causalité, espace, temps).</p>
+        
+        <p><mark>De la ligne 7 à 11 :</mark> → Les règles de la logique sont nécessaires mais pas suffisantes, car la vérité formelle se distingue de la vérité matérielle, c’est-à-dire une vérité concernant le contenu.<br>
+        Aristote est l’inventeur du syllogisme, constitué de 2 prémisses validées comme vraies et d’une conclusion déduite qui sera donc vraie :</p>
+        <img src="verite/11.jpg" alt="Exemple de syllogisme">
+
+        <p><mark>De la ligne 11 à 16 :</mark> → Vérité négative : nulle pensée ne peut être vraie, si elle ne respecte pas la logique.</p>
+        <p><mark>De la ligne 16 à 22 :</mark> → L’entendement suit les mêmes catégories (causalité, non-contradiction) que la logique. → Notre connaissance du réel s’appuie sur cette logique. Mais cette fidélité rigoureuse à la logique n’est pas suffisante pour dire quelque chose du réel qui soit vraie.</p>
+        <p><mark>De la ligne 22 à 27 :</mark> → Nécessité d’étudier l’objet / la vérité pour lui-même, pour en posséder une connaissance vraie.</p>
+
+        <h2>📚 4 domaines de vérité :</h2>
+        <ol type="a">
+            <li><strong>La vérité liée au langage</strong> : le discours tenu sur quelque chose doit être en adéquation avec ce quelque chose. Exemple : La tour Eiffel est à Paris. => Elle repose sur les faits.</li>
+            <li><strong>La vérité mathématique</strong> : elle repose sur des démonstrations logiques.</li>
+            <li><strong>La vérité des sciences expérimentales</strong> : elle repose sur un protocole (hypothèse/expérimentation/validation) et sur l’expérimentation.</li>
+            <li><strong>La vérité judiciaire</strong> : elle repose sur des preuves afin de déterminer l’innocence ou la culpabilité.</li>
+        </ol>
+
+        <h2>⚙️ 3 Critères pour définir la qualité d’une théorie scientifique :</h2>
+        <ol type="I">
+            <li>Elle doit être la plus simple possible.</li>
+            <li>Elle doit pouvoir expliquer le plus de phénomènes possibles.</li>
+            <li>Elle doit prévoir les phénomènes.</li>
+        </ol>
+
+        <!-- Thomas d'AQUIN -->
+        <h3>📚 Thomas d’AQUIN, <em>Somme théologique</em>, XIIIe siècle</h3>
+        <button type="button" class="collapsible">📖 Y a-t-il des choses vraies ?</button>
+        <div class="content">
+            <p><em>La vérité qualifie-t-elle un état de choses ou le jugement que nous portons sur cet état de choses ? N’est-elle pas une qualité de la pensée plutôt que des choses ? Ne désigne-t-elle pas la pensée qui dit qu’une chose blanche est blanche, et l’erreur la pensée qui dit qu’une chose est blanche lorsqu’elle ne l’est pas ? Dans ce texte, Thomas d’AQUIN soutient que la vérité n’est pas une chose mais une relation, celle de l’adéquation de l’idée et de la chose.</em></p>
+            <p>On l'a déjà dit, le vrai, selon sa raison formelle première, est dans l'intelligence. Puisque toute chose est vraie selon qu'elle possède la forme qui est propre à sa nature, il est nécessaire que l'intellect en acte de connaître soit vrai en tant qu'il y a en lui la similitude de la chose connue, similitude qui est sa forme propre en tant qu'il est connaissant. Et c'est pour cela que l'on définit la vérité par la conformité de l'intellect et de la chose. Il en résulte que connaître une telle conformité, c'est connaître la vérité.</p>
+        </div>
+        
+        <p><mark>Ligne 1 :</mark> → La vérité est contenue dans notre intelligence parce que nous possédons une faculté logique (que Dieu nous a donnée).<br>
+        <mark>De la ligne 2 à 5 :</mark> → L’objet étudié est connaissable dans la mesure où il est en lien avec celui qui cherche à la connaître. Ce lien est fondé sur la création de cet objet et de celui qui cherche à connaître par Dieu.<br>
+        Ligne 3 : « L’intellect en acte » => référence à ARISTOTE (actif / agissant ≠ en puissance = virtuel, en devenir).<br>
+        <mark>De la ligne 5 à 7 :</mark> → Conformité de ce qui est saisi par l’intellect avec l’objet étudié.</p>
+
+        <!-- DESCARTES Règles -->
+        <h3>📚 René DESCARTES, <em>Règles pour la direction de l’esprit</em>, XVIIe siècle</h3>
+        <button type="button" class="collapsible">📖 Les mathématiques comme modèle</button>
+        <div class="content">
+            <p><em>Le privilège des mathématiques comme modèle de vérité n’a rien d’arbitraire, selon Descartes. Il vient du fait que leur objet est simple et abstrait, conçu hors de toute expérience.</em></p>
+            <p>De là se conclut avec évidence la raison pour laquelle l’arithmétique et la géométrie sont bien plus certaines que toutes les autres disciplines : c’est qu’elles seules traitent d’un objet si pur et si simple qu’elles n’admettent absolument rien que l’expérience ait rendu incertain, et qu’elles consistent tout entières à tirer des conséquences par voie de déduction rationnelle. Elles sont ainsi les plus faciles et les plus claires de toutes, et elles ont un objet tel que celui que nous exigeons, puisqu’en elles, sauf inadvertance, il semble que l’homme puisse difficilement se trompe. […] De tout cela il faut maintenant conclure, non point certes qu’on ne doivent étudier que l’arithmétique et la géométrie, mais seulement que ceux qui cherchent le droit chemin de la vérité ne doivent s’occuper d’aucun objet à propos duquel ils ne puissent obtenir une certitude égale aux démonstrations de l’arithmétique et de la géométrie.</p>
+        </div>
+
+        <p><mark>Idée générale :</mark> Apologie des mathématiques comme moyen sûr d’atteindre la vérité. Descartes voulait mettre le monde sous forme mathématique : <em>Mathesis Universalis</em>.</p>
+
+        <!-- POPPER -->
+        <h3>📚 Karl POPPER, <em>Conjectures et réfutations</em>, XXe siècle</h3>
+        <button type="button" class="collapsible">📖 L’irréfutabilité est un défaut / L’épreuve du test</button>
+        <div class="content">
+            <p><em>Une théorie serait-elle scientifique parce qu’elle est infaillible et irréfutable ? C’est exactement l’inverse selon Karl Popper, qui entend opposer à la science ce qui relève de la métaphysique, de la religion ou de l’idéologie.</em></p>
+            <p>Une théorie qui n’est réfutable par aucun événement qui se puisse concevoir est dépourvue de caractère scientifique. Pour les théories, l’irréfutable n’est pas (comme on l’imagine souvent) vertu mais défaut. Toute mise à l’épreuve véritable d’une théorie par des tests constitue une tentative pour en démontrer la fausseté ou pour la réfuter. Pouvoir être testée c’est pouvoir être réfutée […] Un système n’est empirique ou scientifique que s’il est susceptible d’être soumis à des tests expérimentaux. Ces considérations suggèrent que c’est la falsifiabilité et non vérifiabilité d’un système qu’il faut prendre comme critère de démonstration.</p>
+        </div>
+
+        <p>→ Une théorie est scientifique si et seulement si elle est réfutable. <strong>La falsifiabilité / réfutabilité.</strong><br>
+        <u>2 Théories qui ne sont pas scientifiques pour Karl POPPER :</u><br>
+        A. Théorie de l’existence de l’inconscient (S. FREUD)<br>
+        B. Théorie de la lutte des classes (Karl MARX)</p>
+
+        <!-- EINSTEIN -->
+        <h3>📚 Albert EINSTEIN et Léopold INFELD, <em>L’évolution des idées en physique</em>, XXe siècle</h3>
+        <button type="button" class="collapsible">📖 La vérité n'est qu'une limite idéale</button>
+        <div class="content">
+            <p><em>On pourrait croire que, parmi les sciences, la physique soit celle qui soit la plus proche d’une description fidèle de la réalité naturelle. Pourtant la vérité n’est pour elle qu’un horizon, considèrent Albert Einstein et Léopold Infeld.</em></p>
+            <p>C’est en réalité tout notre système de conjectures qui doit être prouvé ou réfuté par l’expérience. […] Les concepts physiques sont des créations libres de l’esprit humain et ne sont pas, comme on pourrait le croire, uniquement déterminés par le monde extérieur. […] Le chercheur croit certainement qu’à mesure que ses connaissances s’accroîtront, son image de la réalité deviendra de plus en plus simple et expliquera des domaines de plus en plus étendus de ses impressions sensibles. Il pourra aussi croire à l’existence d’une limite idéale de la connaissance que l’esprit humain peut atteindre. Il pourra appeler cette limite idéale la vérité objective.</p>
+        </div>
+
+        <p><strong>Étymologie :</strong> physis (en grec: φύσις) → Physique → la nature</p>
+        <p><mark>De la ligne 1 à 8 :</mark> → La science est « système de conjectures » (hypothèses).<br>
+        <mark>De la ligne 9 à 12 :</mark> → La science est une création humaine, de l’intellect. Métaphore de la montre fermée.<br>
+        <mark>De la ligne 12 à 17 :</mark> → « voit » / « entend » → à l’aide de nos sens, nous percevons les phénomènes. « Boîtier fermé » renvoie à notre impossibilité de comprendre comment ces phénomènes ont lieu.<br>
+        <mark>De la ligne 18 à 22 :</mark> → La vérité se pose comme un horizon à atteindre, une limite idéale.<br>
+        <strong>Repère : Savoir ≠ Croire</strong><br>
+        vérité objective : c’est un pléonasme, car la vérité, par définition, est objective, voire universelle.</p>
+
+        <!-- DESCARTES Méditations -->
+        <h3>📚 René DESCARTES, <em>Méditations métaphysiques</em>, 1641</h3>
+        <button type="button" class="collapsible">📖 Trouver un fondement sûr à nos connaissances</button>
+        <div class="content">
+            <p><em>Dans un contexte historique où le système géocentrique est remis en cause par Copernic puis par Galilée, il est urgent, pour Descartes, de se demander s'il peut trouver une première certitude qui lui servira de fondement. Après avoir entrepris de douter de tout, dans cette deuxième méditation, il émet l'hypothèse d'un malin génie qui le tromperait constamment.</em></p>
+            <p>Je suppose donc que toutes les choses que je vois sont fausses ; je me persuade que rien n'a jamais été de tout ce que ma mémoire remplie de mensonges me représente ; je pense n'avoir aucun sens ; je crois que le corps, la figure, l'étendue, le mouvement et le lieu ne sont que des fictions de mon esprit. Qu'est-ce donc qui pourra être estimé véritable ? Peut-être rien autre chose, sinon qu'il n'y a rien au monde de certain. […] Mais que sais-je s'il n'y a point quelque autre chose différente de celles que je viens de juger incertaines, de laquelle on ne puisse avoir le moindre doute ? […] Moi donc à tout le moins ne suis-je pas quelque chose ? […] Mais il y a un je ne sais quel trompeur très puissant et très rusé, qui emploie toute son industrie à me tromper toujours. Il n'y a donc point de doute que je suis, s'il me trompe ; et qu'il me trompe tant qu'il voudra il ne saurait jamais faire que je ne sois rien, tant que je penserai être quelque chose. […] enfin il faut conclure, et tenir pour constant que cette proposition : Je suis, j'existe, est nécessairement vraie, toutes les fois que je la prononce, ou que je la conçois en mon esprit.</p>
+        </div>
+
+        <p><strong>Cogito ergo sum : Je pense donc je suis (j’existe)</strong><br>
+        => La vérité première à laquelle il aboutit. Le doute cartésien est radical, hyperbolique, méthodique (par étapes). Ce doute est fécond car il aboutit à cette vérité, au contraire du doute des Sceptiques (Pyrrhon d’Élis).</p>
+
+        <img src="verite/4.jpg" alt="Schéma doute cartésien">
+        <img src="verite/9.jpg" alt="Illustration doute cartésien">
+
+        <!-- DESCARTES Cire -->
+        <h3>📚 René DESCARTES, <em>Méditations métaphysiques</em>, 1641</h3>
+        <button type="button" class="collapsible">📖 Les sens ne suffisent pas pour connaître</button>
+        <div class="content">
+            <p><em>Après s'être défini comme « une chose qui pense », Descartes se demande ce qu'il peut connaître du monde. Malgré les changements d'état d'un morceau de cire chauffé, et donc son changement d'apparence sensorielle, nous ne doutons pas qu'il s'agisse bel et bien du même morceau de cire. C'est notre jugement qui s'impose à la perception du morceau de cire : nous ne recevons pas passivement des informations des sens, nous jugeons la réalité perçue.</em></p>
+            <p>Prenons pour exemple ce morceau de cire : il vient tout fraîchement d'être tiré de la ruche […] Mais voici que pendant que je parle, on l'approche du feu : ce qui y restait de saveur s'exhale, l'odeur s'évapore, sa couleur se change, sa figure se perd, sa grandeur augmente, il devient liquide […] La même cire demeure-t-elle encore après ce changement ? Il faut avouer qu'elle demeure ; personne n'en doute […] Or ce qui est ici grandement à remarquer, c'est que sa perception n'est point une vision, ni un attouchement, ni une imagination, et ne l'a jamais été quoiqu'il le semblât ainsi auparavant, mais seulement une inspection de l'esprit […]</p>
+        </div>
+
+        <p><mark>« Le morceau de cire » :</mark><br>
+        De la ligne 1 à 13 : Les changements de la substance « cire » perçus par les sens.<br>
+        De la ligne 14 à 19 : Qu’est-ce qui demeure de la substance sous ces différents changements ?<br>
+        De la ligne 20 à 23 : C’est l’entendement qui permet d’obtenir une connaissance stable et certaine de cette substance changeante.<br>
+        <strong>Entendement (Descartes) :</strong> La faculté de comprendre, d’apercevoir, de saisir l’intelligible.</p>
+        
+        <img src="verite/8.jpg" alt="Schéma morceau de cire">
+
+        <!-- PLATON Caverne -->
+        <h3>📚 PLATON, <em>La République, Livre VII</em>, IVe siècle av. J.-C.</h3>
+        <button type="button" class="collapsible">📖 La vérité est dans les Idées: l'âme doit chercher à s'élever</button>
+        <div class="content">
+            <p><em>Au livre VII de la République, SOCRATE discute avec Glaucon et lui demande d’imaginer l’intérieur d’une caverne, où des prisonniers seraient enfermés. Il s’agit d’une allégorie : les différents éléments qui constituent la description de la caverne représentent des idées ou des concepts.</em></p>
+            <p>Maintenant représente toi de la façon que voici l’état de notre nature relativement à l’instruction et à l’ignorance. Figure-toi des hommes dans une demeure souterraine, en forme de caverne, ayant sur toute sa largeur une entrée ouverte à la lumière; ces hommes sont là depuis leur enfance, les jambes et le cou enchaînés […]</p>
+        </div>
+
+        <img src="verite/3.jpg" alt="Allégorie de la caverne">
+        <p>Platon utilise une image et une histoire pour exprimer l’état dans lequel se situe l’Homme.<br>
+        <strong>1. Les prisonniers représentent notre condition dans un état d’illusion.</strong><br>
+        <strong>2. La sortie d’un prisonnier de la caverne :</strong> le chemin vers la vérité est difficile et douloureux.<br>
+        <strong>3. Le retour du prisonnier / le philosophe :</strong> rôle du philosophe dans la société.</p>
+        <img src="verite/5.jpg" alt="Schéma allégorie de la caverne">
+
+        <!-- KANT Vérité -->
+        <h3>📚 Emmanuel KANT, <em>D’un prétendu droit de mentir par l’humanité</em>, 1797</h3>
+        <button type="button" class="collapsible">📖 Dire la vérité est un impératif absolu</button>
+        <div class="content">
+            <p><em>Une célèbre polémique a opposé Constant à Kant vers 1797 concernant la question du droit de mentir. Aucun des deux ne défend le principe d’un mensonge par égoïsme et tous les deux s’accordent à considérer que dire la vérité est un devoir. Mais Constant estime indispensable de regarder les circonstances du mensonge et les conséquences qu’il entraînerait avant de condamner le menteur. Intransigeant, Kant fait de la véracité un devoir absolu.</em></p>
+            <p>Être véridique dans les propos qu’on ne peut éluder, c’est là le devoir formel de l’homme envers chaque homme, quelle que soit la gravité du préjudice qui peut en résulter pour soi-même ou pour autrui. […] La véracité est un devoir, on doit le considérer comme le fondement de tous les devoirs qui doivent se fonder sur un contrat […] Il y a donc un commandement sacré de la raison, qui commande inconditionnellement et qu’aucune convenance ne doit restreindre : être véridique (honnête) dans toutes ses déclarations.</p>
+        </div>
+
+        <p>Ne pas mentir est un devoir, car si l’un d’entre nous ment, il engage l’humanité entière. Cette loi morale ne souffre aucune exception. Une action est morale si et seulement si elle est universalisable.</p>
+
+        <!-- CONSTANT -->
+        <h3>📚 Benjamin CONSTANT, <em>Des réactions politiques</em>, 1797</h3>
+        <button type="button" class="collapsible">📖 Il y a des vérités qui nuisent à autrui</button>
+        <div class="content">
+            <p><em>Il est hors de doute que les principes abstraits de la morale, s’ils étaient séparés de leurs principes intermédiaires, produiraient autant de désordre dans les relations sociales des hommes que les principes abstraits de la politique […] Le principe moral que dire la vérité est un devoir, s’il était pris de manière absolue et isolée, rendrait toute société impossible. […] Dire la vérité n’est donc un devoir qu’envers ceux qui ont droit à la vérité. Or nul homme n’a droit à la vérité qui nuit à autrui.</em></p>
+        </div>
+
+        <p>Distinction entre la théorie et la pratique. La loi morale (kantienne) générale vs les cas particuliers.<br>
+        Ligne 7 : « Philosophe allemand » → référence à Emmanuel KANT.<br>
+        La solution de Benjamin CONSTANT : la loi morale de ne pas mentir exige aussi que la vérité ne nuise pas à autrui.</p>
+
+        <img src="verite/7.jpg" alt="Schéma synthèse vérité">
+
+        <!-- KUHN -->
+        <h3>📚 Thomas KUHN, <em>La structure des révolutions scientifiques</em>, 1962</h3>
+        <button type="button" class="collapsible">📖 Paradigmes et révolutions scientifiques</button>
+        <div class="content">
+            <p>Les crises sont une condition préalable et nécessaire de l’apparition de nouvelles théories. […] Le passage d’un paradigme en état de crise à un nouveau paradigme d’où puisse naître une nouvelle tradition de science normale est loin d’être un processus cumulatif […] C’est plutôt une reconstruction de tout un secteur sur de nouveaux fondements. Le passage au nouveau paradigme est une révolution scientifique.</p>
+        </div>
+
+        <p><strong>Paradigme = modèle</strong><br>
+        Lorsqu’une théorie se révèle défaillante, trois solutions :<br>
+        a) Les scientifiques résolvent le problème à l’intérieur du paradigme existant.<br>
+        b) Pas de solution → on laisse le problème pour la génération future.<br>
+        c) Changement de paradigme (KEPLER → NEWTON → EINSTEIN) : une révolution scientifique.</p>
+
+        <!-- PLATON Théétète -->
+        <h3>📚 PLATON, <em>Théétète</em>, IVe siècle av. J.-C.</h3>
+        <button type="button" class="collapsible">📖 L’homme est-il la mesure de toutes choses ?</button>
+        <div class="content">
+            <p><em>Platon fait parler Protagoras, un sophiste qui soutient, dans un livre perdu qui s’appelait probablement La Vérité, que « l’homme est la mesure de toutes choses ».</em></p>
+            <p>PROTAGORAS : Car j’affirme, moi, que la vérité est telle que je l’ai définie, que chacun de nous est la mesure de ce qui est et de ce qui n’est pas […] Quant à la sagesse et à l’homme sage, je suis bien loin d’en nier l’existence ; mais par homme sage j’entends précisément celui qui, changeant la face des objets, les fait apparaître et être bons à celui à qui ils apparaissaient et étaient mauvais.</p>
+        </div>
+
+        <p><strong>Distinction entre l’opinion et la vérité :</strong><br>
+        Opinion (doxa) : subjective, ce que tout le monde pense sans y avoir réfléchi.<br>
+        Vérité (aléthéia) : objective, universelle.<br>
+        <strong>Distinction entre être et paraître :</strong><br>
+        L’être : les choses qui sont → le réel (la vérité)<br>
+        Paraître : de l’ordre de la perception, subjectif.</p>
+        
+        <img src="verite/6.jpg" alt="Schéma être et paraître">
+
+        <hr>
+        <p>📄 Veuillez trouver la version PDF de ce cours ci-dessous :</p>
+        <a href="verite/Comment_peut-on_établir_la_vérité.pdf" download style="display:inline-block; background:#3b82f6; color:white; padding:0.5rem 1rem; border-radius:40px; text-decoration:none;">📥 Télécharger le PDF</a>
+        
+        <embed type="application/pdf" src="verite/Comment_peut-on_établir_la_vérité.pdf" width="100%" height="500" style="margin-top:1rem; border-radius:12px;">
+    </div>
+</div>
+
+<script>
+    var coll = document.getElementsByClassName("collapsible");
+    for (var i = 0; i < coll.length; i++) {
+        coll[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            var content = this.nextElementSibling;
+            if (content.style.display === "block") {
+                content.style.display = "none";
+            } else {
+                content.style.display = "block";
+            }
+        });
+    }
+</script>
+
+</body>
+</html>
