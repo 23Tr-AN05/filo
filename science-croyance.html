@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Science et croyance - Philosophie</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: linear-gradient(135deg, #f8fafc 0%, #eef2ff 100%);
+            color: #1e293b;
+            line-height: 1.6;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #2d3a4e 100%);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+            border-bottom: 4px solid #3b82f6;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            font-style: italic;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .btn-retour {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: #3b82f6;
+            color: white;
+            padding: 0.7rem 1.5rem;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .btn-retour:hover {
+            background: #2563eb;
+            transform: translateX(-4px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
+
+        .content-card {
+            background: white;
+            border-radius: 32px;
+            padding: 2.5rem;
+            box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.1);
+        }
+
+        .content-card img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 20px;
+            margin: 1.5rem 0;
+            display: block;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #0f172a;
+            margin: 2rem 0 1rem 0;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid #3b82f6;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+
+        .page-badge {
+            background: #eef2ff;
+            color: #3b82f6;
+            padding: 0.2rem 0.7rem;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .content-card p {
+            margin-bottom: 1rem;
+            text-align: justify;
+            line-height: 1.7;
+        }
+
+        .content-card ul, .content-card ol {
+            margin: 1rem 0 1rem 2rem;
+        }
+
+        .content-card li {
+            margin-bottom: 0.5rem;
+            text-align: justify;
+        }
+
+        /* Style pour les extraits */
+        .extrait-container {
+            background: #f8fafc;
+            border-radius: 24px;
+            margin: 1.5rem 0;
+            overflow: hidden;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .extrait-header {
+            background: #f1f5f9;
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid #e2e8f0;
+            font-weight: 600;
+            color: #0f172a;
+        }
+
+        .extrait-content {
+            padding: 1.5rem;
+        }
+
+        .extrait-ligne {
+            display: flex;
+            margin-bottom: 0.4rem;
+            line-height: 1.7;
+        }
+
+        .extrait-numero {
+            min-width: 55px;
+            color: #3b82f6;
+            font-weight: 600;
+            font-size: 0.85rem;
+            user-select: none;
+        }
+
+        .extrait-texte {
+            flex: 1;
+            text-align: justify;
+        }
+
+        .extrait-ligne-sans-num {
+            display: flex;
+            margin-bottom: 0.4rem;
+            line-height: 1.7;
+        }
+
+        .extrait-texte-indent {
+            flex: 1;
+            text-align: justify;
+            padding-left: 55px;
+        }
+
+        mark {
+            background-color: #fef08a;
+            padding: 0.1rem 0.2rem;
+            border-radius: 4px;
+        }
+        #m1 { background-color: #FFDCDA; }
+        #m2 { background-color: #8FFF6D; }
+        #m3 { background-color: #C1FFFC; }
+        #m5 { background-color: #FFDCDA; }
+
+        /* Boutons accordéon - structure originale conservée */
+        .collapsible {
+            background: linear-gradient(135deg, #f1f5f9, #e2e8f0);
+            color: #1e293b;
+            cursor: pointer;
+            padding: 1rem 1.5rem;
+            width: 100%;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 1rem;
+            font-weight: 500;
+            border-radius: 60px;
+            margin: 1.2rem 0 0.5rem 0;
+            transition: all 0.2s ease;
+        }
+
+        .collapsible strong {
+            font-weight: 700;
+        }
+
+        .collapsible:hover {
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            color: white;
+        }
+
+        .active, .collapsible:active {
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            color: white;
+        }
+
+        .content {
+            display: none;
+            margin-bottom: 1rem;
+        }
+
+        .info-box {
+            border-left: 4px solid #dc2626;
+            background: #fef2f2;
+            padding: 1rem 1.2rem;
+            border-radius: 16px;
+            margin: 1.5rem 0;
+        }
+
+        .repère-box {
+            display: inline-block;
+            background: #fef08a;
+            color: #dc2626;
+            padding: 0.3rem 1rem;
+            border-radius: 40px;
+            font-weight: 600;
+            margin: 1rem 0;
+        }
+
+        embed {
+            border-radius: 20px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            margin-top: 1rem;
+        }
+
+        hr {
+            margin: 2rem 0;
+            border: none;
+            border-top: 2px solid #e2e8f0;
+        }
+
+        #h1 { text-align: center; color: #dc2626; font-size: 1.3rem; margin: 1rem 0; }
+
+        @media (max-width: 768px) {
+            .container { padding: 1rem; }
+            .content-card { padding: 1.5rem; }
+            .hero h1 { font-size: 1.6rem; }
+            .extrait-numero { min-width: 40px; font-size: 0.75rem; }
+            .extrait-texte-indent { padding-left: 40px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="hero">
+    <h1>🔬 QUELLE EST LA DIFFÉRENCE ENTRE LA SCIENCE ET LA CROYANCE ?</h1>
+    <p>Quel est l'objet de la science ? Quelles sont ses limites ?</p>
+</div>
+
+<div class="container">
+    <a href="../index.html" class="btn-retour">← Retour à l'accueil</a>
+
+    <div class="content-card">
+        
+        <p style="font-size:1.05rem;">&nbsp;&nbsp; &nbsp;&nbsp;Les tentatives d'explication des phénomènes et du réel a semblé nécessaire à l'Homme pour se sentir moins étranger dans un monde inconnu, hostile.
+        <br />&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; ⟾ Religions, mythologies, croyances</p>
+
+        <!-- ========== LUCRÈCE - p.396 ========== -->
+        <div class="section-title">
+            📚 LUCRÈCE, <em>De la nature des choses, II</em>, I<sup>e</sup> siècle av. J.-C.
+            <span class="page-badge">p. 396</span>
+        </div>
+        
+        <button type="button" class="collapsible">
+            <strong>LUCRÈCE</strong>, <i>De la nature des choses, II</i><br />
+            La science commence-t-elle là où finit la superstition ?
+        </button>
+        <div class="content">
+            <div class="extrait-container">
+                <div class="extrait-header">
+                    📖 Extrait
+                </div>
+                <div class="extrait-content">
+                    <div class="extrait-ligne-sans-num">
+                        <div class="extrait-texte-indent">
+                            <i>Dans l'imagination superstitieuse, les phénomènes naturels ne sont pas des phénomènes mais des signes divines dont l'homme est le destinataire. La superstition se présente en effet la nature comme l'écritoire des volontés des dieux, et elle imagine que l'homme en est le centre. Cette imagerie demande toutefois de faire abstraction non seulement des ratés de la nature (un enfant qui naît aveugle, par exemple) mais encore des fléaux qui frappent l'homme (tels les épidémies ou les tremblements de terre). La science met-elle fin à l'ignorance dont se nourrit la superstition ?</i>
+                        </div>
+                    </div>
+                    <div style="height: 0.8rem;"></div>
+                    <div class="extrait-ligne">
+                        <span class="extrait-numero"></span>
+                        <div class="extrait-texte">Certains philosophes ignorants des propriétés de la matière, sont d'avis que <mark id="m1">la</mark></div>
+                    </div>
+                    <div class="extrait-ligne">
+                        <span class="extrait-numero"></span>
+                        <div class="extrait-texte"><mark id="m1">nature ne pourrait, sans l'intervention des dieux, s'accommoder si harmonieusement</mark></div>
+                    </div>
+                    <div class="extrait-ligne">
+                        <span class="extrait-numero"></span>
+                        <div class="extrait-texte"><mark id="m1">aux besoins des hommes</mark> pour varier les saisons, produire les moissons, ouvrir</div>
+                    </div>
+                    <div class="extrait-ligne">
+                        <span class="extrait-numero"></span>
+                        <div class="extrait-texte">enfin aux mortels toutes ces voies où les engage et les conduit lui-même ce guide</div>
+                    </div>
+                    <div class="extrait-ligne">
+                        <span class="extrait-numero">5</span>
+                        <div class="extrait-texte">de la vie, le divin <b>P</b>laisir, qui par l'attrait des œuvres de Vénus, les invite à se reproduire</div>
+                    </div>
+                    <div class="extrait-ligne">
+                        <span class="extrait-numero"></span>
+                        <div class="extrait-texte">pour empêcher la mort du genre humain. <mark id="m1">Imaginer que l'intérêt des mortels</mark></div>
+                    </div>
+                    <div class="extrait-ligne">
+                        <span class="extrait-numero"></span>
+                        <div class="extrait-texte"><mark id="m1">a guidé les dieux dans la création du monde</mark>, c'est en tout point, ce me semble, s'égarer</div>
+                    </div>
+                    <div class="extrait-ligne">
+                        <span class="extrait-numero"></span>
+                        <div class="extrait-texte">bien loin de la vérité. Pour moi, j'ai beau ignorer ce que sont les principes des choses,</div>
+                    </div>
+                    <div class="extrait-ligne">
+                        <span class="extrait-numero"></span>
+                        <div class="extrait-texte">j'oserais pourtant, et sur la simple étude des phénomènes célestes, et sur bien d'autres</div>
+                    </div>
+                    <div class="extrait-ligne">
+                        <span class="extrait-numero">10</span>
+                        <div class="extrait-texte">faits encore, soutenir et démontrer que <mark id="m1">le monde n'a nullement été créé pour nous</mark></div>
+                    </div>
+                    <div class="extrait-ligne">
+                        <span class="extrait-numero"></span>
+                        <div class="extrait-texte"><mark id="m1">par une volonté divine : tant il se présente entaché de défauts</mark> !</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="repère-box">📌 Repère : Savoir ≠ Croire</div>
+
+        <p><mark>De la ligne 1 à 6 :</mark> → Nombreux philosophes qui ne sont pas scientifiques pensent que la Nature a été créée par la divinité pour les Hommes.</p>
+        <p><mark>De la ligne 6 à 11 :</mark> → Le monde ne peut être une création des dieux puisqu'il n'est pas parfait.</p>
+        
+        <img src="../images/science-croyance/1.jpg" alt="Schéma Lucrèce" />
+        
+        <p>→ « Principe des choses » = leur origine
+        <br />→ Lucrèce a étudié l'<span style="color:#10b981; font-weight:500;">astronomie</span> (catastrophe naturelle, malformations, maladies / virus, …)</p>
+
+        <!-- ========== CLAUDE BERNARD 1 - p.398 ========== -->
+        <div class="section-title">
+            📚 Claude BERNARD, <em>Introduction à l'étude de la médecine expérimentale</em>, XIX<sup>e</sup> siècle
+            <span class="page-badge">p. 398</span>
+        </div>
+        
+        <button type="button" class="collapsible">
+            <strong>Claude BERNARD</strong>, <i>Introduction à l'étude de la médecine expérimentale</i><br />
+            Les croyances religieuses sont-elles un frein à la recherche scientifique ?
+        </button>
+        <div class="content">
+            <!-- DEBUT TEXTE INDISPONIBLE -->
+            <div class="extrait-container">
+                <div class="extrait-header">
+                    📖 Extrait
+                </div>
+                <div class="extrait-content">
+                    <p style="color: #64748b; text-align: center; padding: 2rem;">
+                        ⏳ Le contenu de ce texte n'est pas encore disponible.<br>Veuillez revenir plus tard.
+                    </p>
+                </div>
+            </div>
+            <!-- FIN TEXTE INDISPONIBLE -->
+        </div>
+
+        <p><mark>De la ligne 1 à 11 :</mark> → Le progrès de la science a lieu grâce à l'expérimentation, c'est-à-dire à la dissection (ouverture d'un corps mort pour analyser) des cadavres mais également à la vivisection (expérience sur des animaux ou humains vivants) des vivants, en vue de comprendre « les mécanismes de la vie » (l.10)</p>
+        
+        <div class="info-box">
+            <strong style="color:#dc2626;">📖 Étymologies :</strong><br />
+            • <strong>Dissection</strong> : du latin « dissecare » = couper en deux (secare = couper / découper)<br />
+            • <strong>Vivisection</strong> : du latin « vivisectio » = découper du vivant (vivus = virus / vivant)
+        </div>
+        
+        <p><mark>De la ligne 12 à 24 :</mark> → Arguments d'autorité :</p>
+        <ul style="list-style-type:lower-alpha">
+            <li>Dans l'histoire, on a déjà pratiqué la vivisection (les rois de Perse) sur les condamnés à la mort.</li>
+            <li>Galien, (système cardio-vasculaire, respiratoire, digestif et nerveux) au III<sup>e</sup> siècle, a pratiqué la vivisection sur les animaux.</li>
+            <li>Défense de la vivisection actuelle (au XIX<sup>e</sup> siècle) : on provoque une défaillance sur l'organe pour comprendre son importance entier.</li>
+        </ul>
+        
+        <h1 id="h1">« D'autres l'ont fait, faisons le ... »</h1>
+        
+        <p><mark>De la ligne 25 à 30 :</mark> → Dénonciation des <span style="color:#b91c1c;">préjugés</span> que l'on a sur la vivisection.
+        <br /><span style="color:#dc2626;">Pré-jugement : établir un jugement avant de savoir</span>
+        <br />→ Tradition religieuse de respect des cadavres.
+        <br />→ Par la pathologie, par l'absence de l'organe, on peut déduire comment celui-ci « fonctionne »
+        <br />→ La médecine expérimentale est nécessaire au progrès scientifique, en passant par la manipulation du vivant.</p>
+
+        <!-- ========== FRANÇOIS JACOB - p.402 ========== -->
+        <div class="section-title">
+            📚 François JACOB, <em>Le jeu des possibles</em>, XX<sup>e</sup> siècle
+            <span class="page-badge">p. 402</span>
+        </div>
+        
+        <button type="button" class="collapsible">
+            <strong>François JACOB</strong>, <i>Le jeu des possibles</i><br />
+            La science est-elle un mythe moderne ?
+        </button>
+        <div class="content">
+            <div class="extrait-container">
+                <div class="extrait-header">
+                    📖 Extrait
+                </div>
+                <div class="extrait-content">
+                    <div class="extrait-ligne-sans-num">
+                        <div class="extrait-texte-indent">
+                            <i>En nous donnant des outils intellectuels qui projettent une lumière rationnelle sur la nature, la science ramène l'inconnu au connu et traite ainsi l'angoisse devant ce que nous ne savons pas expliquer. Dans cette mesure, n'est-on pas en droit de la voir comme une sorte de mythologie moderne ? La science et la croyance appartiennent-elles à deux domaines fondamentalement étrangers ? Ne relèvent-elles pas, l'une comme l'autre, d'une seule et même fabrique d'images rassurantes ?</i>
+                        </div>
+                    </div>
+                    <div style="height: 0.8rem;"></div>
+                    <div class="extrait-ligne">
+                        <span class="extrait-numero"></span>
+                        <div class="extrait-texte">À certains égards mythe et science remplissent une même fonction. Ils fournissent</div>
+                    </div>
+                    <div class="extrait-ligne">
+                        <span class="extrait-numero"></span>
+                        <div class="extrait-texte">tous deux à l'esprit humain une certaine représentation du monde et des forces</div>
+                    </div>
+                    <div class="extrait-ligne">
+                        <span class="extrait-numero"></span>
+                        <div class="extrait-texte">qu'il anime. […]</div>
+                    </div>
+                    <div style="height: 0.4rem;"></div>
+                    <div class="extrait-ligne">
+                        <span class="extrait-numero"></span>
+                        <div class="extrait-texte">Dans leurs efforts pour remplir leur fonction de trouver un ordre dans le chaos du</div>
+                    </div>
+                    <div class="extrait-ligne">
+                        <span class="extrait-numero">5</span>
+                        <div class="extrait-texte">monde, mythes et théories scientifiques opèrent selon le même principe. Il s'agit</div>
+                    </div>
+                    <div class="extrait-ligne">
+                        <span class="extrait-numero"></span>
+                        <div class="extrait-texte">toujours d'expliquer le monde visible par des forces invisibles, d'articuler ce qu'on</div>
+                    </div>
+                    <div class="extrait-ligne">
+                        <span class="extrait-numero"></span>
+                        <div class="extrait-texte">observe sur ce qu'on imagine. On peut considérer la foudre comme l'expression de</div>
+                    </div>
+                    <div class="extrait-ligne">
+                        <span class="extrait-numero"></span>
+                        <div class="extrait-texte">la colère de Zeus ou comme un phénomène électrostatique. On peut voir dans</div>
+                    </div>
+                    <div class="extrait-ligne">
+                        <span class="extrait-numero"></span>
+                        <div class="extrait-texte">une maladie l'effet d'un mauvais sort ou d'une infection microbienne. Mais, de toute</div>
+                    </div>
+                    <div class="extrait-ligne">
+                        <span class="extrait-numero">10</span>
+                        <div class="extrait-texte">façon, expliquer un phénomène c'est considérer l'effet visible d'une cause cachée,</div>
+                    </div>
+                    <div class="extrait-ligne">
+                        <span class="extrait-numero"></span>
+                        <div class="extrait-texte">liée à l'ensemble des forces invisibles qui sont censées régir le monde.</div>
+                    </div>
+                    <div style="height: 0.8rem;"></div>
+                    <div class="extrait-ligne">
+                        <span class="extrait-numero"></span>
+                        <div class="extrait-texte">Mythique ou scientifique, la représentation du monde que construit l'homme fait</div>
+                    </div>
+                    <div class="extrait-ligne">
+                        <span class="extrait-numero"></span>
+                        <div class="extrait-texte">toujours une large part à son imagination. Car contrairement à ce qu'on croit souvent,</div>
+                    </div>
+                    <div class="extrait-ligne">
+                        <span class="extrait-numero"></span>
+                        <div class="extrait-texte">la démarche scientifique ne consiste pas simplement à observer, à accumuler</div>
+                    </div>
+                    <div class="extrait-ligne">
+                        <span class="extrait-numero">15</span>
+                        <div class="extrait-texte">des données expérimentales pour en déduire une théorie. On peut parfaitement</div>
+                    </div>
+                    <div class="extrait-ligne">
+                        <span class="extrait-numero"></span>
+                        <div class="extrait-texte">examiner un objet pendant des années sans jamais en tirer la moindre observation</div>
+                    </div>
+                    <div class="extrait-ligne">
+                        <span class="extrait-numero"></span>
+                        <div class="extrait-texte">d'intérêt scientifique. Pour apporter une observation de quelque valeur, il faut déjà,</div>
+                    </div>
+                    <div class="extrait-ligne">
+                        <span class="extrait-numero"></span>
+                        <div class="extrait-texte">au départ, avoir une certaine idée de ce qu'il y a à observer. Si la science évolue, c'est</div>
+                    </div>
+                    <div class="extrait-ligne">
+                        <span class="extrait-numero"></span>
+                        <div class="extrait-texte">souvent parce qu'un aspect encore inconnu des choses se dévoile soudain ; pas</div>
+                    </div>
+                    <div class="extrait-ligne">
+                        <span class="extrait-numero">20</span>
+                        <div class="extrait-texte">toujours comme conséquence de l'apparition d'un appareillage nouveau, mais grâce</div>
+                    </div>
+                    <div class="extrait-ligne">
+                        <span class="extrait-numero"></span>
+                        <div class="extrait-texte">à une manière nouvelle d'examiner les objets, de les considérer sous un angle neuf.</div>
+                    </div>
+                    <div class="extrait-ligne">
+                        <span class="extrait-numero"></span>
+                        <div class="extrait-texte">Ce regard est nécessairement guidé par une certaine idée de ce que peut bien être</div>
+                    </div>
+                    <div class="extrait-ligne">
+                        <span class="extrait-numero"></span>
+                        <div class="extrait-texte">la « réalité ». Il implique toujours une certaine conception de l'inconnu, de cette</div>
+                    </div>
+                    <div class="extrait-ligne">
+                        <span class="extrait-numero"></span>
+                        <div class="extrait-texte">zone située juste au-delà de ce que la et l'expérience autorisent à croire.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="repère-box">📌 Repère : Savoir ≠ Croire</div>
+        
+        <p>Points communs entre les mythes (croire) et la science :</p>
+        <ul style="list-style-type:lower-alpha">
+            <li>Ils proposent une représentation du monde et des forces qu'il anime. (Ex : la force de la gravité)</li>
+            <li>Ils trouvent un ordre dans le chaos du monde, à l'aide des lois.</li>
+            <li>Ils expliquent le monde visible (les phénomènes) par des forces invisibles (attraction terrestre).</li>
+            <li>Ils articulent ce que l'on observe (les phénomènes/les faits) sur ce que l'on imagine (référence à EINSTEIN et INFELD)</li>
+        </ul>
+        
+        <p>Ex : Colère de Zeus (mythe) / Phénomène électrostatique (science) ⇒ FOUDRE</p>
+        <p>→ L'importance de l'imagination même en science
+        <br />&nbsp;&nbsp; ⮱ Face aux phénomènes, le scientifique imagine une théorie explicative du réel, donc de l'inconnu ; cette théorie explicative est bornée par la logique et par les résultats des expérimentations.
+        <br />→ Mais cette théorie explicative imaginée est toujours de l'ordre de la croyance.</p>
+
+        <!-- ========== DESCARTES 1 - p.408 ========== -->
+        <div class="section-title">
+            📚 René DESCARTES, <em>Règles pour la direction de l'esprit</em>, XVII<sup>e</sup> siècle
+            <span class="page-badge">p. 408</span>
+        </div>
+        
+        <button type="button" class="collapsible">
+            <strong>René DESCARTES</strong>, <i>Règles pour la direction de l'esprit</i><br />
+            Y a-t-il des objets qui échappent à la science ?
+        </button>
+        <div class="content">
+            <!-- DEBUT TEXTE INDISPONIBLE -->
+            <div class="extrait-container">
+                <div class="extrait-header">
+                    📖 Extrait
+                </div>
+                <div class="extrait-content">
+                    <p style="color: #64748b; text-align: center; padding: 2rem;">
+                        ⏳ Le contenu de ce texte n'est pas encore disponible.<br>Veuillez revenir plus tard.
+                    </p>
+                </div>
+            </div>
+            <!-- FIN TEXTE INDISPONIBLE -->
+        </div>
+
+        <p>→ Différents domaines comme l'astronomie, la musique, la mécanique, utilisent les mathématiques, l'arithmétique, la géométrie.</p>
+        
+        <img src="../images/science-croyance/2.jpg" alt="Schéma Descartes" />
+        
+        <p><u>Ligne 19 :</u> La « Mathématique universelle » (<i>Mathesis universalis</i>) englobe tous les domaines pour expliquer le réel.
+        <br />&nbsp;&nbsp; ⮱ Les connaissances acquises par la mathématique vont permettre d'expliquer également des éléments nouveaux et complexes.</p>
+
+        <!-- ========== CLAUDE BERNARD 2 - p.414 ========== -->
+        <div class="section-title">
+            📚 Claude BERNARD, <em>Introduction à l'étude de la médecine expérimentale</em>, XIX<sup>e</sup> siècle
+            <span class="page-badge">p. 414</span>
+        </div>
+        
+        <button type="button" class="collapsible">
+            <strong>Claude BERNARD</strong>, <i>Introduction à l'étude de la médecine expérimentale</i><br />
+            Qui est le sujet de la science ?
+        </button>
+        <div class="content">
+            <!-- DEBUT TEXTE INDISPONIBLE -->
+            <div class="extrait-container">
+                <div class="extrait-header">
+                    📖 Extrait
+                </div>
+                <div class="extrait-content">
+                    <p style="color: #64748b; text-align: center; padding: 2rem;">
+                        ⏳ Le contenu de ce texte n'est pas encore disponible.<br>Veuillez revenir plus tard.
+                    </p>
+                </div>
+            </div>
+            <!-- FIN TEXTE INDISPONIBLE -->
+        </div>
+        
+        <img src="../images/science-croyance/3.jpg" alt="Schéma Bernard" />
+
+        <!-- ========== BERGSON - p.422 ========== -->
+        <div class="section-title">
+            📚 Henri BERGSON, <em>L'évolution créatrice</em>, XX<sup>e</sup> siècle
+            <span class="page-badge">p. 422</span>
+        </div>
+        
+        <button type="button" class="collapsible">
+            <strong>Henri BERGSON</strong>, <i>L'évolution créatrice</i><br />
+            La science nous dévoile-t-elle le réel ?
+        </button>
+        <div class="content">
+            <!-- DEBUT TEXTE INDISPONIBLE -->
+            <div class="extrait-container">
+                <div class="extrait-header">
+                    📖 Extrait
+                </div>
+                <div class="extrait-content">
+                    <p style="color: #64748b; text-align: center; padding: 2rem;">
+                        ⏳ Le contenu de ce texte n'est pas encore disponible.<br>Veuillez revenir plus tard.
+                    </p>
+                </div>
+            </div>
+            <!-- FIN TEXTE INDISPONIBLE -->
+        </div>
+
+        <img src="../images/science-croyance/4.jpg" alt="Schéma Bergson" />
+
+        <!-- ========== MALEBRANCHE - p.423 ========== -->
+        <div class="section-title">
+            📚 Nicolas MALEBRANCHE, <em>Lettre à Dortous de Mairan</em>, XVIII<sup>e</sup> siècle
+            <span class="page-badge">p. 423</span>
+        </div>
+        
+        <button type="button" class="collapsible">
+            <strong>Nicolas MALEBRANCHE</strong>, <i>Lettre à Dortous de Mairan</i><br />
+            Les vérités de la foi sont-elles démontrables ?
+        </button>
+        <div class="content">
+            <!-- DEBUT TEXTE INDISPONIBLE -->
+            <div class="extrait-container">
+                <div class="extrait-header">
+                    📖 Extrait
+                </div>
+                <div class="extrait-content">
+                    <p style="color: #64748b; text-align: center; padding: 2rem;">
+                        ⏳ Le contenu de ce texte n'est pas encore disponible.<br>Veuillez revenir plus tard.
+                    </p>
+                </div>
+            </div>
+            <!-- FIN TEXTE INDISPONIBLE -->
+        </div>
+
+        <p>→ Référence à René DESCARTES : reprise de vocabulaire cartésien :</p>
+        
+        <img src="../images/science-croyance/5.jpg" alt="Schéma Malebranche" />
+        
+        <p>→ Ces connaissances sont accessibles à l'âme mais pas la connaissance de Dieu, d'où la nécessité de s'appuyer sur les dogmes (= doctrines qui sont révélées dans des textes sacrés).</p>
+        <p>→ Pour Nicolas MALEBRANCHE, contrairement à René DESCARTES, Dieu est inaccessible à la pensée humaine qui est finie, tandis que Dieu est infini.
+        <br />&nbsp;&nbsp; ⮱ Nous ne pouvons pas penser l'infini.</p>
+
+        <!-- ========== PASCAL 1 - p.337 ========== -->
+        <div class="section-title">
+            📚 Blaise PASCAL, <em>Pensées</em>, XVII<sup>e</sup> siècle
+            <span class="page-badge">p. 337</span>
+        </div>
+        
+        <button type="button" class="collapsible">
+            <strong>Blaise PASCAL</strong>, <i>Pensées</i><br />
+            Les vérités de la raison dépendent-elles des vérités du cœur ?
+        </button>
+        <div class="content">
+            <!-- DEBUT TEXTE INDISPONIBLE -->
+            <div class="extrait-container">
+                <div class="extrait-header">
+                    📖 Extrait
+                </div>
+                <div class="extrait-content">
+                    <p style="color: #64748b; text-align: center; padding: 2rem;">
+                        ⏳ Le contenu de ce texte n'est pas encore disponible.<br>Veuillez revenir plus tard.
+                    </p>
+                </div>
+            </div>
+            <!-- FIN TEXTE INDISPONIBLE -->
+        </div>
+
+        <img src="../images/science-croyance/6.jpg" alt="Schéma Pascal" />
+
+        <!-- ========== DESCARTES 2 - p.336 ========== -->
+        <div class="section-title">
+            📚 René DESCARTES, <em>Discours de la méthode</em>, XVII<sup>e</sup> siècle
+            <span class="page-badge">p. 336</span>
+        </div>
+        
+        <button type="button" class="collapsible">
+            <strong>René DESCARTES</strong>, <i>Discours de la méthode</i><br />
+            La raison est-elle le critère de vérité ?
+        </button>
+        <div class="content">
+            <!-- DEBUT TEXTE INDISPONIBLE -->
+            <div class="extrait-container">
+                <div class="extrait-header">
+                    📖 Extrait
+                </div>
+                <div class="extrait-content">
+                    <p style="color: #64748b; text-align: center; padding: 2rem;">
+                        ⏳ Le contenu de ce texte n'est pas encore disponible.<br>Veuillez revenir plus tard.
+                    </p>
+                </div>
+            </div>
+            <!-- FIN TEXTE INDISPONIBLE -->
+        </div>
+
+        <img src="../images/science-croyance/7.jpg" alt="Schéma Descartes Discours" />
+
+        <!-- ========== ALAIN - p.340 ========== -->
+        <div class="section-title">
+            📚 ALAIN, <em>Mars ou la Guerre jugée</em>, XX<sup>e</sup> siècle
+            <span class="page-badge">p. 340</span>
+        </div>
+        
+        <button type="button" class="collapsible">
+            <strong>ALAIN</strong>, <i>Mars ou la Guerre jugée</i><br />
+            Suffit-il d'être rationnel pour se montrer raisonnable ?
+        </button>
+        <div class="content">
+            <!-- DEBUT TEXTE INDISPONIBLE -->
+            <div class="extrait-container">
+                <div class="extrait-header">
+                    📖 Extrait
+                </div>
+                <div class="extrait-content">
+                    <p style="color: #64748b; text-align: center; padding: 2rem;">
+                        ⏳ Le contenu de ce texte n'est pas encore disponible.<br>Veuillez revenir plus tard.
+                    </p>
+                </div>
+            </div>
+            <!-- FIN TEXTE INDISPONIBLE -->
+        </div>
+
+        <p>→ Distinction entre la raison au sens de la rationalité (au service de la vérité) et avoir raison (au service de son ego, de son narcissisme).</p>
+        <p>→ Situation : Des individus qui disputent, débattent.
+        <br />&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;⮱ La nécessité de faire preuve de politesse.</p>
+        
+        <div class="info-box">
+            <strong style="color:#dc2626;">📖 Étymologies :</strong><br />
+            • <strong>Politesse</strong> (du latin : <i>lisse</i> → poli) : ne pas laisser s'exprimer son impulsivité ; idée de se contenir
+        </div>
+        
+        <p>→ La politesse sert la paix car elle implique de ne pas montrer à autrui qu'il se trompe et de soi-même assumer ses erreurs, ses fautes.
+        <br />&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;(morale → mauvais comportement vis-à-vis d'autrui)
+        <br /><br />→ On ne recherche pas la justice au sens de la vérité.
+        <br /><br />→ La non-expression de nos passions permet de maintenir la paix, grâce au savoir-vivre.</p>
+
+        <!-- ========== MARCUSE - p.341 ========== -->
+        <div class="section-title">
+            📚 Herbert MARCUSE, <em>L'Homme unidimensionnel</em>, XX<sup>e</sup> siècle
+            <span class="page-badge">p. 341</span>
+        </div>
+        
+        <button type="button" class="collapsible">
+            <strong>Herbert MARCUSE</strong>, <i>L'Homme unidimensionnel</i><br />
+            La rationalité peut-elle être monstrueuse ?
+        </button>
+        <div class="content">
+            <!-- DEBUT TEXTE INDISPONIBLE -->
+            <div class="extrait-container">
+                <div class="extrait-header">
+                    📖 Extrait
+                </div>
+                <div class="extrait-content">
+                    <p style="color: #64748b; text-align: center; padding: 2rem;">
+                        ⏳ Le contenu de ce texte n'est pas encore disponible.<br>Veuillez revenir plus tard.
+                    </p>
+                </div>
+            </div>
+            <!-- FIN TEXTE INDISPONIBLE -->
+        </div>
+
+        <p>→ La science moderne a fourni les outils rationnels de contrôle de la société.
+        <br /><br />→ La science moderne a mis en place des théories mises en pratique d'abord en vue de dominer la nature. Et ces théories ont également été appliquées pour dominer les Hommes.
+        <br />&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;⮱ Un contrôle, une maîtrise de la nature qui a conduit aux mêmes pratiques pour dominer les Hommes.</p>
+        
+        <div class="info-box">
+            <strong style="color:#dc2626;">📖 Définition :</strong><br />
+            • <strong>Opérationnalisme</strong> : consiste à définir des concepts en vue de les établir et de les éprouver en pratique et qui sont répétables (début du XX<sup>e</sup> siècle)
+        </div>
+        
+        <p>→ Cette domination a pris comme moyen la technologie.
+        <br />&nbsp;&nbsp; ⮱ Une rationalisation par la technologie, dans le cadre du travail entre autres, qui a permis de produire plus et plus vite.
+        <br />&nbsp;&nbsp; ⮱ Perte de liberté de l'Homme dont on contrôle le temps et la production.
+        <br /><br />→ <span style="color:#dc2626;">référence à Hannah ARENDT</span> : la machine impose son rythme à l'ouvrier, sa cadence ; et le corps de l'ouvrier doit se plier à cette cadence (Temps Moderne, Charlie Chaplin)
+        <br />&nbsp;&nbsp; ⮱ Plus de liberté d'initiative.</p>
+
+        <!-- ========== SARTRE - p.350 ========== -->
+        <div class="section-title">
+            📚 Jean-Paul SARTRE, <em>La Nausée</em>, XX<sup>e</sup> siècle
+            <span class="page-badge">p. 350</span>
+        </div>
+        
+        <button type="button" class="collapsible">
+            <strong>Jean-Paul SARTRE</strong>, <i>La Nausée</i><br />
+            Le réel est-il absurde ?
+        </button>
+        <div class="content">
+            <!-- DEBUT TEXTE INDISPONIBLE -->
+            <div class="extrait-container">
+                <div class="extrait-header">
+                    📖 Extrait
+                </div>
+                <div class="extrait-content">
+                    <p style="color: #64748b; text-align: center; padding: 2rem;">
+                        ⏳ Le contenu de ce texte n'est pas encore disponible.<br>Veuillez revenir plus tard.
+                    </p>
+                </div>
+            </div>
+            <!-- FIN TEXTE INDISPONIBLE -->
+        </div>
+
+        <p>→ Le constat de la difficulté à dire ce qui est vécu : <span style="color:#dc2626;">indicible (ce qu'on ne peut pas dire)</span>
+        <br />&nbsp;&nbsp; ⮱ L'absurdité = non-sens de notre existence et de ce qui nous entoure.
+        <br />&nbsp;&nbsp; ⮱ Je ne peux pas donner de raison à ces existences.
+        <br /><br />→ Pas de réponse au pourquoi de l'existence.
+        <br />→ La racine est là, elle existe sans raison et je dois faire avec cette absence de raison ⟿ vacuité du sens. On est face au vide, c'est vertigineux.</p>
+        
+        <img src="../images/science-croyance/8.jpg" alt="Schéma Sartre" />
+
+        <!-- ========== PASCAL 2 - p.354 ========== -->
+        <div class="section-title">
+            📚 Blaise PASCAL, <em>Pensées</em>, XVII<sup>e</sup> siècle
+            <span class="page-badge">p. 354</span>
+        </div>
+        
+        <button type="button" class="collapsible">
+            <strong>Blaise PASCAL</strong>, <i>Pensées</i><br />
+            L'existence a-t-elle un sens ?
+        </button>
+        <div class="content">
+            <!-- DEBUT TEXTE INDISPONIBLE -->
+            <div class="extrait-container">
+                <div class="extrait-header">
+                    📖 Extrait
+                </div>
+                <div class="extrait-content">
+                    <p style="color: #64748b; text-align: center; padding: 2rem;">
+                        ⏳ Le contenu de ce texte n'est pas encore disponible.<br>Veuillez revenir plus tard.
+                    </p>
+                </div>
+            </div>
+            <!-- FIN TEXTE INDISPONIBLE -->
+        </div>
+
+        <p>→ « La misère de l'Homme » (l.1), c'est qu'il va mourir
+        <br />&nbsp;&nbsp; ⮱ Pourquoi existe-t-on si nous devons mourir ?
+        <br />&nbsp;&nbsp; &nbsp;&nbsp; Notre existence a-t-elle un sens ?</p>
+        
+        <img src="../images/science-croyance/9.jpg" alt="Schéma Pascal misère" />
+        
+        <p>→ D'autres individus éprouvent le même désespoir
+        <br />&nbsp;&nbsp; ⮱ Face au non-sens, la plupart d'entre nous nous divertissons.</p>
+        
+        <div class="info-box">
+            <strong style="color:#dc2626;">📖 Définition :</strong><br />
+            • <strong>Divertissement pascalien</strong> : du latin <em>divertere</em> : se détourner<br />
+            Renvoie à toutes les activités auxquelles l'Homme s'adonne pour éviter de penser à sa mort.<br />
+            Il se détourne de l'évidence de sa mort.
+        </div>
+        
+        <div class="info-box">
+            <strong style="color:#dc2626;">📖 Définition :</strong><br />
+            • <strong>Pari pascalien</strong> : Une personne rationnelle a tout intérêt à croire en Dieu, que Dieu existe ou non. Car s'il existe, elle ira au Paradis ; tandis que s'il n'existe pas, elle n'a rien à perdre.
+        </div>
+
+        <hr />
+
+        <p>📄 Veuillez trouver la version PDF de ce cours ci-dessous 😇</p>
+        <a href="../images/science-croyance/Quelle_est_la_diférence_entre_la_science_et_la_croyance.pdf" download style="display:inline-block; background:#3b82f6; color:white; padding:0.7rem 1.8rem; border-radius:40px; text-decoration:none; font-weight:600; margin:1rem 0;">📥 Télécharger le PDF</a>
+
+        <embed type="application/pdf" src="../images/science-croyance/Quelle_est_la_diférence_entre_la_science_et_la_croyance.pdf" width="100%" height="550" style="border-radius:20px;">
+    </div>
+</div>
+
+<script>
+    var coll = document.getElementsByClassName("collapsible");
+    for (var i = 0; i < coll.length; i++) {
+        coll[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            var content = this.nextElementSibling;
+            if (content.style.display === "block") {
+                content.style.display = "none";
+            } else {
+                content.style.display = "block";
+            }
+        });
+    }
+</script>
+
+</body>
+</html>
