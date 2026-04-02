@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Qu'est-ce que la philosophie ? - Philosophie</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: linear-gradient(135deg, #f8fafc 0%, #eef2ff 100%);
+            color: #1e293b;
+            line-height: 1.6;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #2d3a4e 100%);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+            border-bottom: 4px solid #3b82f6;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            font-style: italic;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .btn-retour {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: #3b82f6;
+            color: white;
+            padding: 0.7rem 1.5rem;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .btn-retour:hover {
+            background: #2563eb;
+            transform: translateX(-4px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
+
+        .content-card {
+            background: white;
+            border-radius: 32px;
+            padding: 2.5rem;
+            box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.1);
+        }
+
+        .content-card img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 20px;
+            margin: 1.5rem 0;
+            display: block;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+
+        .content-card h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #0f172a;
+            margin: 2rem 0 1rem 0;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid #3b82f6;
+            display: inline-block;
+        }
+
+        .content-card h3 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #1e293b;
+            margin: 1.8rem 0 0.8rem 0;
+            background: linear-gradient(135deg, #f1f5f9, #e2e8f0);
+            padding: 0.5rem 1rem;
+            border-radius: 12px;
+            border-left: 5px solid #3b82f6;
+        }
+
+        .content-card p {
+            margin-bottom: 1rem;
+            text-align: justify;
+            line-height: 1.7;
+        }
+
+        .content-card ul, .content-card ol {
+            margin: 1rem 0 1rem 2rem;
+        }
+
+        .content-card li {
+            margin-bottom: 0.5rem;
+            text-align: justify;
+        }
+
+        mark {
+            background-color: #fef08a;
+            padding: 0.1rem 0.2rem;
+            border-radius: 6px;
+        }
+
+        /* TABLEAU MODERNE */
+        .philo-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            font-size: 14px;
+            background: #f8fafc;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+
+        .philo-table th {
+            background: linear-gradient(135deg, #1e293b, #0f172a);
+            color: white;
+            padding: 1rem;
+            font-weight: 600;
+            text-align: center;
+            font-size: 1.1rem;
+        }
+
+        .philo-table td {
+            border: 1px solid #e2e8f0;
+            padding: 1rem;
+            vertical-align: top;
+            background: white;
+        }
+
+        .philo-table p {
+            margin: 0.5rem 0;
+            text-align: left;
+        }
+
+        .philo-table hr {
+            margin: 0.8rem 0;
+            border: none;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        /* EMBED PDF */
+        embed {
+            border-radius: 20px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            margin-top: 1rem;
+        }
+
+        hr {
+            margin: 2rem 0;
+            border: none;
+            border-top: 2px solid #e2e8f0;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            .content-card {
+                padding: 1.5rem;
+            }
+            .hero h1 {
+                font-size: 1.6rem;
+            }
+            .philo-table {
+                font-size: 11px;
+            }
+            .philo-table td {
+                padding: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="hero">
+    <h1>🤔 QU'EST-CE QUE LA PHILOSOPHIE ?</h1>
+    <p>L'amour de la sagesse et la recherche du sens</p>
+</div>
+
+<div class="container">
+    <a href="../index.html" class="btn-retour">← Retour à l'accueil</a>
+
+    <div class="content-card">
+        
+        <!-- ÉTYMOLOGIE -->
+        <h2>📖 L'étymologie grecque du mot "Philosophie"</h2>
+        <img src="../images/philosophie-definition/filo.jpg" alt="Étymologie philosophie">
+        <p>La philosophie est donc l'amour de la <strong style="color:red;">sagesse</strong> et du <strong style="color:red;">savoir</strong>. Le philosophe les désire, les recherche, parce qu'il ne les possède pas.</p>
+
+        <p>Le Sage (≠ philosophe) incarne ses idées, c'est un <i><mark>savoir pratique, en acte</mark></i>, ses idées servent un idéal du bien qui le dépasse en tant qu'individu.<br>
+        Le philosophe a plutôt un <i><mark>savoir théorique</mark></i>.</p>
+
+        <p>La philosophie est née en Grèce, à Athènes, au IV<sup>e</sup> siècle avant Jésus-Christ.<br>
+        L'apparition de la Première démocratie permet la création des débats sur le bien/le mal ; le juste/l'injuste, sur les lois, ainsi naît la philosophie.</p>
+
+        <p>La naissance de la philosophie a lieu grâce à une émotion : l'<mark>étonnement</mark> face :</p>
+        <ul>
+            <li>au monde qui entoure l'homme (beauté, catastrophes naturelles,…)</li>
+            <li>à la <i>mythologie, la science</i><br> &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; <strong style="color:#FF1000; font-size:1.2rem;">QUE PUIS-JE CONNAÎTRE ?</strong></li>
+            <li>à la mort = <i>la finitude</i></li>
+            <li>à la <i>religion</i><br> &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; <strong style="color:#FF1000; font-size:1.2rem;">QUE PUIS-JE ESPÉRER ?</strong></li>
+            <li>à la <i>morale</i><br> &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; <strong style="color:#FF1000; font-size:1.2rem;">QUE DOIS-JE FAIRE ?</strong></li>
+        </ul>
+
+        <p style="text-align:center; font-size:1.8rem; font-weight:700; background:#f1f5f9; padding:0.8rem; border-radius:60px; margin:1.5rem 0;"><strong>QU'EST-CE QUE L'HOMME ?</strong></p>
+
+        <p><i><u>⇒ <span style="font-size:1.5rem; font-weight:bold;">4</span> questions fondamentales de la philosophie, Emmanuel KANT, philosophe allemand du XVIII<sup>e</sup> siècle (Les Lumières)</u></i></p>
+
+        <p>La mort est <span style="color:#FF0000;">nécessaire (c-à-d. ce qui ne peut pas ne pas être)</span>.<br>
+        &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; <span style="color:#AA0000;">≠ contingent.e (c-à-d. ce qui peut ne pas être)</span><br>
+        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; → La naissance est <strong><u>contingente</u></strong>.</p>
+
+        <p>La mort est <span style="color:#F0647B;">inconditionnelle</span>.<br>
+        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; <span style="color:#F0647B;">(c-à-d. qui arrive sans condition.s, n'importe où, n'importe quand)</span></p>
+
+        <img src="../images/philosophie-definition/tb.png" alt="Tableau philosophie">
+
+        <!-- TABLEAU COMPARATIF -->
+        <h2>📊 Science / Religion / Philosophie</h2>
+       
+
+        <p>La philosophie doit chercher à être :</p>
+        <ul>
+            <li>précise</li>
+            <li>rigoureuse : arguments, démonstrations</li>
+            <li>critique : esprit critique → temps pour s'informer et pour construire son propre avis sans être influencé</li>
+        </ul>
+
+        <h2>🏛️ Le modèle du Philosophe et du Sage : <span style="color:#FF0000;">SOCRATE</span></h2>
+        <p>SOCRATE, né au IV<sup>e</sup> siècle avant Jésus-Christ à Athènes.<br>
+        Son père est un tailleur de pierre et un sculpteur.<br>
+        Sa mère est une sage-femme.</p>
+
+        <img src="../images/philosophie-definition/et.jpg" alt="Socrate">
+
+        <p>SOCRATE pratique une méthode pour accéder à la vérité, qui procède par questions-réponses : <span style="color:#FF0000;"><i>La maïeutique</i></span> ⇒ <span style="color:#0FFF00;">il accouche les âmes de la vérité qu'elles possédaient mais qu'elles ont oublié.</span></p>
+
+        <p>La maïeutique repose sur <i style="color:#E715FF;">la théorie de la réminiscence</i> (croyance indoeuropéenne) : nos âmes auraient contemplé, dans le monde des Idées (bonheur, vérité, justice, …), toutes les vérités. Mais, au moment où elles s'incarnent, elles oublient tout. Le but de la maïeutique est de retrouver ces Idées oubliées.</p>
+
+        <p>SOCRATE a été accusé de 3 chefs d'inculpation (accusation) :</p>
+        <ol type="a">
+            <li>Corruption (dégradation / pourriture) de la jeunesse</li>
+            <li>Ne pas croire aux dieux de la Cité (les dieux d'Olympe)</li>
+            <li>Introduire un nouveau dieu dans la Cité</li>
+        </ol>
+
+        <p>Son ami CHÉRÉPHON s’est rendu à Delphes, au Temple d’Apollon, où exerce une prêtresse nommée la PYTHIE.<br>
+        Chéréphon demande à la Pythie : « Quel est le plus sage des Hommes ? », La Pythie répond qu’il s’agit de Socrate.</p>
+
+        <p>Pour résoudre l’énigme de l’oracle, Socrate se rend sur l'agora (place publique) afin de questionner les personnes qui sont sensées avoir une connaissance sur leur pratique : artisans, poètes, politiciens….<br>
+        Ce dont Socrate s’aperçoit, c’est qu’elles pensent savoir mais elles ne savent pas. Donc, Socrate est sage en ce qu’il sait, qu’il a conscience qu’il ne sait pas :</p>
+
+        <p style="text-align:center; font-size:1.8rem; font-weight:700; background:#fef2f2; padding:1rem; border-radius:60px; margin:1.5rem 0;">« Ce que je sais, c'est que je ne sais pas / rien. »</p>
+
+        <p>Socrate était un homme qui ne craignait pas la mort et suivait la justice sans tenir compte des lois instituées par les hommes.</p>
+
+       
+        <hr>
+
+        <p>📄 Veuillez trouver la version PDF de ce cours ci-dessous 😇</p>
+        <a href="../images/philosophie-definition/qu_est-ce_que_le_philosophie.pdf" download style="display:inline-block; background:#3b82f6; color:white; padding:0.7rem 1.8rem; border-radius:40px; text-decoration:none; font-weight:600; margin:1rem 0; transition:all 0.2s;">📥 Télécharger le PDF</a>
+
+        
+    </div>
+</div>
+
+</body>
+</html>
