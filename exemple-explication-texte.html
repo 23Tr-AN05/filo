@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exemple d'explication de texte - Karl MARX - Philosophie</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: linear-gradient(135deg, #f8fafc 0%, #eef2ff 100%);
+            color: #1e293b;
+            line-height: 1.6;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #2d3a4e 100%);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+            border-bottom: 4px solid #3b82f6;
+        }
+
+        .hero h1 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .hero h1 i {
+            font-weight: 400;
+            opacity: 0.9;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            font-style: italic;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .btn-retour {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: #3b82f6;
+            color: white;
+            padding: 0.7rem 1.5rem;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .btn-retour:hover {
+            background: #2563eb;
+            transform: translateX(-4px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
+
+        .content-card {
+            background: white;
+            border-radius: 32px;
+            padding: 2.5rem;
+            box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.1);
+        }
+
+        .content-card p {
+            margin-bottom: 1rem;
+            text-align: justify;
+            line-height: 1.7;
+        }
+
+        .content-card ul, .content-card ol {
+            margin: 1rem 0 1rem 2rem;
+        }
+
+        .content-card li {
+            margin-bottom: 0.5rem;
+            text-align: justify;
+        }
+
+        .section-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            padding: 0.8rem 1.2rem;
+            border-radius: 60px;
+            margin: 1.5rem 0 1rem 0;
+            display: inline-block;
+        }
+
+        .section-intro {
+            background: linear-gradient(135deg, #dcfce7, #bbf7d0);
+            color: #166534;
+            border-left: 5px solid #22c55e;
+        }
+
+        .section-part1 {
+            background: linear-gradient(135deg, #fef2f2, #fee2e2);
+            color: #991b1b;
+            border-left: 5px solid #ef4444;
+        }
+
+        .section-part2 {
+            background: linear-gradient(135deg, #fef2f2, #fee2e2);
+            color: #991b1b;
+            border-left: 5px solid #ef4444;
+        }
+
+        .section-conclusion {
+            background: linear-gradient(135deg, #f3e8ff, #e9d5ff);
+            color: #6b21a5;
+            border-left: 5px solid #a855f7;
+        }
+
+        .citation {
+            background: linear-gradient(135deg, #fefce8, #fef9e3);
+            padding: 0.1rem 0.3rem;
+            border-radius: 8px;
+            font-style: italic;
+            font-weight: 500;
+            color: #854d0e;
+            white-space: nowrap;
+        }
+
+        .concept {
+            background: #eef2ff;
+            padding: 0.1rem 0.3rem;
+            border-radius: 8px;
+            font-weight: 500;
+            color: #1d4ed8;
+        }
+
+        .reference {
+            background: #fef2f2;
+            padding: 0.1rem 0.3rem;
+            border-radius: 8px;
+            font-weight: 500;
+            color: #dc2626;
+        }
+
+        .btn-print {
+            background: linear-gradient(135deg, #475569, #1e293b);
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 40px;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            margin: 1rem 0;
+            font-size: 1rem;
+        }
+
+        .btn-print:hover {
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .method-link {
+            display: inline-block;
+            background: #3b82f6;
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 600;
+            margin: 1rem 0;
+            transition: all 0.2s ease;
+            text-align: center;
+        }
+
+        .method-link:hover {
+            background: #2563eb;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        hr {
+            margin: 2rem 0;
+            border: none;
+            border-top: 2px solid #e2e8f0;
+        }
+
+        .ligne-ref {
+            font-weight: 600;
+            color: #3b82f6;
+            font-size: 0.9rem;
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+                margin: 0;
+            }
+            .hero {
+                background: #1e293b;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            .btn-retour, .btn-print, .method-link {
+                display: none;
+            }
+            .content-card {
+                box-shadow: none;
+                padding: 1rem;
+            }
+            .section-title {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container { padding: 1rem; }
+            .content-card { padding: 1.5rem; }
+            .hero h1 { font-size: 1.2rem; }
+            .section-title { font-size: 1.1rem; }
+            .citation { white-space: normal; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="hero">
+    <h1>📚 Karl MARX<br /><i>Critique de la philosophie du droit de HEGEL</i><br />1927, publication posthume <span style="color: #90cdf4;">(p.380)</span></h1>
+    <p>Explication de texte : La religion comme <span class="citation">« opium du peuple »</span></p>
+</div>
+
+<div class="container">
+    <a href="index.html" class="btn-retour">← Retour à l'accueil</a>
+
+    <div class="content-card">
+        
+        <!-- ========== INTRODUCTION ========== -->
+        <center><div class="section-title section-intro">📖 INTRODUCTION</div></center>
+        
+        <p style="text-indent: 30px;">Ce texte de Karl MARX, <em><u>extrait de la Critique de la philosophie du droit de HEGEL</u></em>, publié à titre posthume en 1927, se questionne sur l'apport de la religion aux Hommes.</p>
+        
+        <p style="text-indent: 30px;">En effet, le philosophe affirme que la religion est l'invention d'un monde chimérique par des Hommes en vue de dominer d'autres Hommes, les privant de leur libre arbitre. Ainsi <span class="ligne-ref">de la ligne 1 à 17</span>, l'auteur développe une critique de la religion comme la proposition d'un monde illusoire qui ne permet pas la réalisation de l'essence humaine. Dans un second temps <span class="ligne-ref">(de l.18 à l.25)</span>, l'auteur montre ce que pourrait devenir l'Homme sans la religion.</p>
+        
+        <p style="text-indent: 30px;">La thèse s'oppose à l'idée d'une religion comme un rempart ou une solution à la misère de l'Homme voué à mourir.</p>
+
+        <!-- ========== PREMIÈRE PARTIE ========== -->
+        <center><div class="section-title section-part1">📌 PREMIÈRE PARTIE</div></center>
+        
+        <p style="text-indent: 30px;">Dans cette première partie, Karl MARX donne les raisons pour lesquelles une critique de la religion se révèle inévitable. En effet, la religion est le résultat d'une construction humaine au fil de l'histoire. Ainsi, <span class="citation">« Est-ce l'Homme qui fait la religion »</span> au sens où les commandements, les interdits, les coutumes, les rites sont des constructions instituées par des groupes cherchant à dominer d'autres Hommes. Cette perte ou cette absence de liberté sont signifiées par <span class="citation">« ne s'est pas encore conquis »</span> <span class="ligne-ref">(l.3)</span> et <span class="citation">« de nouveau perdu »</span> <span class="ligne-ref">(l.4)</span>. Cependant, cette religion n'est née de nulle part, elle est le produit d'une société, proposant un autre monde en consolation du monde présent. De plus, la religion fait que chaque parole, chaque action, chaque choix trouvent un écho dans le monde d'après la mort. Ainsi, <span class="citation">« le monde terrestre est-il dépendant du monde céleste »</span>, ce que Karl MARX nomme un <span class="citation">« monde renversé »</span> <span class="ligne-ref">(l.7)</span>.</p>
+        
+        <p style="text-indent: 30px;">L'auteur souligne que la religion est un ensemble organisé d'idées, de rites, de commandements qui structurent le monde, c'est-à-dire l'existence du croyant. Elle retire au corps son importance pour valoriser l'esprit qui constitue alors une réalité indépendante et supérieure. Elle présente donc un système simplifié pour les croyants fait de morale et de cérémonies dont l'objectif est de consoler l'individu de sa condition sociale et de sa condition de mortel, tout en justifiant sa domination par d'autres. C'est parce que <span class="citation">« les sens humains »</span> c'est-à-dire la nature de l'Homme, soit sa liberté, ne se réalise jamais. En effet, la religion détermine les actions humaines ainsi que son futur céleste. La religion propose donc d'embellir l'existence actuelle par l'espoir d'une vie après la mort. Or ce que défend Karl MARX, c'est que l'Homme lutte pour son existence présente.</p>
+        
+        <p style="text-indent: 30px;">Néanmoins, la force de la religion est de prendre en compte <span class="citation">« la misère réelle »</span> de l'individu et de proposer une réponse à celle-ci. La religion proteste contre cette misère sociale de l'Homme en faisant appel à la charité, à l'hospitalité. Les expressions <span class="citation">« créature accablée »</span> <span class="ligne-ref">(l.15)</span> et <span class="citation">« monde sans coeur »</span> <span class="ligne-ref">(l.14)</span> renvoient à la constatation de cet état de chose. Mais elle demeure l'<span class="citation">« opium du peuple »</span> c'est-à-dire qu'elle ne permet pas à l'individu de sortir de sa condition de dominé puisque la situation sociale dans laquelle il est est voulue par Dieu. D'autre part, elle enferme l'Homme dans l'ignorance ainsi que dans l'espoir d'une vie après la mort, tout en lui dictant comment il doit agir et penser.</p>
+
+        <!-- ========== DEUXIÈME PARTIE ========== -->
+        <center><div class="section-title section-part2">📌 DEUXIÈME PARTIE</div></center>
+        
+        <p style="text-indent: 30px;">Dans cette deuxième partie, Karl MARX montre ce que serait l'Homme sans la religion. Il oppose alors le <span class="citation">« bonheur illusoire »</span> <span class="ligne-ref">(l.18)</span> proposé par la religion au <span class="citation">« bonheur réel »</span> <span class="ligne-ref">(l.18)</span> qui appartiendrait au monde terrestre. Le terme d'<span class="citation">« illusion »</span> <span class="ligne-ref">(l.19 et l.20)</span> renvoie à l'idée que l'on se fait de quelque chose, le plus souvent embellie. <span class="citation">« Ainsi, la religion en proposant une vie après la mort, sans souffrance, offre-t-elle la possibilité d'un monde meilleur où règne</span> <span class="citation"> la justice et la bonté »</span>. Cependant, par cette proposition, elle maintient les Hommes dans un état d'illusion qui n'est pas sans évoquer <span class="reference">le mythe de la caverne de PLATON</span>. En effet, l'obscurité dans laquelle sont maintenus les prisonniers, dans la caverne, renvoie à l'état d'illusion de celui qui croit à une vie après la mort. De même, le monde extérieur de la caverne représente la réalité du monde terrestre. C'est pourquoi l'expression <span class="citation">« la vallée de larmes »</span> <span class="ligne-ref">(l.20-21)</span> signifie la vie terrestre avec ses souffrances, par opposition au bonheur de la vie future offert par la religion.</p>
+        
+        <p style="text-indent: 30px;">Pour cette raison, critiquer la religion, c'est obliger l'individu à tenir compte de la réalité et à se saisir de son destin. La religion est alors comparée à une <span class="citation">« chaîne »</span> <span class="ligne-ref">(l.22-23)</span> qui non seulement maintient l'individu dans sa condition sociale terrestre, mais également le prive de sa liberté, en lui retirant toute liberté d'action et de pensée. Elle lui promet un monde de <span class="citation">« rêve »</span> <span class="ligne-ref">(l.23)</span> et de <span class="citation">« consolation »</span> <span class="ligne-ref">(l.23)</span> ce que l'auteur appelle également des <span class="citation">« fleurs imaginaires »</span> <span class="ligne-ref">(l.23)</span> en opposition avec la <span class="citation">« fleur vivante »</span> qui symbolise la réalité dont les conditions sont à construire. Ce que reproche le philosophe à la religion, c'est de priver l'Homme de sa capacité d'initiative et d'action sur le monde, l'empêchant ainsi de lutter contre ses conditions sociales terrestres présentes. Ainsi, le contraste entre deux mondes est-il marqué par les expressions <span class="citation">« véritable soleil »</span> <span class="ligne-ref">(l.26-27)</span> en ce qui concerne le monde réel à bâtir et le <span class="citation">« soleil illusoire »</span> <span class="ligne-ref">(l.27)</span> pour signifier cette vie future après la mort. Karl MARX engage donc l'Homme à se prendre en main, à décider pour lui-même et à penser par lui-même.</p>
+
+        <!-- ========== CONCLUSION ========== -->
+        <center><div class="section-title section-conclusion">📝 CONCLUSION</div></center>
+        
+        <p style="text-indent: 30px;">Ce texte aborde donc la problématique de l'impact de la religion sur l'Homme ainsi que ses conséquences.</p>
+        
+        <p style="text-indent: 30px;">Karl MARX propose ici une critique de la religion dans la mesure où elle offre un monde <span class="citation">« chimérique »</span> qui empêche l'Homme de saisir sa propre existence. En effet, dans un premier temps l'auteur montre comment la religion élabore un monde imaginaire consolant l'individu de sa misère sociale et de ses souffrances. Dans un second temps, il lui reproche de ne pas permettre à l'Homme de devenir libre et indépendant en forgeant une réalité trompeuse qu'il s'agit alors de détruire ; il doit se confronter à la réalité terrestre dont il peut changer le cours.</p>
+
+        <hr />
+
+        <!-- ========== BOUTONS ========== -->
+        <div style="display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; margin: 1rem 0;">
+                       
+            <a href="explication-texte.html" class="method-link">
+                📖 Voir la méthodologie d'explication de texte
+            </a>
+        </div>
+
+    </div>
+</div>
+
+
+
+</body>
+</html>
