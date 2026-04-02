@@ -91,21 +91,6 @@
             transform: scale(1.01);
         }
 
-        .section-title {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: #0f172a;
-            margin: 2rem 0 1rem 0;
-            text-align: center;
-        }
-
-        .section-subtitle {
-            text-align: center;
-            color: #475569;
-            margin-bottom: 1.5rem;
-            font-style: italic;
-        }
-
         .content-card p {
             margin-bottom: 1rem;
             text-align: justify;
@@ -121,32 +106,29 @@
             text-align: justify;
         }
 
-        /* Citations et extraits */
-        .citation-block {
-            background: linear-gradient(135deg, #fefce8 0%, #fef9e3 100%);
-            border-radius: 24px;
-            padding: 1.5rem;
-            margin: 1.5rem 0;
-            border-left: 5px solid #eab308;
-            font-style: italic;
-        }
-
-        .proposition-box {
+        /* Boutons accordéon */
+        .collapsible {
             background: linear-gradient(135deg, #f1f5f9, #e2e8f0);
-            border-radius: 60px;
-            padding: 1rem 1.5rem;
-            margin: 1.5rem 0 1rem 0;
-            text-align: center;
-            font-weight: 700;
-            font-size: 1.2rem;
-            color: #0f172a;
+            color: #1e293b;
             cursor: pointer;
-            transition: all 0.2s ease;
-            border: none;
+            padding: 1rem 1.5rem;
             width: 100%;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 1.3rem;
+            font-weight: 700;
+            border-radius: 60px;
+            margin: 1.5rem 0 0.5rem 0;
+            transition: all 0.2s ease;
         }
 
-        .proposition-box:hover {
+        .collapsible:hover {
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            color: white;
+        }
+
+        .active, .collapsible:active {
             background: linear-gradient(135deg, #3b82f6, #2563eb);
             color: white;
         }
@@ -154,12 +136,18 @@
         .content {
             display: none;
             margin-bottom: 1rem;
+            padding: 1rem;
+            background: #fefce8;
+            border-radius: 0 0 24px 24px;
         }
 
-        mark {
-            background-color: #fef08a;
-            padding: 0.1rem 0.2rem;
-            border-radius: 4px;
+        .citation-block {
+            background: linear-gradient(135deg, #fefce8 0%, #fef9e3 100%);
+            border-radius: 24px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border-left: 5px solid #eab308;
+            font-style: italic;
         }
 
         .info-box {
@@ -180,12 +168,24 @@
 
         .reference-box {
             background: #eef2ff;
-            padding: 0.8rem 1.2rem;
+            padding: 0.5rem 1rem;
             border-radius: 40px;
             display: inline-block;
             margin: 0.5rem 0;
             font-size: 0.9rem;
             color: #3b82f6;
+            font-weight: 500;
+        }
+
+        .cours-texte {
+            margin: 1rem 0 1.5rem 0;
+            padding: 0.5rem;
+        }
+
+        mark {
+            background-color: #fef08a;
+            padding: 0.1rem 0.2rem;
+            border-radius: 4px;
         }
 
         embed {
@@ -211,7 +211,15 @@
         @media (max-width: 768px) {
             .container { padding: 1rem; }
             .content-card { padding: 1.5rem; }
-            .hero h1 { font-size: 1.4rem; }
+            .hero h1 { font-size: 1.3rem; }
+            .collapsible { font-size: 1.1rem; }
+        }
+
+        @media print {
+            body { background: white; }
+            .hero { background: #1e293b; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            .btn-retour { display: none; }
+            .content-card { box-shadow: none; padding: 1rem; }
         }
     </style>
 </head>
@@ -229,7 +237,7 @@
         
         <p>Dans cet essai philosophique, Emmanuel KANT vise à montrer que l'Histoire a un sens, c'est-à-dire que le cours des événements humains ne se déroule pas simplement au hasard.</p>
 
-        <img src="images/kant/1.jpg" alt="Emmanuel Kant" />
+        <center><img src="images/kant/1.jpg" alt="Emmanuel Kant" /></center>
 
         <p>Pour KANT, le hasard n'est qu'apparent. En réalité, nos actions sont déterminées par la Nature qui s'organise selon des lois universelles.</p>
 
@@ -239,17 +247,23 @@
 
         <hr />
 
-        <!-- INTRODUCTION -->
-        <button type="button" class="proposition-box">📖 INTRODUCTION</button>
+        <!-- ========== INTRODUCTION ========== -->
+        <button type="button" class="collapsible">📖 INTRODUCTION</button>
         <div class="content">
             <div class="citation-block">
-                <p>KANT propose de chercher s'il n'existe pas un « dessein de la Nature », c'est-à-dire un but de la Nature qui suit des règles. Il envisage que derrière les actions humaines passionnelles, intéressées, chaotiques, irrationnelles, il existe un ordre rationnel.</p>
-                <p>└&gt; Cela pose la question du déterminisme dans les actions humaines.</p>
+               <p><i>[Extrait de la deuxième proposition à venir]</i></p>
+                <p style="color: #64748b; margin-top: 1rem;">⏳ Le contenu de cet extrait n'est pas encore disponible. Veuillez revenir plus tard.</p>
             </div>
         </div>
+        
+         <!-- Cours visible après l'accordéon -->
+        <div class="cours-texte">
+            <p>KANT propose de chercher s'il n'existe pas un « dessein de la Nature », c'est-à-dire un but de la Nature qui suit des règles. Il envisage que derrière les actions humaines passionnelles, intéressées, chaotiques, irrationnelles, il existe un ordre rationnel.</p>
+                <p>└&gt; Cela pose la question du déterminisme dans les actions humaines.</p>
+        </div>
 
-        <!-- PREMIÈRE PROPOSITION -->
-        <button type="button" class="proposition-box">📜 PREMIÈRE PROPOSITION</button>
+        <!-- ========== PREMIÈRE PROPOSITION ========== -->
+        <button type="button" class="collapsible">📜 PREMIÈRE PROPOSITION</button>
         <div class="content">
             <div class="citation-block">
                 <p><i>Toutes les dispositions naturelles d'une créature sont destinées à se développer un jour complètement et conformément à une fin.</i></p>
@@ -257,191 +271,227 @@
             </div>
         </div>
 
-        <p>- Références à ARISTOTE :<br>
-        &nbsp;&nbsp; &nbsp;&nbsp;1- en puissance / en acte<br>
-        &nbsp;&nbsp; &nbsp;&nbsp;2- La téléologie (τέλος, en grec téleos : but)</p>
-        
-        <div class="info-box">
-            <strong>« La nature ne fait rien en vain »</strong> — ARISTOTE
+        <!-- Cours visible après l'accordéon -->
+        <div class="cours-texte">
+            <p>- Références à ARISTOTE :<br>
+            &nbsp;&nbsp; &nbsp;&nbsp;1- en puissance / en acte<br>
+            &nbsp;&nbsp; &nbsp;&nbsp;2- La téléologie (τέλος, en grec téléos : but)</p>
+            <div class="info-box">
+                <center><strong>« La nature ne fait rien en vain »</strong> — ARISTOTE</center>
+            </div>
+            <p>Pour ARISTOTE, la Nature suit une finalité.<br>
+            Ex : un organe est naturellement voué à une fonction.<br>
+            └&gt; Les productions naturelles ne sont pas des échecs, mais chacune a sa place.</p>
         </div>
 
-        <p>Pour ARISTOTE, la Nature suit une finalité.<br>
-        Ex : un organe est naturellement voué à une fonction.<br>
-        └&gt; Les productions naturelles ne sont pas des échecs, mais chacune a sa place.</p>
-
-        <hr />
-
-        <!-- DEUXIÈME PROPOSITION -->
-        <button type="button" class="proposition-box">📜 DEUXIÈME PROPOSITION</button>
+        <!-- ========== DEUXIÈME PROPOSITION ========== -->
+        <button type="button" class="collapsible">📜 DEUXIÈME PROPOSITION</button>
         <div class="content">
             <div class="citation-block">
-                <p>La Nature a doté l'Homme d'une rationalité qui lui sert à développer toutes ses facultés (technologiques, intellectuelles, artistiques, etc.)</p>
-                <p>Ce développement des facultés se réalise dans le cadre de l'espèce humaine. La vie d'un seul individu n'est pas suffisante pour le rendre possible. └&gt; L'Homme peut devenir plus que ce qu'il est.</p>
+                <p><i>[Extrait de la deuxième proposition à venir]</i></p>
+                <p style="color: #64748b; margin-top: 1rem;">⏳ Le contenu de cet extrait n'est pas encore disponible. Veuillez revenir plus tard.</p>
             </div>
         </div>
 
-        <p class="reference-box" style="background:#fef2f2; color:#dc2626;">= La perfectibilité de l'Homme (J.J. ROUSSEAU)</p>
-
-        <p>Car il n'est pas enfermé dans les limites de son instinct, contrairement à l'animal.<br>
-        L'Homme est capable de faire des projets qu'il se propose lui-même, il est donc libre.</p>
-
-        <div class="highlight-box">
-            <strong><u>Progrès</u></strong> : peut être continu ou non-continu et croissant ou décroissant. Ce n'est donc pas une amélioration continue.<br>
-            Une maladie qui progresse n'est donc pas une amélioration.
+        <!-- Cours visible après l'accordéon -->
+        <div class="cours-texte">
+            <p>→ La Nature a doté l'Homme d'une rationalité qui lui sert à développer toutes ses facultés (technologiques, intellectuelles, artistiques, etc.)<br>
+            Ce développement des facultés se réalise dans le cadre de l'espèce humaine.<br>
+            La vie d'un seul individu n'est pas suffisante pour le rendre possible. └&gt; L'Homme peut devenir plus que ce qu'il est.</p>
+            <center>
+            <div class="reference-box" style="background:#fef2f2; color:#dc2626;  font-size:30px;">= La perfectibilité de l'Homme (J.J. ROUSSEAU)</div>
+            </center>
+            <p>Car il n'est pas enfermé dans les limites de son instinct, contrairement à l'animal.<br>
+            L'Homme est capable de faire des projets qu'il se propose lui-même, il est donc libre.</p>
+            
+            <div class="highlight-box">
+                <strong><u>Progrès</u></strong> : peut être continu ou non-continu et croissant ou décroissant. Ce n'est donc pas une amélioration continue.<br>
+                Une maladie qui progresse n'est donc pas une amélioration.
+            </div>
+            
+            <p>La raison dont est doté l'Homme par la Nature permet le progrès de l'humanité, c'est-à-dire de l'espèce humaine, par « essais », « exercices », « enseignements » : accumulation des savoirs et des savoir-faire.<br>
+            L'existence de l'individu est trop courte pour permettre cette évolution qui a donc lieu au sein de l'espèce.</p>
+            
+            <p>⧓ Cette évolution est évaluée pour la réalisation du dessein de la Nature.<br>
+            ⧓ Cette évolution est évaluée par la Nature.</p>
         </div>
 
-        <p>La raison dont est doté l'Homme par la Nature permet le progrès de l'humanité, c'est-à-dire de l'espèce humaine, par « essais », « exercices », « enseignements » : accumulation des savoirs et des savoir-faire.<br>
-        L'existence de l'individu est trop courte pour permettre cette évolution qui a donc lieu au sein de l'espèce.</p>
-        <p>⧓ Cette évolution est évaluée pour la réalisation du dessein de la Nature.<br>
-        ⧓ Cette évolution est évaluée par la Nature.</p>
-
-        <hr />
-
-        <!-- TROISIÈME PROPOSITION -->
-        <button type="button" class="proposition-box">📜 TROISIÈME PROPOSITION</button>
+        <!-- ========== TROISIÈME PROPOSITION ========== -->
+        <button type="button" class="collapsible">📜 TROISIÈME PROPOSITION</button>
         <div class="content">
             <div class="citation-block">
-                <p>L'Homme, même s'il est également un animal, n'a pas d'instinct, mais il possède une raison. Celle-ci permet à l'Homme de dépasser les obstacles auxquels il est confronté, de progresser ; ainsi, il doit ce qu'il invente ou ce qu'il fait à lui-même.</p>
-                <p>└&gt; estime de soi ≠ l'orgueil</p>
+                <p><i>[Extrait de la troisième proposition à venir]</i></p>
+                <p style="color: #64748b; margin-top: 1rem;">⏳ Le contenu de cet extrait n'est pas encore disponible. Veuillez revenir plus tard.</p>
             </div>
         </div>
 
-        <p>- Référence à ARISTOTE : « sur la main » / « intelligence »<br>
-        - Référence à PLATON : le mythe de PROMÉTHÉE (les animaux sont dotés par la Nature de tout ce dont ils ont besoin pour la survie de l'espèce)</p>
-        <p>→ Le travail de chaque génération permet à la suivante de mieux vivre.</p>
+        <!-- Cours visible après l'accordéon -->
+        <div class="cours-texte">
+            <p>→ L'Homme, même s'il est également un animal, n'a pas d'instinct, mais il possède une raison. Celle-ci permet à l'Homme de dépasser les obstacles auxquels il est confronté, de progresser ; ainsi, il doit ce qu'il invente ou ce qu'il fait à lui-même.<br>
+            └&gt; estime de soi ≠ l'orgueil</p>
+            
+            <p>- Référence à ARISTOTE : « sur la main » / « intelligence »<br>
+            - Référence à PLATON : le mythe de PROMÉTHÉE (les animaux sont dotés par la Nature de tout ce dont ils ont besoin pour la survie de l'espèce)</p>
+            
+            <p>→ Le travail de chaque génération permet à la suivante de mieux vivre.</p>
+        </div>
 
-        <hr />
-
-        <!-- QUATRIÈME PROPOSITION -->
-        <button type="button" class="proposition-box">📜 QUATRIÈME PROPOSITION</button>
+        <!-- ========== QUATRIÈME PROPOSITION ========== -->
+        <button type="button" class="collapsible">📜 QUATRIÈME PROPOSITION</button>
         <div class="content">
             <div class="citation-block">
-                <p>La Nature utilise les oppositions (les désaccords, les guerres, les conflits, …) entre les Hommes pour atteindre son objectif qui est le développement complet des facultés humaines.</p>
-                <p>Ces oppositions seront résolues grâce à l'établissement des lois.</p>
+                <p><i>[Extrait de la quatrième proposition à venir]</i></p>
+                <p style="color: #64748b; margin-top: 1rem;">⏳ Le contenu de cet extrait n'est pas encore disponible. Veuillez revenir plus tard.</p>
             </div>
         </div>
 
-        <img src="images/kant/2.jpg" alt="Schéma Kant - opposition" />
-
-        <p>→ Ces deux tendances en tension visent à établir une morale par les lois. Ces deux tendances nécessitent un cadre afin de les canaliser, ce seront les lois établies par la société. Ainsi le progrès généré par cette double tension (concurrence, rivalité, entraide,…) va pouvoir mener au progrès moral, par l'intermédiaire des lois.</p>
-
-        <p>→ Comparaison avec l'Arcadie afin de souligner la nécessité des conflits, des guerres pour le progrès.</p>
-
-        <div class="info-box">
-            <strong>Arcadie :</strong> lieu idéal imaginaire appelé l'Âge d'or, en Grèce antique.<br>
-            - Repris par Virgile (Les Bucoliques), Ovide (Les Métamorphoses) dans leurs ouvrages.<br>
-            - Vie harmonieuse entre les Hommes et la nature à la disposition des Hommes<br>
-            └&gt; État de paix, donc pas de rivalité ni de concurrence donc pas de progrès.
+        <!-- Cours visible après l'accordéon -->
+        <div class="cours-texte">
+            <p>→ La Nature utilise les oppositions (les désaccords, les guerres, les conflits, …) entre les Hommes pour atteindre son objectif qui est le développement complet des facultés humaines.<br>
+            Ces oppositions seront résolues grâce à l'établissement des lois.</p>
+            
+            <center><img src="images/kant/2.jpg" alt="Schéma Kant - opposition" /></center>
+            
+            <p>→ Ces deux tendances en tension visent à établir une morale par les lois. Ces deux tendances nécessitent un cadre afin de les canaliser, ce seront les lois établies par la société. Ainsi le progrès généré par cette double tension (concurrence, rivalité, entraide,…) va pouvoir mener au progrès moral, par l'intermédiaire des lois.</p>
+            
+            <p>→ Comparaison avec l'Arcadie afin de souligner la nécessité des conflits, des guerres pour le progrès.</p>
+            
+            <div class="info-box">
+                <strong>Arcadie :</strong> lieu idéal imaginaire appelé l'Âge d'or, en Grèce antique.<br>
+                - Repris par Virgile (Les Bucoliques), Ovide (Les Métamorphoses) dans leurs ouvrages.<br>
+                - Vie harmonieuse entre les Hommes et la nature à la disposition des Hommes<br>
+                └&gt; État de paix, donc pas de rivalité ni de concurrence donc pas de progrès.
+            </div>
+            
+            <p>De cette tendance conflictuelle des Hommes on peut déduire que quelque chose agit à travers les actions des hommes pour réaliser le progrès moral, but ultime de la Nature.</p>
         </div>
 
-        <p>De cette tendance conflictuelle des Hommes on peut déduire que quelque chose agit à travers les actions des hommes pour réaliser le progrès moral, but ultime de la Nature.</p>
-
-        <hr />
-
-        <!-- CINQUIÈME PROPOSITION -->
-        <button type="button" class="proposition-box">📜 CINQUIÈME PROPOSITION</button>
+        <!-- ========== CINQUIÈME PROPOSITION ========== -->
+        <button type="button" class="collapsible">📜 CINQUIÈME PROPOSITION</button>
         <div class="content">
             <div class="citation-block">
-                <p>Pour cadrer cette liberté sauvage, il faut fonder une société civile qui va établir des lois justes.</p>
-                <p><strong>Justice :</strong> chaque citoyen sera aussi libre que les autres et suivra les mêmes contraintes légales.</p>
+                <p><i>[Extrait de la cinquième proposition à venir]</i></p>
+                <p style="color: #64748b; margin-top: 1rem;">⏳ Le contenu de cet extrait n'est pas encore disponible. Veuillez revenir plus tard.</p>
             </div>
         </div>
 
-        <img src="images/kant/3.jpg" alt="Schéma Kant - société civile" />
+        <!-- Cours visible après l'accordéon -->
+        <div class="cours-texte">
+            <center><img src="images/kant/3.jpg" alt="Schéma Kant - société civile" /></center>
+            
+            <p>→ Pour cadrer cette liberté sauvage, il faut fonder une société civile qui va établir des lois justes.</p>
+            
+            <div class="reference-box"><strong>Justice :</strong> chaque citoyen sera aussi libre que les autres et suivra les mêmes contraintes légales.</div>
+            
+            <p>→ Métaphore des arbres dans la forêt : les arbres sont en concurrence les uns avec les autres, pour atteindre le soleil. ≠ Quand il y a peu d'arbres, ils sont en totale liberté et poussent dans tous les sens, pas droit.</p>
+        </div>
 
-        <p>→ Métaphore des arbres dans la forêt : les arbres sont en concurrence les uns avec les autres, pour atteindre le soleil. ≠ Quand il y a peu d'arbres, ils sont en totale liberté et poussent dans tous les sens, pas droit.</p>
-
-        <hr />
-
-        <!-- SIXIÈME PROPOSITION -->
-        <button type="button" class="proposition-box">📜 SIXIÈME PROPOSITION</button>
+        <!-- ========== SIXIÈME PROPOSITION ========== -->
+        <button type="button" class="collapsible">📜 SIXIÈME PROPOSITION</button>
         <div class="content">
             <div class="citation-block">
-                <p>L'Homme est un animal : il suit ses désirs, ses intérêts.<br>
-                → C'est pour cela qu'il a besoin d'un maître qui va établir des lois pour que la société soit possible.<br>
-                → PROBLÈME : le maître est aussi un être humain qui suit ses désirs.<br>
-                Il faudrait que ce maître soit juste, droit, sans avoir besoin de lois pour le cadrer. ⇒ <strong style="color:#dc2626;">IMPOSSIBLE</strong></p>
+                <p><i>[Extrait de la sixième proposition à venir]</i></p>
+                <p style="color: #64748b; margin-top: 1rem;">⏳ Le contenu de cet extrait n'est pas encore disponible. Veuillez revenir plus tard.</p>
             </div>
         </div>
 
-        <p class="reference-box" style="background:#fef2f2; color:#dc2626; text-align:center; display:block;">« Dans un bois aussi courbe que celui dont est fait l'Homme, on ne peut rien tailler de tout à fait droit »</p>
+        <!-- Cours visible après l'accordéon -->
+        <div class="cours-texte">
+            <p>→ L'Homme est un animal : il suit ses désirs, ses intérêts.<br>
+            → C'est pour cela qu'il a besoin d'un maître qui va établir des lois pour que la société soit possible.<br>
+            → PROBLÈME : le maître est aussi un être humain qui suit ses désirs.<br>
+            Il faudrait que ce maître soit juste, droit, sans avoir besoin de lois pour le cadrer. ⇒ <strong style="color:#dc2626;">IMPOSSIBLE</strong></p>
+            
+            <center><div class="reference-box" style="background:#fef2f2; color:#dc2626; text-align:center; display:block;  font-size:30px;">« Dans un bois aussi courbe que celui dont est fait l'Homme, on ne peut rien tailler de tout à fait droit »</div></center>
+            
+            <p>→ Nécessité d'établir une constitution : mais comment faire pour qu'elle soit la plus juste possible ?</p>
+            
+            <ol>
+                <li>Il faut une philosophie du droit (savoir définir la justice et le droit).</li>
+                <li>Il faut voyager pour prendre connaissance des constitutions existant ailleurs et conserver ce qu'il y a de meilleur dans chacune d'elles pour constituer la nôtre.</li>
+                <li>Il faut éduquer le peuple pour qu'il soit prêt à accepter une constitution (= des contraintes à sa liberté) que l'on lui impose ⇒ <strong>Pédagogie</strong>.</li>
+            </ol>
+        </div>
 
-        <p>→ Nécessité d'établir une constitution : mais comment faire pour qu'elle soit la plus juste possible ?</p>
-
-        <ol>
-            <li>Il faut une philosophie du droit (savoir définir la justice et le droit).</li>
-            <li>Il faut voyager pour prendre connaissance des constitutions existant ailleurs et conserver ce qu'il y a de meilleur dans chacune d'elles pour constituer la nôtre.</li>
-            <li>Il faut éduquer le peuple pour qu'il soit prêt à accepter une constitution (= des contraintes à sa liberté) que l'on lui impose ⇒ <strong>Pédagogie</strong>.</li>
-        </ol>
-
-        <hr />
-
-        <!-- SEPTIÈME PROPOSITION -->
-        <button type="button" class="proposition-box">📜 SEPTIÈME PROPOSITION</button>
+        <!-- ========== SEPTIÈME PROPOSITION ========== -->
+        <button type="button" class="collapsible">📜 SEPTIÈME PROPOSITION</button>
         <div class="content">
             <div class="citation-block">
-                <p>On retrouve l'« insociable sociabilité » au cœur des États : chaque État cherche à satisfaire ses intérêts personnels. Donc on a besoin de lois internationales pour garantir la prospérité et la paix de chacun.</p>
+                <p><i>[Extrait de la septième proposition à venir]</i></p>
+                <p style="color: #64748b; margin-top: 1rem;">⏳ Le contenu de cet extrait n'est pas encore disponible. Veuillez revenir plus tard.</p>
             </div>
         </div>
 
-        <img src="images/kant/4.jpg" alt="Schéma Kant - relations internationales" />
-
-        <div class="info-box">
-            <strong>→ référence à Jean-Jacques ROUSSEAU :</strong><br>
-            Emmanuel KANT s'oppose à la thèse de Jean-Jacques ROUSSEAU qui défend l'idée que l'Homme est né bon, mais la société le corrompt.<br>
-            La thèse d'Emmanuel KANT : la société est civilisatrice, c'est-à-dire qu'elle transmet des valeurs morales et rend donc l'Homme meilleur.
+        <!-- Cours visible après l'accordéon -->
+        <div class="cours-texte">
+            <p>→ On retrouve l'« insociable sociabilité » au cœur des États : chaque État cherche à satisfaire ses intérêts personnels. Donc on a besoin de lois internationales pour garantir la prospérité et la paix de chacun.</p>
+            
+            <center><img src="images/kant/4.jpg" alt="Schéma Kant - relations internationales" /></center>
+            
+            <div class="info-box">
+                <strong>→ référence à Jean-Jacques ROUSSEAU :</strong><br>
+                Emmanuel KANT s'oppose à la thèse de Jean-Jacques ROUSSEAU qui défend l'idée que l'Homme est né bon, mais la société le corrompt.</br>
+                La thèse d'Emmanuel KANT : la société est civilisatrice, c'est-à-dire qu'elle transmet des valeurs morales et rend donc l'Homme meilleur.
+            </div>
+            
+            <p>→ Cette législation permettra de maintenir cet état de paix entre les États, de façon automatique = cela se réalise tout seul, sans intervention humaine.</p>
+            <p>→ Pas de hasard dans l'histoire ; la nature, à travers les actions humaines, réalise le progrès moral de l'Homme.</p>
+            <p>→ Emmanuel KANT croit en la présence d'un projet naturel dans les actions humaines, à travers les conflits, l'expression des passions.<br>
+            Il croit au progrès moral des Hommes. Sinon cela n'a aucun sens.<br>
+            └&gt; C'est rationnel de penser / croire qu'il y a bien ce but.</p>
+            
+            <div class="reference-box">« Cosmopolitique » (P.21) : universel, international</div>
+            
+            <p>└&gt; Il y a un besoin d'un droit international qui permettra d'aboutir à ce développement moral, mais chaque État doit également promouvoir une liberté civile en son sein. En effet, la référence à Jean-Jacques ROUSSEAU montre que le progrès des sciences et des arts ne rend pas inévitablement les Hommes plus vertueux.</p>
+            
+            <p>→ Emmanuel KANT, comme ROUSSEAU, souligne que la politesse et la bienséance ne suffisent pas et peuvent cacher la haine, la jalousie entre les Hommes (une simple apparence).</p>
+            <p>→ Ce que recherche Emmanuel KANT à travers cette croyance dans le progrès moral des Hommes, c'est une paix perpétuelle, d'où résultera pour l'humanité la possibilité de s'améliorer moralement.</p>
         </div>
 
-        <p>→ Cette législation permettra de maintenir cet état de paix entre les États, de façon automatique = cela se réalise tout seul, sans intervention humaine.</p>
-        <p>→ Pas de hasard dans l'histoire ; la nature, à travers les actions humaines, réalise le progrès moral de l'Homme.</p>
-        <p>→ Emmanuel KANT croit en la présence d'un projet naturel dans les actions humaines, à travers les conflits, l'expression des passions.<br>
-        Il croit au progrès moral des Hommes. Sinon cela n'a aucun sens.<br>
-        └&gt; C'est rationnel de penser / croire qu'il y a bien ce but.</p>
-
-        <div class="reference-box">« Cosmopolitique » (P.21) : universel, international</div>
-
-        <p>└&gt; Il y a un besoin d'un droit international qui permettra d'aboutir à ce développement moral, mais chaque État doit également promouvoir une liberté civile en son sein. En effet, la référence à Jean-Jacques ROUSSEAU montre que le progrès des sciences et des arts ne rend pas inévitablement les Hommes plus vertueux.</p>
-
-        <p>→ Emmanuel KANT, comme ROUSSEAU, souligne que la politesse et la bienséance ne suffisent pas et peuvent cacher la haine, la jalousie entre les Hommes (une simple apparence).</p>
-        <p>→ Ce que recherche Emmanuel KANT à travers cette croyance dans le progrès moral des Hommes, c'est une paix perpétuelle, d'où résultera pour l'humanité la possibilité de s'améliorer moralement.</p>
-
-        <hr />
-
-        <!-- HUITIÈME PROPOSITION -->
-        <button type="button" class="proposition-box">📜 HUITIÈME PROPOSITION</button>
+        <!-- ========== HUITIÈME PROPOSITION ========== -->
+        <button type="button" class="collapsible">📜 HUITIÈME PROPOSITION</button>
         <div class="content">
             <div class="citation-block">
-                <p><mark>« Millénarisme »</mark> : une forme de croyance eschatologique qui promet l'avènement d'une ère radicalement nouvelle qui mettra fin aux souffrances que nous connaissons.</p>
-                <p>→ Il suppose la possibilité de connaître l'avenir, qui sera fait de bonheur et de liberté.</p>
+                <p><i>[Extrait de la huitième proposition à venir]</i></p>
+                <p style="color: #64748b; margin-top: 1rem;">⏳ Le contenu de cet extrait n'est pas encore disponible. Veuillez revenir plus tard.</p>
             </div>
         </div>
 
-        <p>→ Emmanuel KANT imagine un État libéral où règne le plus de liberté possible dans les limites des lois (morales / justes). Il prône la liberté religieuse. C'est la réalisation des Lumières.</p>
-        <p>→ Emmanuel KANT note aussi que l'indépendance des États, des personnes n'ont pas intérêt à entrer en conflit. C'est pourquoi chaque État, dans sa concurrence avec les autres, doit veiller au développement des sciences et des technologies. Ainsi, il contribue au progrès de l'humanité.</p>
-        <p>→ Ce progrès de l'humanité signifie le développement des facultés humaines et de la moralité.</p>
+        <!-- Cours visible après l'accordéon -->
+        <div class="cours-texte">
+            <p><mark>« Millénarisme »</mark> : une forme de croyance eschatologique qui promet l'avènement d'une ère radicalement nouvelle qui mettra fin aux souffrances que nous connaissons.</p>
+            <p>→ Il suppose la possibilité de connaître l'avenir, qui sera fait de bonheur et de liberté.</p>
+            <p>→ Emmanuel KANT imagine un État libéral où règne le plus de liberté possible dans les limites des lois (morales / justes). Il prône la liberté religieuse. C'est la réalisation des Lumières.</p>
+            <p>→ Emmanuel KANT note aussi que l'indépendance des États, des personnes n'ont pas intérêt à entrer en conflit. C'est pourquoi chaque État, dans sa concurrence avec les autres, doit veiller au développement des sciences et des technologies. Ainsi, il contribue au progrès de l'humanité.</p>
+            <p>→ Ce progrès de l'humanité signifie le développement des facultés humaines et de la moralité.</p>
+        </div>
 
-        <hr />
-
-        <!-- NEUVIÈME PROPOSITION -->
-        <button type="button" class="proposition-box">📜 NEUVIÈME PROPOSITION</button>
+        <!-- ========== NEUVIÈME PROPOSITION ========== -->
+        <button type="button" class="collapsible">📜 NEUVIÈME PROPOSITION</button>
         <div class="content">
             <div class="citation-block">
-                <p>Emmanuel KANT envisage l'histoire au point de vue cosmopolitique et expose le plan général d'une histoire universelle de l'humanité comme progrès, des Grecs jusqu'au XVIII<sup>e</sup> siècle.</p>
-                <p>→ Il pose la nécessité d'une histoire philosophique qui découvre un dessein de la nature dans les actions humaines, qui contribuent à la réalisation de ce dessein.</p>
-                <p>→ À travers notre histoire, la fin (=le but) de la nature est notre destination pratique, c'est-à-dire la fin que notre devoir (obligation morale) nous dicte.</p>
+                <p><i>[Extrait de la neuvième proposition à venir]</i></p>
+                <p style="color: #64748b; margin-top: 1rem;">⏳ Le contenu de cet extrait n'est pas encore disponible. Veuillez revenir plus tard.</p>
             </div>
         </div>
 
-        <div class="info-box">
-            <strong>Étymologie grecque du mot « histoire » :</strong><br>
-            « ίστορία » (istoria) : signifie « enquête »<br>
-            └&gt; HÉRODOTE, THUCYDIDE (historiens)
+        <!-- Cours visible après l'accordéon -->
+        <div class="cours-texte">
+            <p>→ Emmanuel KANT envisage l'histoire au point de vue cosmopolitique et expose le plan général d'une histoire universelle de l'humanité comme progrès, des Grecs jusqu'au XVIII<sup>e</sup> siècle.</p>
+            <p>→ Il pose la nécessité d'une histoire philosophique qui découvre un dessein de la nature dans les actions humaines, qui contribuent à la réalisation de ce dessein.</p>
+            <p>→ À travers notre histoire, la fin (=le but) de la nature est notre destination pratique, c'est-à-dire la fin que notre devoir (obligation morale) nous dicte.</p>
+            
+            <div class="info-box">
+                <strong>Étymologie grecque du mot « histoire » :</strong><br>
+                « ίστορία » (istoria) : signifie « enquête »<br>
+                └&gt; HÉRODOTE, THUCYDIDE (historiens)
+            </div>
+            
+            <p>→ Importance d'une histoire philosophique qui permettrait de prévoir l'avenir.</p>
+            <p>→ <strong><mark>La morale</mark></strong> : ce qui compte ce sera la valeur de nos actions et de leurs conséquences.</p>
+            <p>→ Cette téléologie de l'histoire s'adresse essentiellement aux historiens futurs, car il est nécessaire que chaque citoyen connaisse le passé pour suivre le dessein de la nature dans l'histoire et qu'il agisse en conséquence.</p>
+            <p>→ L'histoire est la mémoire des peuples libres, tandis que l'oubli fait l'esclavage et la barbarie.</p>
         </div>
-
-        <p>→ Importance d'une histoire philosophique qui permettrait de prévoir l'avenir.</p>
-        <p>→ <strong><mark>La morale</mark></strong> : ce qui compte ce sera la valeur de nos actions et de leurs conséquences.</p>
-        <p>→ Cette téléologie de l'histoire s'adresse essentiellement aux historiens futurs, car il est nécessaire que chaque citoyen connaisse le passé pour suivre le dessein de la nature dans l'histoire et qu'il agisse en conséquence.</p>
-        <p>→ L'histoire est la mémoire des peuples libres, tandis que l'oubli fait l'esclavage et la barbarie.</p>
 
         <hr />
 
@@ -456,7 +506,7 @@
 </div>
 
 <script>
-    var coll = document.getElementsByClassName("proposition-box");
+    var coll = document.getElementsByClassName("collapsible");
     for (var i = 0; i < coll.length; i++) {
         coll[i].addEventListener("click", function() {
             this.classList.toggle("active");

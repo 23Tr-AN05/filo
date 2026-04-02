@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Méthodologie de la dissertation - Philosophie</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: linear-gradient(135deg, #f8fafc 0%, #eef2ff 100%);
+            color: #1e293b;
+            line-height: 1.6;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #2d3a4e 100%);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+            border-bottom: 4px solid #3b82f6;
+        }
+
+        .hero h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            font-style: italic;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .btn-retour {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: #3b82f6;
+            color: white;
+            padding: 0.7rem 1.5rem;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .btn-retour:hover {
+            background: #2563eb;
+            transform: translateX(-4px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
+
+        .content-card {
+            background: white;
+            border-radius: 32px;
+            padding: 2.5rem;
+            box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.1);
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            padding: 0.8rem 1.2rem;
+            border-radius: 60px;
+            margin: 1.5rem 0 1rem 0;
+            display: inline-block;
+        }
+
+        .section-intro {
+            background: linear-gradient(135deg, #dcfce7, #bbf7d0);
+            color: #166534;
+            border-left: 5px solid #22c55e;
+        }
+
+        .section-part1 {
+            background: linear-gradient(135deg, #fef2f2, #fee2e2);
+            color: #991b1b;
+            border-left: 5px solid #ef4444;
+        }
+
+        .section-part2 {
+            background: linear-gradient(135deg, #fef2f2, #fee2e2);
+            color: #991b1b;
+            border-left: 5px solid #ef4444;
+        }
+
+        .section-part3 {
+            background: linear-gradient(135deg, #fef2f2, #fee2e2);
+            color: #991b1b;
+            border-left: 5px solid #ef4444;
+        }
+
+        .section-conclusion {
+            background: linear-gradient(135deg, #f3e8ff, #e9d5ff);
+            color: #6b21a5;
+            border-left: 5px solid #a855f7;
+        }
+
+        .content-card p {
+            margin-bottom: 1rem;
+            text-align: justify;
+            line-height: 1.7;
+        }
+
+        .content-card ul, .content-card ol {
+            margin: 1rem 0 1rem 2rem;
+        }
+
+        .content-card li {
+            margin-bottom: 0.5rem;
+            text-align: justify;
+        }
+
+        .rule-box {
+            background: #f1f5f9;
+            border-radius: 20px;
+            padding: 1rem 1.5rem;
+            margin: 1rem 0;
+            border-left: 4px solid #3b82f6;
+        }
+
+        .warning-box {
+            background: #fef2f2;
+            border-radius: 20px;
+            padding: 1rem 1.5rem;
+            margin: 1rem 0;
+            border-left: 4px solid #ef4444;
+            color: #991b1b;
+            font-weight: 500;
+        }
+
+        .transition-box {
+            background: linear-gradient(135deg, #fef3c7, #fde68a);
+            border-radius: 40px;
+            padding: 0.8rem 1.5rem;
+            margin: 1rem 0;
+            text-align: center;
+            font-weight: 600;
+            color: #92400e;
+        }
+
+        .btn-print {
+            background: linear-gradient(135deg, #475569, #1e293b);
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 40px;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            margin: 1rem 0;
+            font-size: 1rem;
+        }
+
+        .btn-print:hover {
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .example-link {
+            display: inline-block;
+            background: #3b82f6;
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 600;
+            margin: 1rem 0;
+            transition: all 0.2s ease;
+            text-align: center;
+        }
+
+        .example-link:hover {
+            background: #2563eb;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        hr {
+            margin: 2rem 0;
+            border: none;
+            border-top: 2px solid #e2e8f0;
+        }
+
+        .space {
+            height: 1.5rem;
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+                margin: 0;
+            }
+            .hero {
+                background: #1e293b;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            .btn-retour, .btn-print, .example-link {
+                display: none;
+            }
+            .content-card {
+                box-shadow: none;
+                padding: 1rem;
+            }
+            .section-title {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container { padding: 1rem; }
+            .content-card { padding: 1.5rem; }
+            .hero h1 { font-size: 1.4rem; }
+            .section-title { font-size: 1.2rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="hero">
+    <h1>✏️ MÉTHODOLOGIE DE LA DISSERTATION</h1>
+    <p></p>
+</div>
+
+<div class="container">
+    <a href="index.html" class="btn-retour">← Retour à l'accueil</a>
+
+    <div class="content-card">
+        
+        <!-- INTRODUCTION -->
+        <div class="section-title section-intro">📖 INTRODUCTION</div>
+        
+        <p>Pour rédiger une introduction, nous faisons un premier bloc de 4 parties-phrases, avec des alinéas pour chacune des parties sans faire de saut de ligne entre elles, les parties s'organiseront ainsi :</p>
+        
+        <ol style="margin-left: 2rem;">
+            <li><strong>Amorce :</strong> En quoi la question posée est encore d'actualité ?</li>
+            <li><strong>Définitions des mots importants</strong></li>
+        </ol>
+
+        <div class="warning-box">
+            ⚠️ À éviter : faire une liste
+        </div>
+
+        <ol start="3" style="margin-left: 2rem;">
+            <li><strong>Problématiser la question :</strong> quels sont les problèmes soulevés (au moins 3) par la question ?</li>
+            <li><strong>Annonce du plan détaillé</strong> (avec des arguments)</li>
+        </ol>
+
+        <div class="space"></div>
+        <p style="text-align: center; color: #64748b;">⤻ [Saut de 2 ou 3 lignes] ⤺</p>
+        <div class="space"></div>
+
+        <!-- PARTIE I -->
+        <div class="section-title section-part1">📌 I - Énonciation de la thèse défendue</div>
+        <p style="color: #991b1b; font-weight: 500; margin-bottom: 1rem;">(toujours dans le sens de la question posée)</p>
+
+        <p>Je réponds par <strong>« OUI »</strong> à la question.</p>
+        
+        <p>Pour rédiger une Première Grande Partie, nous faisons un deuxième bloc qui se compose d'une phrase d'introduction (qui peut être liée à la première sous-partie) et <strong>3 sous-parties</strong>. Chacune des sous-parties doit comporter :</p>
+        
+        <ul>
+            <li><strong>1 Argument</strong> → Idée Générale de la sous-partie</li>
+            <li><strong>Exemples</strong> → Illustre le propos avec un cas particulier (Facultatif)</li>
+            <li><strong>Références philosophiques</strong> (film, littérature, œuvre d'art)</li>
+        </ul>
+
+        <div class="rule-box">
+            📐 <strong>1 ARGUMENT = 1 ALINÉA</strong>
+        </div>
+
+        <div class="transition-box">
+            🔄 Je rédige <strong><em>une phrase de transition</em></strong> qui ouvre sur la DEUXIÈME GRANDE PARTIE.
+        </div>
+
+        <div class="space"></div>
+        <p style="text-align: center; color: #64748b;">⤻ [Saut de 2 ou 3 lignes] ⤺</p>
+        <div class="space"></div>
+
+        <!-- PARTIE II -->
+        <div class="section-title section-part2">📌 II - On montre les limites de la Première partie</div>
+        <p style="color: #991b1b; font-weight: 500; margin-bottom: 1rem;">et on annonce la thèse défendue</p>
+
+        <p>Je réponds par <strong>« MAIS »</strong> à la question.</p>
+        
+        <p>Pour rédiger une Deuxième Grande Partie, nous suivons les mêmes étapes que la Première Partie, avec <strong>3 ARGUMENTS / exemples / références philosophiques</strong>.</p>
+
+        <div class="transition-box">
+            🔄 Je rédige <strong><em>une phrase de transition</em></strong> qui ouvre sur la TROISIÈME GRANDE PARTIE.
+        </div>
+
+        <div class="space"></div>
+        <p style="text-align: center; color: #64748b;">⤻ [Saut de 2 ou 3 lignes] ⤺</p>
+        <div class="space"></div>
+
+        <!-- PARTIE III -->
+        <div class="section-title section-part3">📌 III - Solution proposée</div>
+
+        <p>La troisième partie <strong>n'est pas obligatoire</strong>. Certains sujets ne nécessitent pas une troisième partie.</p>
+        
+        <p>Quand nous rédigeons une troisième partie, nous suivons les mêmes étapes que la Première et la Deuxième Partie, avec <strong>3 ARGUMENTS / exemples / références philosophiques</strong>.</p>
+
+        <div class="space"></div>
+        <p style="text-align: center; color: #64748b;">⤻ [Saut de 2 ou 3 lignes] ⤺</p>
+        <div class="space"></div>
+
+        <!-- CONCLUSION -->
+        <div class="section-title section-conclusion">📝 CONCLUSION</div>
+
+        <p>Pour rédiger la conclusion, nous faisons un <strong>bilan</strong> pour chacune des parties.</p>
+
+        <hr />
+
+        <!-- BOUTONS -->
+        <div style="display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; margin: 1rem 0;">
+                        
+            <a href="https://23tr-an05.github.io/dis/" class="example-link">
+                📄 Voir un exemple de dissertation
+            </a>
+        </div>
+
+    </div>
+</div>
+
+
+</body>
+</html>
