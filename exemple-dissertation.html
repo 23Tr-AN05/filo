@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exemple de dissertation - Philosophie</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: linear-gradient(135deg, #f8fafc 0%, #eef2ff 100%);
+            color: #1e293b;
+            line-height: 1.6;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #2d3a4e 100%);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+            border-bottom: 4px solid #3b82f6;
+        }
+
+        .hero h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            font-style: italic;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .btn-retour {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: #3b82f6;
+            color: white;
+            padding: 0.7rem 1.5rem;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .btn-retour:hover {
+            background: #2563eb;
+            transform: translateX(-4px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
+
+        .content-card {
+            background: white;
+            border-radius: 32px;
+            padding: 2.5rem;
+            box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.1);
+        }
+
+        .content-card img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 20px;
+            margin: 1.5rem 0;
+            display: block;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .content-card img:hover {
+            transform: scale(1.01);
+        }
+
+        .content-card p {
+            margin-bottom: 1rem;
+            text-align: justify;
+            line-height: 1.7;
+        }
+
+        .content-card ul, .content-card ol {
+            margin: 1rem 0 1rem 2rem;
+        }
+
+        .content-card li {
+            margin-bottom: 0.5rem;
+            text-align: justify;
+        }
+
+        .section-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            padding: 0.8rem 1.2rem;
+            border-radius: 60px;
+            margin: 1.5rem 0 1rem 0;
+            display: inline-block;
+        }
+
+        .section-plan {
+            background: linear-gradient(135deg, #e0f2fe, #bae6fd);
+            color: #075985;
+            border-left: 5px solid #0284c7;
+        }
+
+        .section-intro {
+            background: linear-gradient(135deg, #dcfce7, #bbf7d0);
+            color: #166534;
+            border-left: 5px solid #22c55e;
+        }
+
+        .section-conclusion {
+            background: linear-gradient(135deg, #f3e8ff, #e9d5ff);
+            color: #6b21a5;
+            border-left: 5px solid #a855f7;
+        }
+
+        .info-box {
+            border-left: 4px solid #dc2626;
+            background: #fef2f2;
+            padding: 1rem 1.2rem;
+            border-radius: 16px;
+            margin: 1rem 0;
+        }
+
+        .these-box {
+            background: linear-gradient(135deg, #e0f2fe, #bae6fd);
+            padding: 1rem 1.5rem;
+            border-radius: 20px;
+            margin: 1rem 0;
+            font-weight: 600;
+            color: #075985;
+        }
+
+        .btn-print {
+            background: linear-gradient(135deg, #475569, #1e293b);
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 40px;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            margin: 1rem 0;
+            font-size: 1rem;
+        }
+
+        .btn-print:hover {
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .method-link {
+            display: inline-block;
+            background: #3b82f6;
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 600;
+            margin: 1rem 0;
+            transition: all 0.2s ease;
+            text-align: center;
+        }
+
+        .method-link:hover {
+            background: #2563eb;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        hr {
+            margin: 2rem 0;
+            border: none;
+            border-top: 2px solid #e2e8f0;
+        }
+
+        .ref-philo {
+            color: #16a34a;
+            font-weight: 500;
+        }
+
+        .exemple {
+            color: #ea580c;
+            font-weight: 500;
+        }
+
+        .highlight-red {
+            color: #dc2626;
+            font-weight: 500;
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+                margin: 0;
+            }
+            .hero {
+                background: #1e293b;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            .btn-retour, .btn-print, .method-link {
+                display: none;
+            }
+            .content-card {
+                box-shadow: none;
+                padding: 1rem;
+            }
+            .section-title {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container { padding: 1rem; }
+            .content-card { padding: 1.5rem; }
+            .hero h1 { font-size: 1.3rem; }
+            .section-title { font-size: 1.1rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="hero">
+    <h1>📝 EXEMPLE DE DISSERTATION</h1>
+    <p>Analyse du sujet, plan détaillé, introduction et conclusion</p>
+</div>
+
+<div class="container">
+    <a href="index.html" class="btn-retour">← Retour à l'accueil</a>
+
+    <div class="content-card">
+        
+        <div class="info-box">
+            <strong>ℹ️ Note importante :</strong> Ici, on vous propose une analyse du sujet ainsi qu'un plan détaillé. On vous propose également une <strong>PROPOSITION</strong> d'introduction et une <strong>PROPOSITION</strong> de conclusion.
+        </div>
+
+        <p>Notez bien qu'il n'existe pas un plan <strong>TYPE</strong>, ou une introduction <strong>TYPE</strong> ou encore une conclusion <strong>TYPE</strong>. C'est-à-dire que, dans la mesure où vos propos sont cohérents avec le sujet et que vous argumentez vos propos avec des références philosophiques pertinentes, toute rédaction sera valide.</p>
+
+        <hr />
+
+        <p>Pour que vous ayez un exemple d'analyse et de rédaction, nous allons analyser un sujet sur la notion de <strong>"Vérité"</strong>.</p>
+
+          <center><img src="images/exemple-dissertation/1.jpg" alt="Schéma dissertation vérité" /></center>
+          <center><img src="images/exemple-dissertation/2.jpg" alt="Schéma dissertation vérité 2" /></center>
+
+        <hr />
+
+        <!-- ========== PLAN DÉTAILLÉ ========== -->
+          <center><div class="section-title section-plan">📋 PLAN DÉTAILLÉ (environ 30 min)</div></center>
+
+        <div class="these-box">
+            📌 <strong>I- Thèse :</strong> La science explique à l'aide de théories les phénomènes observés, elle semble être le plus sûr moyen d'y parvenir.
+        </div>
+        <p style="text-indent: 30px;">Elle fait preuve de rigueur dans sa méthode (protocole), en vue d'établir des vérités sur le réel.</p>
+        <p style="margin-left: 90px;"><span class="ref-philo">📖 Référence :</span> René DESCARTES → les vérités mathématiques<br>
+        <span class="exemple">💡 Exemple :</span> E=mc² / Théorème de Pythagore / Théorème de Thalès</p>
+        
+        <p style="text-indent: 30px;">Elle utilise la logique dans ses démonstrations afin d'éviter l'erreur, elle s'appuie sur des preuves.</p>
+        <p style="margin-left: 90px;"><span class="ref-philo">📖 Référence :</span> Emmanuel KANT → la vérité formelle (p.524)<br>
+        <span class="exemple">💡 Exemple :</span> Syllogisme d'ARISTOTE</p>
+        
+        <p style="text-indent: 30px;">Ce que l'on observe, c'est que la science utilise d'autres domaines comme les mathématiques, la logique pour éviter de se tromper, donc en vue d'approcher une vérité démonstrative cohérente. C'est pourquoi la physique contemporaine utilise les mathématiques comme outil.</p>
+        <p style="margin-left: 90px;"><span class="exemple">💡 Exemple :</span> la cinétique utilise la mécanique / en électricité utilisation de sinusoïde / Produit scalaire (outil mathématique inventé pour la physique)</p>
+        
+        <p style="text-indent: 30px;"><strong>Cependant, on observe dans l'histoire des sciences que la connaissance scientifique a progressé en se trompant, ce qui questionne la notion de vérité.</strong></p>
+
+        <div class="these-box">
+            📌 <strong>II- Antithèse :</strong> Montre les limites de la thèse : La science possède également un savoir zététique, qui la définit principalement dans la mesure où ses connaissances peuvent être remises en question.
+        </div>
+        <p style="text-indent: 30px;">La connaissance scientifique évolue grâce aux erreurs qu'elle commet.</p>
+        <p style="margin-left: 90px;"><span class="ref-philo">📖 Référence :</span> Thomas KUHN → Le changement de paradigme<br>
+        <span class="exemple">💡 Exemple :</span> KEPLER → NEWTON → EINSTEIN</p>
+        
+        <p style="text-indent: 30px;">De surcroît, la science n'est pas la seule à chercher, à comprendre et à expliquer le réel. La philosophie également poursuit cette quête.</p>
+        <p style="margin-left: 90px;"><span class="ref-philo">📖 Référence :</span> Allégorie de la Caverne (PLATON)<br>
+        <span class="exemple">💡 Exemple :</span> Maïeutique de Socrate</p>
+        
+        <p style="text-indent: 30px;">La connaissance scientifique implique la réfutabilité / falsifiabilité de ses théories.</p>
+        <p style="margin-left: 90px;"><span class="ref-philo">📖 Référence :</span> Karl POPPER<br>
+        <span class="exemple">💡 Exemple :</span> Remise en question des théorèmes régulièrement. Contre-exemple : Ne sont pas scientifiques la théorie freudienne de l'inconscient et la théorie de la lutte des classes (dominant / dominé) de Karl MARX</p>
+        
+        <p style="text-indent: 30px;"><strong>Néanmoins, la connaissance scientifique, si elle apporte des éléments de compréhension sur le réel, on ne peut pas parler de vérité totale sur ce dernier.</strong></p>
+
+        <div class="these-box">
+            📌 <strong>III- Synthèse :</strong> Comment la connaissance scientifique peut établir des vérités sur la réalité et est-ce possible ?
+        </div>
+        <p style="text-indent: 30px;">La notion de vérité sous-entend qu'il existerait une vérité générale qui comprendrait la totalité des phénomènes. Or on observe qu'une théorie englobante semble impossible, car plus nos connaissances progressent, plus on prend conscience de ce que l'on ignore.</p>
+        <p style="margin-left: 90px;"><span class="ref-philo">📖 Référence :</span> EINSTEIN et INFELD → la vérité est idéalisée par le chercheur<br>
+        <span class="exemple">💡 Exemple :</span> en Neurologie, les connaissances sur le cerveau sont limitées.</p>
+        
+        <p style="text-indent: 30px;">C'est parce que la science possède et avance en élaborant plutôt des conjectures / des hypothèses pour expliquer les phénomènes, puisqu'aucune vérité scientifique n'est jamais définitivement acquise.</p>
+        <p style="margin-left: 90px;"><span class="ref-philo">📖 Référence :</span> EINSTEIN et INFELD<br>
+        <span class="exemple">💡 Exemple :</span> La théorie de la relativité de NEWTON a été réfutée par EINSTEIN.</p>
+        
+        <p style="text-indent: 30px;">La science n'est pas un dogme, c'est-à-dire une doctrine sur laquelle il est interdit de s'interroger.</p>
+        <p style="margin-left: 90px;"><span class="exemple">💡 Exemple :</span> Contrairement à la religion qui s'impose comme indubitable dans la mesure où elle est une vérité révélée.</p>
+
+        <hr />
+
+      <p>Ici, on vous propose une <strong>PROPOSITION</strong> d'introduction ainsi qu'une <strong>PROPOSITION</strong> de conclusion.</p>
+
+        <!-- ========== INTRODUCTION ========== -->
+         <center> <div class="section-title section-intro">📝 INTRODUCTION (proposition)</div></center>
+        
+        <p style="text-indent: 30px;">L'histoire des sciences montre que des connaissances démontrées, prouvées à un moment se révèlent fausses à un autre, du fait des progrès scientifiques. Ces faits posent la question de la vérité, <span class="highlight-red">c'est-à-dire l'adéquation / la concordance de ce qui est dit sur le phénomène avec le phénomène lui-même</span>, en science.</p>
+        
+        <p style="text-indent: 30px;">Ainsi, peut-on définir la connaissance scientifique, <span class="highlight-red">comme l'ensemble des savoirs démontrés selon une méthode rigoureuse acquise par la science en général</span>. La capacité à expliquer le réel s'appuie donc sur des outils, tels les mathématiques et la logique. Nous constatons également que d'autres disciplines s'appliquent à comprendre la réalité.</p>
+        
+        <p style="text-indent: 30px;">C'est pourquoi nous pouvons nous interroger sur la pertinence de parler de « vérité » en science, dans la mesure où elle progresse en se trompant. De surcroît, est-il possible d'envisager une vérité unique et globalisante ? La science est-elle la seule discipline à rechercher la vérité ? N'a-t-elle pas également besoin d'autres disciplines pour étudier ?</p>
+        
+        <p style="text-indent: 30px;">Dans un premier temps, nous montrerons que la connaissance scientifique apporte des explications sûres et certaines sur les phénomènes, grâce à sa méthode rigoureuse. Cependant, dans un deuxième temps, nous démontrerons que la connaissance scientifique se définit par sa réfutabilité, elle propose donc des vérités temporaires. Pour cette raison, nous soulignerons que la science n'étant pas un dogme, le travail du chercheur est de se fixer un horizon, celui d'une vérité idéale.</p>
+
+        <hr />
+
+        <!-- ========== CONCLUSION ========== -->
+          <center><div class="section-title section-conclusion">📌 CONCLUSION (proposition)</div></center>
+        
+        <p style="text-indent: 30px;">Nous avons pu mettre en évidence que la méthode scientifique permet de distinguer les vérités démontrées acquises par la science des opinions ou des croyances. D'autre part, nous avons souligné que les vérités scientifiques ne sont pas définitives : elles se définissent par leur réfutabilité, comme le chercheur invente des théories explicatives, le philosophe (ou historien, l'économiste, le sociologue, etc.) cherche à comprendre le réel. Ainsi, la science n'est-elle pas seule à tenter de saisir la réalité. Enfin, nous avons développé l'idée que la connaissance scientifique apporte des vérités temporaires qui visent un horizon de connaissance qu'EINSTEIN et INFELD nomment une « vérité idéale ».</p>
+
+        <hr />
+
+        <!-- ========== BOUTONS ========== -->
+        <div style="display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; margin: 1rem 0;">
+            
+            <a href="dissertation-methode.html" class="method-link">
+                📖 Voir la méthode de dissertation
+            </a>
+        </div>
+
+    </div>
+</div>
+
+
+
+</body>
+</html>
