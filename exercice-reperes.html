@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz - Repères philosophiques</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: linear-gradient(135deg, #f8fafc 0%, #eef2ff 100%);
+            color: #1e293b;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #2d3a4e 100%);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            border-bottom: 4px solid #3b82f6;
+        }
+
+        .hero h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .btn-retour {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: #3b82f6;
+            color: white;
+            padding: 0.6rem 1.2rem;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            transition: all 0.2s ease;
+            font-size: 0.9rem;
+        }
+
+        .btn-retour:hover {
+            background: #2563eb;
+            transform: translateX(-4px);
+        }
+
+        .quiz-card {
+            background: white;
+            border-radius: 32px;
+            padding: 2rem;
+            box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.1);
+        }
+
+        .question-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #e2e8f0;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .question-number {
+            background: #eef2ff;
+            color: #3b82f6;
+            padding: 0.3rem 0.8rem;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .question-stats {
+            font-size: 0.8rem;
+            color: #64748b;
+        }
+
+        .question-text {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #0f172a;
+            margin-bottom: 1.5rem;
+            line-height: 1.4;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            margin: 1.5rem 0;
+        }
+
+        .option {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: #f8fafc;
+            border-radius: 20px;
+            border: 2px solid #e2e8f0;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .option:hover:not(.disabled) {
+            background: #eef2ff;
+            border-color: #3b82f6;
+        }
+
+        .option.selected {
+            background: #dbeafe;
+            border-color: #3b82f6;
+        }
+
+        .option.correct {
+            background: #dcfce7;
+            border-color: #22c55e;
+        }
+
+        .option.wrong {
+            background: #fee2e2;
+            border-color: #ef4444;
+        }
+
+        .option.disabled {
+            cursor: default;
+        }
+
+        .option input {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            accent-color: #3b82f6;
+        }
+
+        .option.disabled input {
+            cursor: default;
+        }
+
+        .option label {
+            flex: 1;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .option.disabled label {
+            cursor: default;
+        }
+
+        .feedback {
+            margin: 1rem 0;
+            padding: 1rem;
+            border-radius: 16px;
+            font-size: 0.95rem;
+            display: none;
+        }
+
+        .feedback.correct {
+            background: #dcfce7;
+            color: #166534;
+            display: block;
+            border-left: 4px solid #22c55e;
+        }
+
+        .feedback.wrong {
+            background: #fee2e2;
+            color: #991b1b;
+            display: block;
+            border-left: 4px solid #ef4444;
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .nav-btn {
+            background: #f1f5f9;
+            color: #1e293b;
+            padding: 0.8rem 1.5rem;
+            border-radius: 60px;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 1rem;
+            flex: 1;
+        }
+
+        .nav-btn:hover:not(:disabled) {
+            background: #e2e8f0;
+        }
+
+        .nav-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .nav-btn-primary {
+            background: #3b82f6;
+            color: white;
+        }
+
+        .nav-btn-primary:hover:not(:disabled) {
+            background: #2563eb;
+        }
+
+        .validate-btn {
+            background: #22c55e;
+            color: white;
+        }
+
+        .validate-btn:hover {
+            background: #16a34a;
+        }
+
+        .score-container {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .score-value {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #3b82f6;
+            margin: 1rem 0;
+        }
+
+        .restart-btn {
+            background: #3b82f6;
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 60px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 1.5rem;
+            font-size: 1rem;
+        }
+
+        .restart-btn:hover {
+            background: #2563eb;
+        }
+
+        .progress-bar {
+            height: 4px;
+            background: #e2e8f0;
+            border-radius: 2px;
+            margin: 1rem 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: #3b82f6;
+            border-radius: 2px;
+            transition: width 0.3s;
+        }
+
+        .detail-reponse {
+            padding: 0.8rem;
+            margin-bottom: 0.5rem;
+            border-radius: 12px;
+        }
+
+        .detail-correct {
+            background: #dcfce7;
+        }
+
+        .detail-incorrect {
+            background: #fee2e2;
+        }
+
+        @media (max-width: 768px) {
+            .container { padding: 1rem; }
+            .quiz-card { padding: 1.2rem; }
+            .question-text { font-size: 1.1rem; }
+            .option label { font-size: 0.9rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="hero">
+    <h1>📝 QUIZ : LES REPÈRES PHILOSOPHIQUES</h1>
+    <p>Testez vos connaissances | 10 questions aléatoires à chaque session</p>
+</div>
+
+<div class="container">
+    <a href="index.html" class="btn-retour">← Retour à l'accueil</a>
+
+    <div id="app"></div>
+</div>
+
+<script>
+    // ============================================================
+    // BANQUE DE QUESTIONS - Uniquement sur les 24 repères
+    // ============================================================
+    const bankQuestions = [
+        // ABSOLU / RELATIF (3)
+        { text: "Que signifie 'absolu' en philosophie ?", options: ["Ce qui dépend d'autre chose", "Ce qui ne dépend que de soi-même pour exister", "Ce qui est relatif", "Ce qui est subjectif"], correct: 1, explanation: "L'absolu est ce qui ne dépend que de soi-même pour exister, ce qui porte en soi-même sa raison d'être." },
+        { text: "Que signifie 'relatif' en philosophie ?", options: ["Ce qui est universel", "Ce qui dépend d'un autre terme", "Ce qui est nécessaire", "Ce qui est absolu"], correct: 1, explanation: "Le relatif est ce qui dépend d'un autre terme en l'absence duquel ce dont il s'agit serait inintelligible." },
+        { text: "Lequel de ces exemples illustre l' 'absolu' ?", options: ["Une créature", "Un enfant", "Dieu", "Une opinion"], correct: 2, explanation: "Dieu est absolu car il est sa propre raison d'être, il ne dépend de rien d'autre." },
+        
+        // ABSTRAIT / CONCRET (3)
+        { text: "Qu'est-ce qu'une 'abstraction' ?", options: ["Une opération qui consiste à séparer ce que nos sens présentent comme non séparés", "Un objet concret", "Une réalité physique", "Une expérience sensible"], correct: 0, explanation: "L'abstraction est une opération de l'esprit qui consiste à séparer ce que nos sens présentent comme non séparés." },
+        { text: "Qu'est-ce que le 'concret' ?", options: ["Une idée pure", "L'objet global, le tout", "Une abstraction", "Un concept mathématique"], correct: 1, explanation: "Le concret est l'objet global, le tout. Une idée peut être concrète si elle considère une réalité dans sa globalité." },
+        { text: "Pourquoi 'rouge' est-il une abstraction ?", options: ["Parce que c'est une couleur", "Parce qu'une couleur ne se présente jamais seule à la vue", "Parce que c'est un objet", "Parce que c'est une sensation"], correct: 1, explanation: "Rouge est une abstraction car une couleur ne se présente jamais seule à ma vue ; je vois une pomme rouge, une tomate rouge, mais jamais du rouge seul." },
+        
+        // ANALYSE / SYNTHÈSE (3)
+        { text: "Que signifie 'analyser' ?", options: ["Organiser des éléments", "Décomposer un phénomène en ses parties", "Comprendre globalement", "Juger sans preuve"], correct: 1, explanation: "Analyser, c'est décomposer un phénomène ou un concept en ses parties en montrant comment elles s'enchaînent." },
+        { text: "Que signifie 'synthèse' ?", options: ["Décomposer", "Organiser des éléments en un nouvel ensemble", "Expliquer les causes", "Douter"], correct: 1, explanation: "La synthèse est l'organisation dans un nouvel ensemble d'éléments jusque là séparés ou associés différemment." },
+        { text: "Lequel de ces énoncés correspond à l'analyse ?", options: ["Saisir le sens d'un suicide", "Décomposer une analyse de sang", "Comprendre une œuvre d'art", "Percevoir globalement"], correct: 1, explanation: "Une analyse de sang consiste à décomposer le sang en ses différents constituants (plasma, globules rouges, globules blancs, etc.)." },
+        
+        // CAUSE / FIN (3)
+        { text: "Qu'est-ce qu'une 'cause' ?", options: ["Un but", "Ce qui entraîne un effet", "Une conséquence", "Un hasard"], correct: 1, explanation: "La cause est ce qui entraîne de façon nécessaire un effet." },
+        { text: "Qu'est-ce que la 'fin' au sens philosophique ?", options: ["La mort", "Le but", "La cause", "L'origine"], correct: 1, explanation: "La fin est le but. Chercher la fin, c'est se poser la question du 'pourquoi'." },
+        { text: "Dans l'exemple de la punition, quelle est sa 'fin' ?", options: ["La souffrance", "Faire un exemple ou établir le droit", "La vengeance", "La colère"], correct: 1, explanation: "La fin de la punition peut être de faire un exemple ou d'établir le droit." },
+        
+        // CONTINGENT / NÉCESSAIRE / POSSIBLE (3)
+        { text: "Qu'est-ce qui est 'nécessaire' ?", options: ["Ce qui pourrait ne pas être", "Ce qui ne peut pas ne pas être", "Ce qui est impossible", "Ce qui est probable"], correct: 1, explanation: "Le nécessaire est ce qui ne peut pas ne pas être." },
+        { text: "Qu'est-ce qui est 'contingent' ?", options: ["Ce qui ne peut pas ne pas être", "Ce qui est universel", "Ce qui pourrait ne pas être", "Ce qui est certain"], correct: 2, explanation: "Le contingent est ce qui pourrait ne pas être." },
+        { text: "Le 'possible' se distingue du 'réel' en quoi ?", options: ["Il est impossible", "Il peut être sans être actuellement", "Il est nécessaire", "Il est absurde"], correct: 1, explanation: "Le possible est ce qui peut être, c'est-à-dire qui n'est ni nécessaire ni impossible. Le réel est un cas particulier du possible." },
+        
+        // CROIRE / SAVOIR (3)
+        { text: "Que signifie 'croire' ?", options: ["Être persuadé avec preuve", "Être persuadé sans preuve", "Démontrer", "Savoir"], correct: 1, explanation: "Croire, c'est être persuadé de la vérité d'une proposition sans preuve, sans démonstration." },
+        { text: "Que signifie 'savoir' ?", options: ["Affirmer sans preuve", "Être capable de rendre raison de ce qu'on affirme", "Croire fermement", "Avoir une opinion"], correct: 1, explanation: "Savoir, c'est affirmer avec certitude en pouvant avancer des preuves, être capable de rendre raison de ce qu'on affirme." },
+        { text: "La foi est un cas particulier de :", options: ["Savoir", "Science", "Croyance", "Raison"], correct: 2, explanation: "La foi est un cas particulier de croyance (croyance en une proposition qui n'est ni évidente ni démontrable)." },
+        
+        // ESSENTIEL / ACCIDENTEL (3)
+        { text: "Qu'est-ce qui relève de l' 'essence' d'une chose ?", options: ["Ce qui peut être ôté sans la modifier", "Ce qui ne peut être ôté sans faire disparître la chose", "Une qualité fortuite", "Une apparence"], correct: 1, explanation: "Appartient à l'essence d'une chose ce qui ne peut être ôté d'une chose sans faire disparître en même temps la chose." },
+        { text: "Qu'est-ce qu'un 'accident' au sens philosophique ?", options: ["Une qualité essentielle", "Un événement malheureux", "Une qualité fortuite qu'on peut retirer", "Une substance"], correct: 2, explanation: "On appelle accidentelle toute qualité fortuite d'un objet qu'on pourrait lui retirer sans le modifier fondamentalement." },
+        { text: "Parmi ces qualités, laquelle est 'accidentelle' pour un être humain ?", options: ["Être bipède", "Être doué de raison", "Avoir les yeux bleus", "Être mortel"], correct: 2, explanation: "Avoir les yeux bleus est accidentel ; être bipède, doué de raison et mortel relèvent de l'essence de l'homme." },
+        
+        // EXPLIQUER / COMPRENDRE (2)
+        { text: "Que signifie 'expliquer' ?", options: ["Saisir globalement", "Ressentir", "Rechercher les causes", "Interpréter"], correct: 2, explanation: "Expliquer, c'est rechercher les causes d'un phénomène." },
+        { text: "Que signifie 'comprendre' ?", options: ["Décomposer", "Saisir globalement le sens", "Analyser", "Calculer"], correct: 1, explanation: "Comprendre, c'est saisir globalement le sens d'un phénomène, ses motivations, ses intentions." },
+        
+        // EN FAIT / EN DROIT (3)
+        { text: "Que désigne le 'fait' ?", options: ["Ce qui devrait être", "Ce qui est légitime", "Ce qui est", "Ce qui est idéal"], correct: 2, explanation: "Le fait est ce qui est." },
+        { text: "Que désigne le 'droit' ?", options: ["Ce qui est", "Ce qui est légal", "Ce qui est légitime, ce qui devrait être", "Ce qui est écrit"], correct: 2, explanation: "Le droit est ce qui est légitime, ce qui devrait être." },
+        { text: "La proposition '2 + 2 = 4' est une vérité :", options: ["De fait", "De droit", "Contingente", "Relative"], correct: 1, explanation: "2+2=4 est une vérité de droit car elle ne dépend pas des événements, elle est universelle et nécessaire." },
+        
+        // FORMEL / MATÉRIEL (2)
+        { text: "Qu'est-ce que la 'vérité formelle' ?", options: ["L'adéquation à la réalité", "La cohérence logique", "La vérité scientifique", "L'opinion"], correct: 1, explanation: "La vérité formelle concerne la cohérence logique, l'absence de contradiction dans un raisonnement." },
+        { text: "Qu'est-ce que la 'vérité matérielle' ?", options: ["La cohérence logique", "L'adéquation à la réalité", "La forme du raisonnement", "La beauté du discours"], correct: 1, explanation: "La vérité matérielle exige que le contenu corresponde, soit adéquat à une réalité." },
+        
+        // GENRE / ESPÈCE / INDIVIDU (2)
+        { text: "Qu'est-ce qu'un 'genre' ?", options: ["Un individu particulier", "Une catégorie générale", "Une espèce", "Un accident"], correct: 1, explanation: "Le genre est une catégorie générale, une classe qui regroupe des réalités aux caractéristiques communes essentielles." },
+        { text: "Qu'est-ce qu'un 'individu' ?", options: ["Un genre", "Une espèce", "Un membre d'une espèce", "Une catégorie générale"], correct: 2, explanation: "L'individu est un membre de l'espèce. Les individus sont tous différents, mais leurs différences restent accidentelles." },
+        
+        // IDÉAL / RÉEL (2)
+        { text: "Qu'est-ce que l' 'idéal' ?", options: ["Ce qui existe matériellement", "Ce qui n'existe qu'à titre d'idée", "Ce qui est réel", "Ce qui est concret"], correct: 1, explanation: "L'idéal est ce qui n'existe qu'à titre d'idée, que dans et par la pensée." },
+        { text: "Un nombre est une :", options: ["Idéalité", "Réalité matérielle", "Chose concrète", "Perception sensible"], correct: 0, explanation: "Un nombre est une idéalité car dans l'expérience, on ne rencontre pas les nombres." },
+        
+        // IDENTITÉ / ÉGALITÉ / DIFFÉRENCE (2)
+        { text: "L' 'identité' suppose :", options: ["Être différent", "Être inégal", "Être indiscernable", "Être relatif"], correct: 2, explanation: "L'identité suppose d'être indiscernable, de n'être différent de rien." },
+        { text: "Dire que tous les hommes sont égaux en droit signifie :", options: ["Ils sont identiques", "Ils ont les mêmes droits et devoirs", "Ils ont les mêmes capacités", "Ils sont indiscernables"], correct: 1, explanation: "L'égalité en droit signifie que tous ont rigoureusement les mêmes droits et les mêmes devoirs, mais cela ne signifie pas qu'ils sont identiques." },
+        
+        // INTUITIF / DISCURSIF (3)
+        { text: "Qu'est-ce que l' 'intuition' ?", options: ["Un raisonnement", "Une connaissance immédiate", "Une démonstration", "Une opinion"], correct: 1, explanation: "L'intuition est un mode de connaissance immédiate, ce qui se donne directement à la conscience." },
+        { text: "Qu'est-ce qui relève du 'discursif' ?", options: ["L'intuition", "Le raisonnement logique", "La perception sensible", "L'émotion"], correct: 1, explanation: "Le discursif relève du discours, de la parole rationnelle et cohérente, requérant la médiation d'un processus logique." },
+        { text: "Le cogito cartésien 'Je pense donc je suis' relève de :", options: ["L'intuition rationnelle", "Le raisonnement discursif", "La perception sensible", "L'opinion"], correct: 0, explanation: "Le cogito cartésien relève de l'intuition rationnelle ; il n'est pas l'aboutissement d'une démonstration mais une évidence indubitable." },
+        
+        // LÉGAL / LÉGITIME (2)
+        { text: "Qu'est-ce qui est 'légal' ?", options: ["Ce qui est juste", "Ce qui est conforme au droit positif", "Ce qui est moral", "Ce qui est idéal"], correct: 1, explanation: "Légal désigne ce qui est conforme au droit positif, c'est-à-dire au droit établi dans un État." },
+        { text: "Qu'est-ce qui est 'légitime' ?", options: ["Ce qui est écrit dans la loi", "Ce qui est conforme au droit idéal", "Ce qui est autorisé", "Ce qui est puni"], correct: 1, explanation: "Légitime désigne ce qui est conforme au droit idéal, ce qui doit être pour que la justice soit respectée." },
+        
+        // MÉDIAT / IMMÉDIAT (2)
+        { text: "Qu'est-ce qui est 'immédiat' ?", options: ["Avec intermédiaire", "Sans intermédiaire", "Médiat", "Discursif"], correct: 1, explanation: "Immédiat signifie sans intermédiaire." },
+        { text: "Qu'est-ce qui est 'médiat' ?", options: ["Sans intermédiaire", "Avec intermédiaire", "Direct", "Intuitif"], correct: 1, explanation: "Médiat signifie avec intermédiaire." },
+        
+        // OBJECTIF / SUBJECTIF (2)
+        { text: "Qu'est-ce qui est 'objectif' ?", options: ["Ce qui appartient au sujet", "Ce qui vaut pour tous les esprits", "Ce qui est personnel", "Ce qui est émotionnel"], correct: 1, explanation: "Est objectif ce qui se présente comme valable pour tous les esprits et non pour un esprit individuel." },
+        { text: "Qu'est-ce qui est 'subjectif' ?", options: ["Ce qui vaut pour tous", "Ce qui appartient au sujet percevant", "Ce qui est universel", "Ce qui est nécessaire"], correct: 1, explanation: "Subjectif désigne tout ce qui appartient au sujet percevant ou connaissant et non à l'objet perçu ou connu." },
+        
+        // OBLIGATION / CONTRAINTE (2)
+        { text: "Qu'est-ce que l' 'obligation' ?", options: ["Une contrainte physique", "Ce qui découle d'un devoir", "Une liberté totale", "Un hasard"], correct: 1, explanation: "L'obligation découle d'un devoir. C'est une contrainte morale, compatible avec la liberté." },
+        { text: "La distinction entre obligation et contrainte montre que :", options: ["Toutes les contraintes sont liberticides", "Il existe des contraintes libératrices", "L'obligation est toujours forcée", "La contrainte est morale"], correct: 1, explanation: "La distinction obligation/contrainte montre que parmi les différentes formes de contraintes, existent des contraintes libératrices." },
+        
+        // ORIGINE / FONDEMENT (2)
+        { text: "Qu'est-ce que l' 'origine' ?", options: ["Le commencement de droit", "Le commencement de fait d'un processus", "Le principe logique", "La fin"], correct: 1, explanation: "L'origine est le commencement de fait d'un processus, la cause." },
+        { text: "Qu'est-ce que le 'fondement' ?", options: ["L'origine temporelle", "Le commencement de droit, le principe", "La cause matérielle", "L'effet"], correct: 1, explanation: "Le fondement est le commencement de droit, le point de départ logique, ce sur quoi repose en droit une réalité." },
+        
+        // PERSUADER / CONVAINCRE (2)
+        { text: "Que signifie 'persuader' ?", options: ["Faire appel à la raison", "Faire appel aux émotions", "Démontrer", "Prouver"], correct: 1, explanation: "Persuader, c'est faire appel aux émotions, à l'affectivité de l'autre." },
+        { text: "Que signifie 'convaincre' ?", options: ["Faire appel aux émotions", "Manipuler", "Faire appel à la raison en donnant des preuves", "Imposer"], correct: 2, explanation: "Convaincre, c'est faire appel à la raison d'autrui, donner des preuves, lui démontrer la vérité d'une proposition." },
+        
+        // RESSEMBLANCE / ANALOGIE (2)
+        { text: "La ressemblance suppose une comparaison entre :", options: ["4 termes", "3 termes", "2 termes", "1 terme"], correct: 2, explanation: "La ressemblance suppose une comparaison entre 2 termes." },
+        { text: "L'analogie suppose la mise en relation de :", options: ["2 termes", "3 termes", "4 termes", "1 terme"], correct: 2, explanation: "L'analogie suppose la mise en relation de quatre termes (ex: a/b = c/d)." },
+        
+        // THÉORIE / PRATIQUE (2)
+        { text: "Qu'est-ce que la 'théorie' ?", options: ["L'action", "La pratique", "Un ensemble d'énoncés qui rendent compte rationnellement de phénomènes", "Une émotion"], correct: 2, explanation: "La théorie est un ensemble lié d'énoncés qui rendent compte rationnellement d'un groupe de phénomènes." },
+        { text: "Dans le sens moderne, la théorie permet :", options: ["De contempler", "De transformer le réel", "De se divertir", "D'ignorer le réel"], correct: 1, explanation: "Dans le sens moderne, la théorie explique le réel et permet, par la connaissance de ses lois, de le transformer." },
+        
+        // TRANSCENDANT / IMMANENT (3)
+        { text: "Qu'est-ce qui est 'transcendant' ?", options: ["Ce qui est intérieur", "Ce qui est au-delà du domaine où l'on se place et d'une autre nature", "Ce qui est immanent", "Ce qui est matériel"], correct: 1, explanation: "Transcendant désigne ce qui est au-delà du domaine où l'on se place et d'une autre nature (extérieur et supérieur)." },
+        { text: "Qu'est-ce qui est 'immanent' ?", options: ["Ce qui est extérieur", "Ce qui est intérieur à l'être considéré", "Ce qui est transcendant", "Ce qui est supérieur"], correct: 1, explanation: "Immanent désigne ce qui est intérieur à l'être, à l'acte, à l'objet de pensée que l'on considère." },
+        { text: "Le Dieu des chrétiens est :", options: ["Immanent", "Transcendant au monde", "Matériel", "Relatif"], correct: 1, explanation: "Le Dieu des chrétiens est transcendant au monde. Les dieux grecs qui viennent goûter aux plaisirs terrestres sont immanents." },
+        
+        // UNIVERSEL / GÉNÉRAL / PARTICULIER / SINGULIER (5)
+        { text: "Qu'est-ce qui est 'universel' ?", options: ["Ce qui vaut dans la majorité des cas", "Ce qui vaut pour tous les individus sans exception", "Ce qui vaut pour quelques cas", "Ce qui vaut pour un seul cas"], correct: 1, explanation: "L'universel est ce qui vaut pour tous les individus d'une classe d'objets sans aucune exception." },
+        { text: "Qu'est-ce qui est 'particulier' ?", options: ["Ce qui vaut pour tous", "Ce qui vaut dans la majorité des cas", "Ce qui vaut pour quelques cas", "Ce qui vaut pour un seul cas"], correct: 2, explanation: "Le particulier est ce qui vaut pour quelques cas." },
+        { text: "Qu'est-ce qui est 'singulier' ?", options: ["Ce qui vaut pour tous", "Ce qui vaut pour un seul cas", "Ce qui vaut pour quelques cas", "Ce qui vaut dans la majorité des cas"], correct: 1, explanation: "Le singulier est ce qui vaut pour un seul cas." },
+        { text: "La proposition 'Tous les hommes sont mortels' est :", options: ["Particulière", "Singulière", "Universelle", "Générale"], correct: 2, explanation: "'Tous les hommes sont mortels' est une proposition universelle car elle vaut pour tous les hommes sans exception." },
+        { text: "La proposition 'Gustave Flaubert a écrit Madame Bovary' est :", options: ["Universelle", "Générale", "Particulière", "Singulière"], correct: 3, explanation: "Cette proposition est singulière car elle ne vaut que pour Gustave Flaubert." }
+    ];
+
+    // État du quiz
+    let currentQuestions = [];
+    let currentIndex = 0;
+    let userAnswers = [];
+    let answerValidated = false;
+    let selectedOption = null;
+
+    // Fonctions utilitaires
+    function shuffleArray(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+        return array;
+    }
+
+    function selectRandomQuestions(n) {
+        const shuffled = shuffleArray([...bankQuestions]);
+        return shuffled.slice(0, n);
+    }
+
+    function initQuiz() {
+        currentQuestions = selectRandomQuestions(10);
+        currentIndex = 0;
+        userAnswers = new Array(10).fill(null);
+        answerValidated = false;
+        selectedOption = null;
+        render();
+    }
+
+    function selectAnswer(optionIndex) {
+        if (answerValidated) return;
+        selectedOption = optionIndex;
+        render();
+    }
+
+    function validateAnswer() {
+        if (selectedOption === null) return;
+        answerValidated = true;
+        userAnswers[currentIndex] = selectedOption;
+        render();
+    }
+
+    function nextQuestion() {
+        if (currentIndex < currentQuestions.length - 1) {
+            currentIndex++;
+            answerValidated = false;
+            selectedOption = (userAnswers[currentIndex] !== null) ? userAnswers[currentIndex] : null;
+            render();
+        } else {
+            showResults();
+        }
+    }
+
+    function prevQuestion() {
+        if (currentIndex > 0) {
+            currentIndex--;
+            answerValidated = true;
+            selectedOption = userAnswers[currentIndex];
+            render();
+        }
+    }
+
+    function showResults() {
+        let score = 0;
+        currentQuestions.forEach((q, idx) => {
+            if (userAnswers[idx] === q.correct) score++;
+        });
+        
+        const app = document.getElementById('app');
+        app.innerHTML = `
+            <div class="quiz-card">
+                <div class="score-container">
+                    <h2>🎉 Quiz terminé !</h2>
+                    <div class="score-value">${score} / ${currentQuestions.length}</div>
+                    <p>${score === 10 ? "Parfait ! Vous maîtrisez parfaitement les repères !" : score >= 7 ? "Très bien ! Continuez à vous entraîner." : "Vous pouvez progresser en révisant les flashcards."}</p>
+                    <button class="restart-btn" id="restartBtn">🔄 Nouveau quiz (10 nouvelles questions)</button>
+                </div>
+                <div style="margin-top: 1.5rem;">
+                    <h3 style="margin-bottom: 1rem;">📋 Détail des réponses :</h3>
+                    ${currentQuestions.map((q, idx) => `
+                        <div class="detail-reponse ${userAnswers[idx] === q.correct ? 'detail-correct' : 'detail-incorrect'}">
+                            <p><strong>Question ${idx + 1}:</strong> ${q.text}</p>
+                            <p style="font-size: 0.9rem;">✅ Bonne réponse : ${q.options[q.correct]}</p>
+                            ${userAnswers[idx] !== q.correct ? `<p style="font-size: 0.85rem; color: #991b1b;">📌 Votre réponse : ${q.options[userAnswers[idx]]}</p>` : ''}
+                            <p style="font-size: 0.85rem; color: #475569;">📖 ${q.explanation}</p>
+                        </div>
+                    `).join('')}
+                </div>
+                <button class="restart-btn" id="restartBtn2" style="margin-top: 1rem;">🔄 Nouveau quiz (10 nouvelles questions)</button>
+            </div>
+        `;
+        document.getElementById('restartBtn')?.addEventListener('click', initQuiz);
+        document.getElementById('restartBtn2')?.addEventListener('click', initQuiz);
+    }
+
+    function render() {
+        if (currentIndex >= currentQuestions.length) {
+            showResults();
+            return;
+        }
+        
+        const q = currentQuestions[currentIndex];
+        const progress = ((currentIndex + 1) / currentQuestions.length) * 100;
+        
+        const app = document.getElementById('app');
+        app.innerHTML = `
+            <div class="quiz-card">
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: ${progress}%;"></div>
+                </div>
+                
+                <div class="question-header">
+                    <span class="question-number">Question ${currentIndex + 1}/${currentQuestions.length}</span>
+                    <span class="question-stats">📚 ${bankQuestions.length} questions disponibles</span>
+                </div>
+                
+                <div class="question-text">${escapeHtml(q.text)}</div>
+                
+                <div class="options" id="options">
+                    ${q.options.map((opt, idx) => `
+                        <div class="option 
+                            ${selectedOption === idx ? 'selected' : ''} 
+                            ${answerValidated && idx === q.correct ? 'correct' : ''} 
+                            ${answerValidated && selectedOption === idx && selectedOption !== q.correct ? 'wrong' : ''} 
+                            ${answerValidated ? 'disabled' : ''}" 
+                            data-opt-index="${idx}">
+                            <input type="radio" name="question" id="opt_${idx}" value="${idx}" 
+                                ${selectedOption === idx ? 'checked' : ''} 
+                                ${answerValidated ? 'disabled' : ''}>
+                            <label for="opt_${idx}">${escapeHtml(opt)}</label>
+                        </div>
+                    `).join('')}
+                </div>
+                
+                ${answerValidated ? `
+                    <div class="feedback ${selectedOption === q.correct ? 'correct' : 'wrong'}">
+                        ${selectedOption === q.correct ? '✅ Correct !' : '❌ Incorrect.'} ${escapeHtml(q.explanation)}
+                    </div>
+                ` : ''}
+                
+                <div class="nav-buttons">
+                    <button class="nav-btn" id="prevBtn" ${currentIndex === 0 ? 'disabled' : ''}>← Précédent</button>
+                    ${!answerValidated ? 
+                        `<button class="nav-btn nav-btn-primary validate-btn" id="validateBtn" ${selectedOption === null ? 'disabled' : ''}>✓ Valider ma réponse</button>` :
+                        `<button class="nav-btn nav-btn-primary" id="nextBtn">Suivant →</button>`
+                    }
+                </div>
+            </div>
+        `;
+        
+        // Gestionnaire pour les options
+        if (!answerValidated) {
+            document.querySelectorAll('.option').forEach(opt => {
+                opt.addEventListener('click', (e) => {
+                    // Éviter de déclencher si on clique sur le label ou l'input qui sont déjà gérés
+                    if (answerValidated) return;
+                    const idx = parseInt(opt.dataset.optIndex);
+                    selectAnswer(idx);
+                });
+            });
+            
+            // Gestionnaire pour les inputs radio
+            document.querySelectorAll('input[name="question"]').forEach(input => {
+                input.addEventListener('change', (e) => {
+                    if (answerValidated) return;
+                    const idx = parseInt(e.target.value);
+                    selectAnswer(idx);
+                });
+            });
+            
+            const validateBtn = document.getElementById('validateBtn');
+            if (validateBtn) {
+                validateBtn.addEventListener('click', validateAnswer);
+                if (selectedOption === null) validateBtn.disabled = true;
+            }
+        } else {
+            const nextBtn = document.getElementById('nextBtn');
+            if (nextBtn) nextBtn.addEventListener('click', nextQuestion);
+        }
+        
+        const prevBtn = document.getElementById('prevBtn');
+        if (prevBtn) prevBtn.addEventListener('click', prevQuestion);
+    }
+    
+    // Échapper les caractères HTML pour éviter les problèmes d'affichage
+    function escapeHtml(text) {
+        const div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
+    }
+
+    // Lancer le quiz
+    initQuiz();
+</script>
+
+</body>
+</html>

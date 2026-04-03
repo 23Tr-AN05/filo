@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Les repères philosophiques - Philosophie</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: linear-gradient(135deg, #f8fafc 0%, #eef2ff 100%);
+            color: #1e293b;
+            line-height: 1.6;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #2d3a4e 100%);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+            border-bottom: 4px solid #3b82f6;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            font-style: italic;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .btn-retour {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: #3b82f6;
+            color: white;
+            padding: 0.7rem 1.5rem;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .btn-retour:hover {
+            background: #2563eb;
+            transform: translateX(-4px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
+
+        .content-card {
+            background: white;
+            border-radius: 32px;
+            padding: 2.5rem;
+            box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.1);
+        }
+
+        .repere-panel {
+            border-radius: 24px;
+            margin: 1.5rem 0;
+            overflow: hidden;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .repere-panel:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px -8px rgba(0, 0, 0, 0.15);
+        }
+
+        .panel-header {
+            padding: 1rem 1.5rem;
+            font-size: 1.3rem;
+            font-weight: 700;
+            text-align: center;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+        }
+
+        .panel-content {
+            padding: 1.5rem;
+        }
+
+        .panel-content p {
+            margin-bottom: 0.8rem;
+            text-align: justify;
+            line-height: 1.7;
+        }
+
+        .panel-content ul, .panel-content ol {
+            margin: 0.8rem 0 0.8rem 2rem;
+        }
+
+        .panel-content li {
+            margin-bottom: 0.5rem;
+            text-align: justify;
+        }
+
+        /* Couleurs des panneaux */
+        .jaune { background: #fefce8; border-left: 5px solid #eab308; }
+        .jaune .panel-header { background: #fef08a; color: #854d0e; }
+        
+        .rouge { background: #fef2f2; border-left: 5px solid #ef4444; }
+        .rouge .panel-header { background: #fecaca; color: #991b1b; }
+        
+        .bleu { background: #eff6ff; border-left: 5px solid #3b82f6; }
+        .bleu .panel-header { background: #bfdbfe; color: #1e40af; }
+        
+        .vert { background: #f0fdf4; border-left: 5px solid #22c55e; }
+        .vert .panel-header { background: #bbf7d0; color: #166534; }
+        
+        .violet { background: #faf5ff; border-left: 5px solid #a855f7; }
+        .violet .panel-header { background: #e9d5ff; color: #6b21a5; }
+        
+        .orange { background: #fff7ed; border-left: 5px solid #f97316; }
+        .orange .panel-header { background: #fed7aa; color: #9a3412; }
+
+        mark {
+            background-color: #fef08a;
+            padding: 0.1rem 0.2rem;
+            border-radius: 4px;
+        }
+
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            border-bottom: 1px dotted #3b82f6;
+            cursor: help;
+        }
+
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 300px;
+            background-color: #1e293b;
+            color: #fff;
+            text-align: center;
+            border-radius: 8px;
+            padding: 0.5rem;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            transition: opacity 0.3s;
+            font-size: 0.85rem;
+            font-weight: normal;
+        }
+
+        .tooltip .tooltiptext::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: #1e293b transparent transparent transparent;
+        }
+
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        hr {
+            margin: 2rem 0;
+            border: none;
+            border-top: 2px solid #e2e8f0;
+        }
+
+        @media (max-width: 768px) {
+            .container { padding: 1rem; }
+            .content-card { padding: 1.5rem; }
+            .hero h1 { font-size: 1.6rem; }
+            .panel-header { font-size: 1.1rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="hero">
+    <h1>📚 LES REPÈRES PHILOSOPHIQUES</h1>
+    <p></p>
+</div>
+
+<div class="container">
+    <a href="index.html" class="btn-retour">← Retour à l'accueil</a>
+
+    <div class="content-card">
+        
+        <!-- ========== ABSOLU / RELATIF ========== -->
+        <div class="repere-panel jaune">
+            <div class="panel-header">
+                📌 ABSOLU / RELATIF
+            </div>
+            <div class="panel-content">
+                <p><strong>Absolu :</strong> ce qui ne dépend que de soi-même pour exister, ce qui dans la pensée comme dans la réalité ne dépend d'aucune autre chose et porte en soi-même sa raison d'être.</p>
+                <p><strong>Relatif :</strong> ce qui dépend d'un autre terme en l'absence duquel ce dont il s'agit serait inintelligible, impossible ou incorrect.</p>
+                <p><strong>Exemples :</strong></p>
+                <ul>
+                    <li>Dieu est absolu (il est sa propre raison d'être).</li>
+                    <li>Un pouvoir peut être absolu s'il ne dépend de rien au sens où il est sans partage et sans contrepoids.</li>
+                    <li>La créature est relative au créateur (sans lui, elle n'existerait pas).</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- ========== ABSTRAIT / CONCRET ========== -->
+        <div class="repere-panel rouge">
+            <div class="panel-header">
+                📌 ABSTRAIT / CONCRET
+            </div>
+            <div class="panel-content">
+                <p><strong>Abstrait :</strong> l'abstraction est une opération de l'esprit qui consiste à séparer ce que nos sens présentent comme non séparés.</p>
+                <p><strong>Concret :</strong> l'objet concret est l'objet global, le tout. Une idée peut être concrète si elle considère une réalité dans sa globalité.</p>
+                <p><strong>Exemples :</strong></p>
+                <ul>
+                    <li>Rouge est une abstraction car une couleur ne se présente jamais seule à ma vue.</li>
+                    <li>Je vois une pomme rouge, une tomate rouge mais jamais du rouge seul.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- ========== ANALYSE / SYNTHÈSE ========== -->
+        <div class="repere-panel bleu">
+            <div class="panel-header">
+                📌 ANALYSE / SYNTHÈSE
+            </div>
+            <div class="panel-content">
+                <p><strong>Analyse :</strong> opération de l'esprit qui consiste à décomposer un phénomène ou un concept en ses parties en montrant comment elles s'enchaînent. <strong>Analyser, c'est expliquer.</strong></p>
+                <p><strong>Synthèse :</strong> organisation dans un nouvel ensemble d'éléments jusque là séparés ou associés différemment. <strong>La synthèse permet de comprendre.</strong></p>
+                <p><strong>Exemples :</strong></p>
+                <ul>
+                    <li>Une analyse de sang : le biologiste le décompose en ses différents constituants : plasma, globules rouges, globules blancs, etc.</li>
+                </ul>
+                <p>Expliquer un phénomène, c'est chercher les causes.</p>
+                <ul>
+                    <li>E. Durkheim explique le suicide en cherchant les faits sociaux qui conduisent à une conduite de suicide.</li>
+                </ul>
+                <p>Comprendre suppose au contraire une saisie globale des phénomènes.</p>
+                <ul>
+                    <li>Saisir le sens du suicide en tant qu'il est parcouru par une intention.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- ========== CAUSE / FIN ========== -->
+        <div class="repere-panel vert">
+            <div class="panel-header">
+                📌 CAUSE / FIN
+            </div>
+            <div class="panel-content">
+                <p><strong>Cause :</strong> la notion de cause est liée à celle d'effet. La cause est ce qui entraîne de façon nécessaire un effet.</p>
+                <p><strong>Fin :</strong> but. Chercher la fin, c'est se poser la question du « pourquoi ».</p>
+                <p><strong>Exemples :</strong></p>
+                <ul>
+                    <li>L'attraction terrestre est <strong>cause</strong> du fait que chaque fois qu'un corps est lâché, il tombe vers le sol. L'attraction est la <strong>cause</strong> et la chute est l'<strong>effet</strong>.</li>
+                    <li>« Pourquoi punit-on ? » signifie « Quelle est la <strong>fin</strong>, quel est le <strong>but</strong> poursuivi lorsqu'on punit, quelle est la <strong>raison</strong> pour laquelle on punit ? » On pourra répondre que c'est pour faire un exemple ou pour établir le droit. On aura alors dégagé la fin de la punition.</li>
+                </ul>
+                <p>⨝ Néanmoins, la théorie des quatre causes d'ARISTOTE rend la distinction <em>cause / fin</em> plus complexe. Pour Aristote, en effet, est cause tout ce qui est mis en jeu dans la production d'un effet.</p>
+                <ul>
+                    <li>La production d'une statue met en jeu quatre causes.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- ========== CONTINGENT / NÉCESSAIRE / POSSIBLE ========== -->
+        <div class="repere-panel jaune">
+            <div class="panel-header">
+                📌 CONTINGENT / NÉCESSAIRE / POSSIBLE
+            </div>
+            <div class="panel-content">
+                <p><strong>Contingent :</strong> ce qui pourrait ne pas être.</p>
+                <p><strong>Nécessaire :</strong> ce qui ne peut pas ne pas être.</p>
+                <p><strong>Possible :</strong> ce qui peut être, c'est-à-dire qui n'est ni nécessaire ni impossible. Le <strong>réel</strong> est un cas particulier du possible.</p>
+                <p>L'<strong>impossible</strong> est ce qui ne peut pas être, soit parce qu'il est irréalisable, soit parce qu'il est contradictoire avec les lois de la nature.</p>
+                <p><strong>Exemples :</strong></p>
+                <ul>
+                    <li>Il est <strong>possible</strong> que j'aille au cinéma demain (ce n'est pas contradictoire) mais il est <strong>contingent</strong> que j'aille effectivement puisque je peux librement décider de ne pas y aller. Tel est le cas tout au moins si existe le <span class="tooltip">libre arbitre<span class="tooltiptext">l'aptitude de l'être humain à se déterminer librement et par lui seul, pour agir et penser.</span></span> car s'il n'existe pas alors je peux penser que le fait d'aller au cinéma est une conséquence <strong>nécessaire</strong> de l'état actuel du monde et de ce que je suis.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- ========== CROIRE / SAVOIR ========== -->
+        <div class="repere-panel rouge">
+            <div class="panel-header">
+                📌 CROIRE / SAVOIR
+            </div>
+            <div class="panel-content">
+                <p><strong>Croire :</strong> c'est être persuadé de la vérité d'une proposition sans preuve, sans démonstration. La foi (croyance en une proposition qui n'est ni évidente ni démontrable) est un cas particulier de croyance. On peut en effet croire en une proposition dont certes on ignore la démonstration mais qui, néanmoins, est démontrable.</p>
+                <p><strong>Savoir :</strong> c'est affirmer avec certitude de celui qui peut avancer des preuves. Savoir, c'est être capable de rendre raison de ce qu'on affirme.</p>
+            </div>
+        </div>
+
+        <!-- ========== ESSENTIEL / ACCIDENTEL ========== -->
+        <div class="repere-panel bleu">
+            <div class="panel-header">
+                📌 ESSENTIEL / ACCIDENTEL
+            </div>
+            <div class="panel-content">
+                <p><strong>Essentiel :</strong> ce qui relève de l'essence c'est-à-dire de la définition. Appartient à l'essence d'une chose ce qui ne peut être ôté d'une chose sans faire disparître en même temps la chose.</p>
+                <p><strong>Accidentel :</strong> on appelle accidentelle toute qualité fortuite d'un objet qu'on pourrait lui retirer sans le modifier fondamentalement.</p>
+                <p><strong>Exemples :</strong></p>
+                <ul>
+                    <li>Il fait partie de l'<strong>essence</strong> de l'homme d'être bipède ou d'être doué de raison. En revanche, avoir les yeux bleus est un <strong>accident</strong>.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- ========== EXPLIQUER / COMPRENDRE ========== -->
+        <div class="repere-panel vert">
+            <div class="panel-header">
+                📌 EXPLIQUER / COMPRENDRE
+            </div>
+            <div class="panel-content">
+                <p>Cf. ANALYSER / SYNTHÈSE</p>
+            </div>
+        </div>
+
+        <!-- ========== EN FAIT / EN DROIT ========== -->
+        <div class="repere-panel jaune">
+            <div class="panel-header">
+                📌 EN FAIT / EN DROIT
+            </div>
+            <div class="panel-content">
+                <p>Le <strong>fait</strong> : est ce qui est.</p>
+                <p>Le <strong>droit</strong> : est ce qui est légitime, ce qui devrait être.</p>
+                <p><strong>Exemples :</strong></p>
+                <ul>
+                    <li>Le viol est un fait mais non un droit.</li>
+                </ul>
+                <p>⨝ <u><span style="color:red">Vérité</span> de <strong>fait</strong></u> : vérité qui dépend d'un événement.</p>
+                <ul>
+                    <li>Balzac est mort en 1850.</li>
+                </ul>
+                <p>⨝ <u><span style="color:red">Vérité</span> de <strong>droit</strong></u> : vérité qui ne dépend pas des événements.</p>
+                <ul>
+                    <li>2 + 2 = 4</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- ========== FORMEL / MATÉRIEL ========== -->
+        <div class="repere-panel rouge">
+            <div class="panel-header">
+                📌 FORMEL / MATÉRIEL
+            </div>
+            <div class="panel-content">
+                <p>En logique on distingue la <strong>vérité formelle</strong> de la <strong>vérité matérielle</strong>.</p>
+                <p><u><span style="color:red">Vérité</span> <strong>formelle</strong></u> : la logique formelle étudie les relations entre les propositions indépendamment du contenu (ou de la matière) de ces propositions. Si un raisonnement est cohérent, sans contradiction, il sera vrai <strong>formellement</strong>.</p>
+                <p>Mais pour qu'il soit vrai <strong>matériellement</strong>, il faudra en plus que son contenu corresponde, soit adéquat à une réalité.</p>
+                <p>⨝ Chez ARISTOTE, la matière est ce en quoi les choses sont faites (ex : la statue est faite en marbre, matière de la statue) mais pour que les choses soient effectivement, il faut que la matière reçoive une forme (ici la configuration extérieure de la statue).</p>
+            </div>
+        </div>
+
+        <!-- ========== GENRE / ESPÈCE / INDIVIDU ========== -->
+        <div class="repere-panel bleu">
+            <div class="panel-header">
+                📌 GENRE / ESPÈCE / INDIVIDU
+            </div>
+            <div class="panel-content">
+                <p><strong>Genre :</strong> catégorie de réalités ou d'idées que leurs caractéristiques communes essentielles autorisent à regrouper sous la même dénomination générale. En biologie, ensemble d'individus de la même famille biologique que l'on peut subdiviser en autant d'espèces qu'il y a des sous-groupes distincts. Un <strong>genre</strong> est donc une catégorie générale, une classe.</p>
+                <p><strong>Espèce :</strong> en biologie, ensemble des individus possédant des caractères propres transmissibles héréditairement.</p>
+                <p><strong>Individu :</strong> membre de l'espèce, tous différents, mais dont les différences restent accidentelles alors que ce qu'ils sont essentiellement en commun les fait membres de la même espèce.</p>
+                <p><strong>Exemples :</strong></p>
+                <ul>
+                    <li>On parle de <strong>genre</strong> animal, d'<strong>espèce</strong> humaine. Pierre Dupond, lui, est un <strong>individu</strong>.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- ========== IDÉAL / RÉEL ========== -->
+        <div class="repere-panel vert">
+            <div class="panel-header">
+                📌 IDÉAL / RÉEL
+            </div>
+            <div class="panel-content">
+                <p><strong>Idéal :</strong> ce qui n'existe qu'à titre d'idée, que dans et par la pensée.</p>
+                <p><strong>Réel :</strong> ce qui est par opposition à l'apparence. Mais exister à titre d'idée est, d'une certaine façon, être. Il est d'autres façons d'être que <strong>matériellement</strong>.</p>
+                <p><strong>Exemples :</strong></p>
+                <ul>
+                    <li>Un nombre est une <strong>idéalité</strong> puisque dans l'expérience, on ne rencontre pas les nombres.</li>
+                </ul>
+                <p>⨝ Dans un sens courant, on pourra aussi dire que <strong>réel</strong> c'est ce qui est et l'<strong>idéal</strong> ce qui doit être, la perfection inaccessible.</p>
+            </div>
+        </div>
+
+        <!-- ========== IDENTITÉ / ÉGALITÉ / DIFFÉRENCE ========== -->
+        <div class="repere-panel orange">
+            <div class="panel-header">
+                📌 IDENTITÉ / ÉGALITÉ / DIFFÉRENCE
+            </div>
+            <div class="panel-content">
+                <p>Si le contraire de l'<strong>identité</strong> est la différence, le contraire de l'<strong>égalité</strong> est l'inégalité. Donc égalité et identité ne sont en aucun cas synonymes. L'identité suppose d'être indiscernable, de n'être différent de rien. Dès qu'un objet possède une caractéristique quelconque qui le distingue d'un autre, nous dirons alors ces deux objets qu'ils sont non identiques, qu'ils sont différents. Mais la différence n'implique nullement inégalité. Tout dépend de quelle différence il s'agit. L'inégalité est en effet une différence quantitative. Égalité et inégalité sont des mots issus du langage mathématique, domaine par excellence de la quantification.</p>
+                <p><strong>Exemple :</strong> Dire que tous les hommes sont égaux en droit, c'est dire qu'il y a entre eux une égalité arithmétique, au sens où ils ont tous rigoureusement les mêmes droits et les mêmes devoirs. Mais cela ne signifie nullement que nous sommes tous identiques. Les hommes sont différents par la force, le talent, l'état (femme, homme, enfant), etc. La différence incontestable par exemple entre l'homme et la femme ne doit pas conduire à une inégalité des droits.</p>
+            </div>
+        </div>
+
+        <!-- ========== INTUITIF / DISCURSIF ========== -->
+        <div class="repere-panel jaune">
+            <div class="panel-header">
+                📌 INTUITIF / DISCURSIF
+            </div>
+            <div class="panel-content">
+                <p><strong>Intuitif :</strong> l'intuition est un mode de connaissance immédiate. Est donc intuitif ce qui se donne directement à la conscience. On parlera d'intuition sensible (connaissance immédiate de ce qui s'offre à nos sens) ou d'intuition intellectuelle ou rationnelle (connaissance immédiate des objets de la raison). Le cogito cartésien, par exemple, relève de l'intuition rationnelle. Il n'est nullement l'aboutissement d'une démonstration mais se révèle au contraire comme une évidence indubitable.</p>
+                <p><strong>Discursif :</strong> qui relève du discours c'est-à-dire de la parole rationnelle et cohérente. Le processus discursif requiert la médiation d'un processus logique, d'un raisonnement. Le discours apparaît comme une suite de jugements présents dans un ordre méthodique.</p>
+            </div>
+        </div>
+
+        <!-- ========== LÉGAL / LÉGITIME ========== -->
+        <div class="repere-panel rouge">
+            <div class="panel-header">
+                📌 LÉGAL / LÉGITIME
+            </div>
+            <div class="panel-content">
+                <p><strong>Légal :</strong> ce qui est conforme au droit positif, c'est-à-dire au droit établi dans un État. La légalité, ce sont les lois, les codes tels que l'on les enseigne dans les facultés de droit. Le droit positif n'a rien d'universel et la légalité varie d'un État à l'autre.</p>
+                <p><strong>Légitime :</strong> ce qui est conforme au droit idéal, ce qui doit être pour que la justice soit respectée.</p>
+                <p><strong>Exemple :</strong> Inversement, la liberté d'expression n'est pas reconnue légalement dans certains États. Elle est pourtant légitime.</p>
+            </div>
+        </div>
+
+        <!-- ========== MÉDIAT / IMMÉDIAT ========== -->
+        <div class="repere-panel bleu">
+            <div class="panel-header">
+                📌 MÉDIAT / IMMÉDIAT
+            </div>
+            <div class="panel-content">
+                <p><strong>Médiat :</strong> avec intermédiaire.</p>
+                <p><strong>Immédiat :</strong> sans intermédiaire.</p>
+                <p><strong>Exemple :</strong> La perception sensible est une connaissance immédiate, tandis que le raisonnement scientifique est une connaissance médiate qui passe par des démonstrations.</p>
+            </div>
+        </div>
+
+        <!-- ========== OBJECTIF / SUBJECTIF ========== -->
+        <div class="repere-panel vert">
+            <div class="panel-header">
+                📌 OBJECTIF / SUBJECTIF
+            </div>
+            <div class="panel-content">
+                <p><strong>Objectif :</strong> au XVII<sup>e</sup> siècle, une chose est dite objective lorsqu'elle est considérée uniquement en tant qu'objet de pensée indépendamment de sa réalité extérieure à l'esprit (contraire alors de « formel » qui signifie à l'époque « ce qui existe effectivement » quand « objectif » signifie « ce qui n'existe que dans la pensée »).</p>
+                <p>À partir de Kant, est objectif soit ce qui existe indépendamment de la pensée, soit ce qui se présente comme un objet de pensée fondé, valable pour tous les esprits et non pour un esprit individuel.</p>
+                <p><strong>Subjectif :</strong> tout ce qui appartient au sujet percevant ou connaissant et non à l'objet perçu ou connu.</p>
+            </div>
+        </div>
+
+        <!-- ========== OBLIGATION / CONTRAINTE ========== -->
+        <div class="repere-panel orange">
+            <div class="panel-header">
+                📌 OBLIGATION / CONTRAINTE
+            </div>
+            <div class="panel-content">
+                <p><strong>Obligation :</strong> qui découle d'un devoir.</p>
+                <p><strong>Contrainte :</strong> lien ou règle qui limite, entrave ou empêche l'action de l'extérieur.</p>
+                <p>L'obligation est donc un cas particulier de contrainte, à savoir la contrainte morale. Ce qui la caractérise est d'être tout à fait compatible avec la liberté. C'est en effet librement que je consens à suivre mon devoir. Être obligé n'est pas être forcé. La distinction obligation / contrainte nous montre donc que, parmi les différentes formes de contraintes, existent des contraintes libératrices.</p>
+            </div>
+        </div>
+
+        <!-- ========== ORIGINE / FONDEMENT ========== -->
+        <div class="repere-panel jaune">
+            <div class="panel-header">
+                📌 ORIGINE / FONDEMENT
+            </div>
+            <div class="panel-content">
+                <p><strong>Origine :</strong> commencement de fait d'un processus. Cause.</p>
+                <p><strong>Fondement :</strong> commencement de droit, point de départ logique. Ce sur quoi repose en droit une réalité, une connaissance. Fondement est synonyme de principe.</p>
+                <p><strong>Exemple :</strong> L'origine de l'État peut être une conquête militaire, mais son fondement est le contrat social.</p>
+            </div>
+        </div>
+
+        <!-- ========== PERSUADER / CONVAINCRE ========== -->
+        <div class="repere-panel rouge">
+            <div class="panel-header">
+                📌 PERSUADER / CONVAINCRE
+            </div>
+            <div class="panel-content">
+                <p>Dans les deux cas, il s'agit d'obtenir l'accord de l'autre.</p>
+                <p><strong>Persuader :</strong> c'est faire appel aux émotions, à l'affectivité de l'autre (= de l'ordre de la manipulation).</p>
+                <p><strong>Convaincre :</strong> c'est faire appel à la raison d'autrui, donner des preuves, lui démontrer la vérité d'une proposition.</p>
+            </div>
+        </div>
+
+        <!-- ========== RESSEMBLANCE / ANALOGIE ========== -->
+        <div class="repere-panel bleu">
+            <div class="panel-header">
+                📌 RESSEMBLANCE / ANALOGIE
+            </div>
+            <div class="panel-content">
+                <p>La ressemblance suppose une comparaison entre 2 termes alors qu'une analogie suppose la mise en relation de quatre termes.</p>
+                <p><strong>Ressemblance :</strong> deux choses sont ressemblantes si elles présentent des identités qui peuvent même aller jusqu'à la confusion qui fait prendre l'une pour l'autre.</p>
+                <p><strong>Analogie :</strong> un raisonnement analogique est un raisonnement proportionnel de type a/b = c/d ou a/b = b/c. Ce ne sont donc pas les quatre termes qui sont comparés mais seulement les relations qui les unissent deux par deux.</p>
+            </div>
+        </div>
+
+        <!-- ========== EN THÉORIE / EN PRATIQUE ========== -->
+        <div class="repere-panel vert">
+            <div class="panel-header">
+                📌 EN THÉORIE / EN PRATIQUE
+            </div>
+            <div class="panel-content">
+                <p><strong>Théorie :</strong> connaissance contemplative pure et désintéressée chez les Grecs. En science, ensemble lié d'énoncés qui rendent compte rationnellement d'un groupe de phénomènes.</p>
+                <p><strong>Pratique :</strong> ce qui concerne l'action, essentiellement morale et politique.</p>
+                <p>Si dans l'Antiquité, l'opposition entre la théorie et la pratique est franche, dans le sens moderne au contraire la théorie explique le réel et permet donc, par la connaissance de ses lois, de le transformer.</p>
+            </div>
+        </div>
+
+        <!-- ========== TRANSCENDANT / IMMANENT ========== -->
+        <div class="repere-panel orange">
+            <div class="panel-header">
+                📌 TRANSCENDANT / IMMANENT
+            </div>
+            <div class="panel-content">
+                <p><strong>Transcendant :</strong> ce qui est au-delà du domaine où l'on se place et d'une autre nature (au-delà signifie extérieur et supérieur).</p>
+                <p><strong>Immanent :</strong> intérieur à l'être, à l'acte, à l'objet de pensée que l'on considère.</p>
+                <p>Transcendance et immanence ne sont pas des choses mais des rapports.</p>
+                <p><strong>Exemple :</strong> Le Dieu des chrétiens est transcendant au monde. Les dieux grecs qui viennent goûter aux plaisirs terrestres sont immanents.</p>
+            </div>
+        </div>
+
+        <!-- ========== UNIVERSEL / GÉNÉRAL / PARTICULIER / SINGULIER ========== -->
+        <div class="repere-panel jaune">
+            <div class="panel-header">
+                📌 UNIVERSEL / GÉNÉRAL / PARTICULIER / SINGULIER
+            </div>
+            <div class="panel-content">
+                <p><strong>Universel :</strong> qui vaut pour tous les individus d'une classe d'objets sans aucune exception.</p>
+                <p><strong>Général :</strong> qui vaut dans la majorité des cas mais peut admettre quelques exceptions. Qui vaut pour tous les éléments d'un genre.</p>
+                <p><strong>Particulier :</strong> qui vaut pour quelques cas.</p>
+                <p><strong>Singulier :</strong> qui vaut pour un seul cas.</p>
+                <p><strong>Exemples :</strong></p>
+                <ul>
+                    <li>« Tous les hommes sont mortels » est une proposition <strong>universelle</strong>.</li>
+                    <li>Les lois d'un État sont <strong>générales</strong>. Elles ne valent pas pour d'autres États.</li>
+                    <li>Dire que quelques hommes sont chauves, c'est énoncer une proposition <strong>particulière</strong>.</li>
+                    <li>Enfin, si j'affirme que Gustave Flaubert a écrit <em>Madame Bovary</em>, j'énonce une proposition <strong>singulière</strong> puisqu'elle ne vaut que pour Gustave Flaubert.</li>
+                </ul>
+            </div>
+        </div>
+
+        <hr />
+
+        
+    </div>
+</div>
+
+</body>
+</html>

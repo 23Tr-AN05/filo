@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flashcards - Repères philosophiques</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: linear-gradient(135deg, #f8fafc 0%, #eef2ff 100%);
+            color: #1e293b;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #2d3a4e 100%);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            border-bottom: 4px solid #3b82f6;
+        }
+
+        .hero h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .btn-retour {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: #3b82f6;
+            color: white;
+            padding: 0.6rem 1.2rem;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            transition: all 0.2s ease;
+            font-size: 0.9rem;
+        }
+
+        .btn-retour:hover {
+            background: #2563eb;
+            transform: translateX(-4px);
+        }
+
+        /* Carte flash */
+        .flashcard-container {
+            perspective: 1000px;
+            margin: 1rem 0;
+        }
+
+        .flashcard {
+            background: transparent;
+            height: 420px;
+            cursor: pointer;
+        }
+
+        .flashcard-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+            border-radius: 24px;
+        }
+
+        .flashcard.flipped .flashcard-inner {
+            transform: rotateY(180deg);
+        }
+
+        .flashcard-front, .flashcard-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 24px;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.15);
+        }
+
+        .flashcard-front {
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            color: white;
+            transform: rotateY(0deg);
+        }
+
+        .flashcard-front h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .flashcard-front p {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .flashcard-front .click-hint {
+            position: absolute;
+            bottom: 1.5rem;
+            font-size: 0.8rem;
+            opacity: 0.6;
+        }
+
+        .flashcard-back {
+            background: white;
+            color: #1e293b;
+            transform: rotateY(180deg);
+            border: 1px solid #e2e8f0;
+            text-align: left;
+            overflow-y: auto;
+            justify-content: flex-start;
+        }
+
+        .flashcard-back h4 {
+            color: #3b82f6;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+            text-align: center;
+        }
+
+        .flashcard-back p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+            text-align: justify;
+        }
+
+        .flashcard-back ul {
+            margin-left: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .flashcard-back li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Navigation */
+        .nav-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 2rem 0;
+            gap: 1rem;
+        }
+
+        .nav-btn {
+            background: #f1f5f9;
+            color: #1e293b;
+            padding: 0.8rem 1.5rem;
+            border-radius: 60px;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 1rem;
+            flex: 1;
+        }
+
+        .nav-btn:hover:not(:disabled) {
+            background: #e2e8f0;
+        }
+
+        .nav-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .nav-btn-primary {
+            background: #3b82f6;
+            color: white;
+        }
+
+        .nav-btn-primary:hover:not(:disabled) {
+            background: #2563eb;
+        }
+
+        .progress {
+            text-align: center;
+            margin: 1rem 0;
+            font-size: 0.9rem;
+            color: #64748b;
+        }
+
+        .progress-bar {
+            height: 6px;
+            background: #e2e8f0;
+            border-radius: 3px;
+            margin: 0.5rem 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: #3b82f6;
+            border-radius: 3px;
+            transition: width 0.3s;
+        }
+
+        .score-container {
+            text-align: center;
+            padding: 2rem;
+            background: white;
+            border-radius: 32px;
+            box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.1);
+        }
+
+        .score-container h2 {
+            color: #0f172a;
+            margin-bottom: 1rem;
+        }
+
+        .score-value {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #3b82f6;
+        }
+
+        .restart-btn {
+            background: #3b82f6;
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 60px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 1.5rem;
+            font-size: 1rem;
+        }
+
+        .restart-btn:hover {
+            background: #2563eb;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 0.5rem;
+        }
+
+        .known-btn {
+            background: #22c55e;
+            color: white;
+            border: none;
+            padding: 0.7rem 1.5rem;
+            border-radius: 60px;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 1rem;
+            flex: 1;
+        }
+
+        .known-btn:hover {
+            background: #16a34a;
+        }
+
+        .unknown-btn {
+            background: #ef4444;
+            color: white;
+            border: none;
+            padding: 0.7rem 1.5rem;
+            border-radius: 60px;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 1rem;
+            flex: 1;
+        }
+
+        .unknown-btn:hover {
+            background: #dc2626;
+        }
+
+        @media (max-width: 768px) {
+            .container { padding: 1rem; }
+            .flashcard { height: 480px; }
+            .flashcard-front h3 { font-size: 1.3rem; }
+            .action-buttons { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="hero">
+    <h1>📇 FLASHCARDS DES REPÈRES PHILOSOPHIQUES</h1>
+    <p>Cliquez sur la carte pour voir la définition | "Je connais" retire la carte | "Je ne connais pas" la remet dans le paquet</p>
+</div>
+
+<div class="container">
+    <a href="index.html" class="btn-retour">← Retour à l'accueil</a>
+
+    <div id="app"></div>
+</div>
+
+<script>
+    const reperes = [
+        { nom: "ABSOLU / RELATIF", definition: "Absolu : ce qui ne dépend que de soi-même pour exister. Relatif : ce qui dépend d'un autre terme.", details: "Ex: Dieu est absolu ; la créature est relative au créateur." },
+        { nom: "ABSTRAIT / CONCRET", definition: "Abstrait : opération de l'esprit qui consiste à séparer. Concret : l'objet global, le tout.", details: "Ex: 'Rouge' est une abstraction ; une pomme rouge est concrète." },
+        { nom: "ANALYSE / SYNTHÈSE", definition: "Analyse : décomposer un phénomène en ses parties (expliquer). Synthèse : organiser des éléments en un nouvel ensemble (comprendre).", details: "Ex: Analyse de sang ; synthèse d'un texte." },
+        { nom: "CAUSE / FIN", definition: "Cause : ce qui entraîne un effet. Fin : but, raison d'être.", details: "Ex: L'attraction terrestre cause la chute ; la fin de la punition peut être l'exemple." },
+        { nom: "CONTINGENT / NÉCESSAIRE / POSSIBLE", definition: "Contingent : ce qui pourrait ne pas être. Nécessaire : ce qui ne peut pas ne pas être. Possible : ce qui peut être.", details: "Ex: Aller au cinéma demain est possible et contingent." },
+        { nom: "CROIRE / SAVOIR", definition: "Croire : être persuadé sans preuve. Savoir : affirmer avec certitude en pouvant avancer des preuves.", details: "La foi est un cas particulier de croyance." },
+        { nom: "ESSENTIEL / ACCIDENTEL", definition: "Essentiel : ce qui relève de l'essence, ne peut être ôté. Accidentel : qualité fortuite qu'on peut retirer.", details: "Ex: Être bipède est essentiel à l'homme ; avoir les yeux bleus est accidentel." },
+        { nom: "EXPLIQUER / COMPRENDRE", definition: "Expliquer : rechercher les causes. Comprendre : saisir globalement le sens.", details: "Cf. ANALYSER / SYNTHÈSE." },
+        { nom: "EN FAIT / EN DROIT", definition: "Fait : ce qui est. Droit : ce qui est légitime, ce qui devrait être.", details: "Ex: Le viol est un fait mais non un droit. 2+2=4 est une vérité de droit." },
+        { nom: "FORMEL / MATÉRIEL", definition: "Formel : qui concerne la forme, la cohérence logique. Matériel : qui concerne le contenu.", details: "Ex: Un raisonnement peut être formellement vrai mais matériellement faux." },
+        { nom: "GENRE / ESPÈCE / INDIVIDU", definition: "Genre : catégorie générale. Espèce : sous-groupe d'un genre. Individu : membre d'une espèce.", details: "Ex: Genre animal, espèce humaine, individu Pierre." },
+        { nom: "IDÉAL / RÉEL", definition: "Idéal : ce qui n'existe qu'à titre d'idée. Réel : ce qui est, par opposition à l'apparence.", details: "Ex: Un nombre est une idéalité." },
+        { nom: "IDENTITÉ / ÉGALITÉ / DIFFÉRENCE", definition: "Identité : être indiscernable. Égalité : rapport quantitatif. Différence : ce qui distingue.", details: "Ex: Tous les hommes sont égaux en droit mais non identiques." },
+        { nom: "INTUITIF / DISCURSIF", definition: "Intuitif : connaissance immédiate. Discursif : qui relève du discours rationnel et cohérent.", details: "Ex: Le cogito cartésien relève de l'intuition rationnelle." },
+        { nom: "LÉGAL / LÉGITIME", definition: "Légal : conforme au droit positif. Légitime : conforme au droit idéal.", details: "Ex: La liberté d'expression peut être légitime sans être légale dans certains États." },
+        { nom: "MÉDIAT / IMMÉDIAT", definition: "Médiat : avec intermédiaire. Immédiat : sans intermédiaire.", details: "Ex: La perception sensible est immédiate ; le raisonnement scientifique est médiat." },
+        { nom: "OBJECTIF / SUBJECTIF", definition: "Objectif : qui existe indépendamment de la pensée, valable pour tous. Subjectif : qui appartient au sujet.", details: "Ex: Les lois de la physique sont objectives ; mes goûts sont subjectifs." },
+        { nom: "OBLIGATION / CONTRAINTE", definition: "Obligation : qui découle d'un devoir (contrainte morale). Contrainte : limite extérieure.", details: "Être obligé n'est pas être forcé. Il existe des contraintes libératrices." },
+        { nom: "ORIGINE / FONDEMENT", definition: "Origine : commencement de fait. Fondement : commencement de droit, principe.", details: "Ex: L'origine de l'État peut être une conquête ; son fondement est le contrat social." },
+        { nom: "PERSUADER / CONVAINCRE", definition: "Persuader : faire appel aux émotions. Convaincre : faire appel à la raison.", details: "Persuader relève de la manipulation ; convaincre relève de la démonstration." },
+        { nom: "RESSEMBLANCE / ANALOGIE", definition: "Ressemblance : comparaison entre 2 termes. Analogie : mise en relation de 4 termes.", details: "Ex: a/b = c/d est une analogie." },
+        { nom: "THÉORIE / PRATIQUE", definition: "Théorie : connaissance contemplative ou ensemble d'énoncés. Pratique : ce qui concerne l'action.", details: "Dans le sens moderne, la théorie permet de transformer le réel." },
+        { nom: "TRANSCENDANT / IMMANENT", definition: "Transcendant : au-delà et d'une autre nature. Immanent : intérieur à l'être considéré.", details: "Ex: Dieu est transcendant ; les dieux grecs sont immanents." },
+        { nom: "UNIVERSEL / GÉNÉRAL / PARTICULIER / SINGULIER", definition: "Universel : vaut pour tous sans exception. Général : vaut dans la majorité des cas. Particulier : vaut pour quelques cas. Singulier : vaut pour un seul cas.", details: "Ex: 'Tous les hommes sont mortels' est universel." }
+    ];
+
+    let currentCards = [];
+    let currentIndex = 0;
+    let knownCards = new Set();
+    let unknownCardsQueue = [];
+
+    function shuffleArray(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+        return array;
+    }
+
+    function initGame() {
+        currentCards = shuffleArray([...reperes]);
+        currentIndex = 0;
+        knownCards.clear();
+        unknownCardsQueue = [];
+        render();
+    }
+
+    function markAsKnown() {
+        if (currentIndex < currentCards.length) {
+            const currentCard = currentCards[currentIndex];
+            knownCards.add(currentCard.nom);
+            currentCards.splice(currentIndex, 1);
+            
+            // Ajouter les cartes de la file d'attente "inconnues" si nécessaire
+            if (unknownCardsQueue.length > 0) {
+                currentCards.push(...unknownCardsQueue);
+                unknownCardsQueue = [];
+                currentCards = shuffleArray(currentCards);
+                currentIndex = 0;
+            } else if (currentIndex >= currentCards.length && currentCards.length > 0) {
+                currentIndex = currentCards.length - 1;
+            }
+            render();
+        }
+    }
+
+    function markAsUnknown() {
+        if (currentIndex < currentCards.length) {
+            const currentCard = currentCards[currentIndex];
+            // Retirer la carte actuelle et l'ajouter à la file d'attente
+            currentCards.splice(currentIndex, 1);
+            unknownCardsQueue.push(currentCard);
+            
+            if (currentIndex >= currentCards.length && currentCards.length > 0) {
+                currentIndex = currentCards.length - 1;
+            }
+            render();
+        }
+    }
+
+    function nextCard() {
+        if (currentIndex < currentCards.length - 1) {
+            currentIndex++;
+            render();
+        }
+    }
+
+    function prevCard() {
+        if (currentIndex > 0) {
+            currentIndex--;
+            render();
+        }
+    }
+
+    function render() {
+        const app = document.getElementById('app');
+        
+        if (currentCards.length === 0 && unknownCardsQueue.length === 0) {
+            const total = reperes.length;
+            const known = knownCards.size;
+            const score = Math.round((known / total) * 100);
+            
+            app.innerHTML = `
+                <div class="score-container">
+                    <h2>🎉 Félicitations !</h2>
+                    <p>Vous avez terminé toutes les cartes !</p>
+                    <div class="score-value">${known} / ${total}</div>
+                    <p>cartes mémorisées</p>
+                    <div class="score-value" style="font-size: 1.5rem;">${score}%</div>
+                    <button class="restart-btn" id="restartBtn">🔄 Recommencer</button>
+                </div>
+            `;
+            document.getElementById('restartBtn')?.addEventListener('click', initGame);
+            return;
+        }
+        
+        const current = currentCards[currentIndex];
+        const totalCards = currentCards.length + unknownCardsQueue.length;
+        const knownCount = knownCards.size;
+        const progress = ((knownCount + (currentCards.length - currentIndex - 1)) / totalCards) * 100;
+        
+        app.innerHTML = `
+            <div class="progress">
+                <div>📚 Carte ${currentIndex + 1} / ${currentCards.length} | ✅ ${knownCount} mémorisées | ⏳ ${unknownCardsQueue.length} à revoir</div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: ${progress}%;"></div>
+                </div>
+            </div>
+            
+            <div class="flashcard-container">
+                <div class="flashcard" id="flashcard">
+                    <div class="flashcard-inner">
+                        <div class="flashcard-front">
+                            <h3>📌 ${current.nom}</h3>
+                            <p>Cliquez pour voir la définition</p>
+                            <div class="click-hint">👆</div>
+                        </div>
+                        <div class="flashcard-back">
+                            <h4>${current.nom}</h4>
+                            <p>${current.definition}</p>
+                            <ul>
+                                <li>${current.details}</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="action-buttons">
+                <button class="known-btn" id="knownBtn">✓ Je connais ce repère</button>
+                <button class="unknown-btn" id="unknownBtn">❌ Je ne connais pas ce repère</button>
+            </div>
+            
+            <div class="nav-controls">
+                <button class="nav-btn" id="prevBtn" ${currentIndex === 0 ? 'disabled' : ''}>← Précédent</button>
+                <button class="nav-btn nav-btn-primary" id="nextBtn">Suivant →</button>
+            </div>
+        `;
+        
+        const flashcard = document.getElementById('flashcard');
+        flashcard.addEventListener('click', () => {
+            flashcard.classList.toggle('flipped');
+        });
+        
+        document.getElementById('prevBtn').addEventListener('click', prevCard);
+        document.getElementById('nextBtn').addEventListener('click', nextCard);
+        document.getElementById('knownBtn').addEventListener('click', markAsKnown);
+        document.getElementById('unknownBtn').addEventListener('click', markAsUnknown);
+    }
+
+    initGame();
+</script>
+
+</body>
+</html>
